@@ -16,7 +16,7 @@
                 <asp:HyperLinkField DataTextField="Name" HeaderText="School Name" 
                     SortExpression="Name" />
                 <asp:BoundField DataField="City" HeaderText="City" />
-                <asp:BoundField DataField="State" HeaderText="State" />
+                <asp:BoundField DataField="StateName" HeaderText="State" />
                 <asp:BoundField DataField="Zip" HeaderText="Zip" />
             </Columns>
         </asp:GridView>
