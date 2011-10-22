@@ -80,84 +80,84 @@
         <elementListCompartment Id="acce50d1-bb26-4463-8ce4-d87e2130e80f" absoluteBounds="17.265, 5.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 4.44314697265625); (6.25 : 4.44314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 4.44314697265625); (6.25 : 4.44314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CocaDataContext/School/School_SchoolYear" />
       <nodes>
         <classShapeMoniker Id="17e3b75d-4e8a-49a5-9a1c-0f004760d54f" />
         <classShapeMoniker Id="2bab7cc2-595a-4294-8643-22f77aa57464" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 2.1362939453125); (5.875 : 2.5112939453125); (5.875 : 4.06532148632813); (6.25 : 4.06532148632813)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 2.1362939453125); (5.875 : 2.5112939453125); (5.875 : 4.06532148632813); (6.25 : 4.06532148632813)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CocaDataContext/Year/Year_SchoolYear" />
       <nodes>
         <classShapeMoniker Id="26b63c93-1808-46c2-a087-2e0dc277cf20" />
         <classShapeMoniker Id="2bab7cc2-595a-4294-8643-22f77aa57464" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 4.47199625651042); (3.5 : 4.47199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 4.47199625651042); (3.5 : 4.47199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CocaDataContext/State/State_School" />
       <nodes>
         <classShapeMoniker Id="402303c5-64a1-4f74-a38a-805e7b4b5693" />
         <classShapeMoniker Id="17e3b75d-4e8a-49a5-9a1c-0f004760d54f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 4.44314697265625); (9 : 4.44314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 4.44314697265625); (9 : 4.44314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CocaDataContext/SchoolYear/SchoolYear_StudentGroup" />
       <nodes>
         <classShapeMoniker Id="2bab7cc2-595a-4294-8643-22f77aa57464" />
         <classShapeMoniker Id="6f50c067-c237-4a5e-91fd-9d2096efb3c0" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 2.1362939453125); (8.625 : 2.5112939453125); (8.625 : 4.00282148632813); (9 : 4.00282148632813)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 2.1362939453125); (8.625 : 2.5112939453125); (8.625 : 4.00282148632813); (9 : 4.00282148632813)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CocaDataContext/ClassLevel/ClassLevel_StudentGroup" />
       <nodes>
         <classShapeMoniker Id="645b06d4-1176-4212-a270-ec80df0f0d7f" />
         <classShapeMoniker Id="6f50c067-c237-4a5e-91fd-9d2096efb3c0" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(13.75 : 4.41429768880208); (14.5 : 4.41429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(13.75 : 4.41429768880208); (14.5 : 4.41429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CocaDataContext/StudentGroupSeason/StudentGroupSeason_AnonStudent" />
       <nodes>
         <classShapeMoniker Id="d24abb96-97a1-4999-a545-97e014ce4c8c" />
         <classShapeMoniker Id="c95028a6-f90e-4789-a091-dd904b5bb5dd" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11 : 4.41429768880208); (11.75 : 4.41429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11 : 4.41429768880208); (11.75 : 4.41429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CocaDataContext/StudentGroup/StudentGroup_StudentGroupSeason" />
       <nodes>
         <classShapeMoniker Id="6f50c067-c237-4a5e-91fd-9d2096efb3c0" />
         <classShapeMoniker Id="d24abb96-97a1-4999-a545-97e014ce4c8c" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11 : 1.44314697265625); (12.75 : 1.44314697265625); (12.75 : 3.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11 : 1.44314697265625); (12.75 : 1.44314697265625); (12.75 : 3.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CocaDataContext/Season/Season_StudentGroupSeason" />
       <nodes>
         <classShapeMoniker Id="a73a08de-0f98-4e4d-83a9-e8fbabf72d68" />
         <classShapeMoniker Id="d24abb96-97a1-4999-a545-97e014ce4c8c" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(10 : 5.20359537760417); (10 : 7.13544840494792); (11.75 : 7.13544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(10 : 5.20359537760417); (10 : 7.13544840494792); (11.75 : 7.13544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CocaDataContext/StudentGroup/StudentGroup_Student" />
       <nodes>
         <classShapeMoniker Id="6f50c067-c237-4a5e-91fd-9d2096efb3c0" />
         <classShapeMoniker Id="838641ed-cd78-4198-8a2f-8fc187d62066" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(13.75 : 7.19314697265625); (14.5 : 7.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(13.75 : 7.19314697265625); (14.5 : 7.19314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CocaDataContext/Student/Student_StudentSurveyDate" />
       <nodes>
         <classShapeMoniker Id="838641ed-cd78-4198-8a2f-8fc187d62066" />
         <classShapeMoniker Id="85c5247b-7c55-4f1f-9a3d-7b5a7633dd37" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(16.5 : 5.04409912109375); (17.25 : 5.04409912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(16.5 : 5.04409912109375); (17.25 : 5.04409912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CocaDataContext/AnonStudent/AnonStudent_StudentSurveyRating" />
       <nodes>
         <classShapeMoniker Id="c95028a6-f90e-4789-a091-dd904b5bb5dd" />
         <classShapeMoniker Id="2cb3a44a-e339-4a4c-ac8a-0c83b3c3400e" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(16.5 : 7.23724659375); (18.25 : 7.23724659375); (18.25 : 6.5881982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(16.5 : 7.23724659375); (18.25 : 7.23724659375); (18.25 : 6.5881982421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CocaDataContext/StudentSurveyDate/StudentSurveyDate_StudentSurveyRating" />
       <nodes>
         <classShapeMoniker Id="85c5247b-7c55-4f1f-9a3d-7b5a7633dd37" />
