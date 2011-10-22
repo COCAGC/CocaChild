@@ -164,7 +164,7 @@
         <classShapeMoniker Id="2cb3a44a-e339-4a4c-ac8a-0c83b3c3400e" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(13.75 : 5.20359537760417); (14.125 : 5.57859537760417); (14.125 : 6.81532148632813); (14.5 : 6.81532148632813)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(13.75 : 5.20359537760417); (14.125 : 5.57859537760417); (14.125 : 6.81532148632813); (14.5 : 6.81532148632813)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CocaDataContext/StudentGroupSeason/StudentGroupSeason_StudentSurveyDate" />
       <nodes>
         <classShapeMoniker Id="d24abb96-97a1-4999-a545-97e014ce4c8c" />

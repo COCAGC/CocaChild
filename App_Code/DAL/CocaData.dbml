@@ -74,7 +74,7 @@
   </Table>
   <Table Name="dbo.StudentGroups" Member="StudentGroups">
     <Type Name="StudentGroup">
-      <Column Name="StudentGroupId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StudentGroupId" Member="Id" AutoSync="Never" Type="System.Int64" DbType="BigInt NOT NULL" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" />
       <Column Name="StudentGroupName" Member="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="SchoolYearId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="ClassLevelId" Type="System.Int32" DbType="Int" CanBeNull="true" />
