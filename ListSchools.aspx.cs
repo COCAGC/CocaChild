@@ -16,7 +16,15 @@ public partial class ListSchools : System.Web.UI.Page
     {
         using(CocaDataContext ctx = new CocaDataContext()){
        
-            gvSchoolList.DataSource = (from School d in ctx.Schools select new {Name = d.Name , City = d.City, StateName = d.State.Name, Zip = d.Zip}).ToList();
+            gvSchoolList.DataSource = (
+                    from School d in ctx.Schools 
+                    select new {
+                        Name = d.Name, 
+                        City = d.City, 
+                        StateName = d.State.Name, 
+                        Zip = d.Zip
+                    }
+                ).ToList();
             gvSchoolList.DataBind();
         }
         //var sv = SchoolView.SchoolListView().ToTable();
