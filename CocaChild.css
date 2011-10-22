@@ -1,6 +1,28 @@
 ﻿body {
+  padding: 0.3em;
 }
 
+a:link
+{
+    color: #0000ff;
+}
+a:hover 
+{
+    color: #aa00aa;
+}
+a:visited 
+{
+    color: #0000ff;
+}
+.navigation
+{
+    line-height: 2.0em;
+    list-style: none;
+}
+.navigation li
+{
+    list-style: none;
+}
 
 fieldset {
   padding: 1em;  

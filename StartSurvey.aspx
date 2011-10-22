@@ -1,29 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="StartSurvey.aspx.cs" Inherits="StartSurvey" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/StudentSite.master" CodeFile="StartSurvey.aspx.cs" Inherits="StartSurvey" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Start Survey</title>
-<style>
-fieldset {
-  padding: 1em;  
-}
-label 
-{
-  clear:left;
-  float:left;
-  width:15%;
-  margin-right:0.5em;
-  padding-top:0.2em;
-  text-align:right;
-  font-weight:bold;
-  }
-    </style>
-</head>
-<body>
-        <asp:Label ID="Label1" runat="server" Text="Label"><h1>Start Survey Here</h1></asp:Label>
-    <form id="form1" runat="server">
+        <asp:Label ID="Label1" runat="server" Text="Label"><h1>Start Survey Here</h1></asp:Label>    
     <div>
     <div >
     <fieldset>
@@ -40,7 +21,5 @@ label
 
     </fieldset>
     </div>
-    </div>
-    </form>
-</body>
-</html>
+    </div>    
+</asp:Content>

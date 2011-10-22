@@ -22,7 +22,7 @@ namespace DAL
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="CocaChild")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="SQL2008R2_847344_surveys")]
 	public partial class CocaDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -33,21 +33,30 @@ namespace DAL
     partial void InsertAnonStudent(AnonStudent instance);
     partial void UpdateAnonStudent(AnonStudent instance);
     partial void DeleteAnonStudent(AnonStudent instance);
-    partial void InsertSurvey(Survey instance);
-    partial void UpdateSurvey(Survey instance);
-    partial void DeleteSurvey(Survey instance);
+    partial void InsertYear(Year instance);
+    partial void UpdateYear(Year instance);
+    partial void DeleteYear(Year instance);
     partial void InsertClassLevel(ClassLevel instance);
     partial void UpdateClassLevel(ClassLevel instance);
     partial void DeleteClassLevel(ClassLevel instance);
     partial void InsertSchool(School instance);
     partial void UpdateSchool(School instance);
     partial void DeleteSchool(School instance);
+    partial void InsertSchoolYear(SchoolYear instance);
+    partial void UpdateSchoolYear(SchoolYear instance);
+    partial void DeleteSchoolYear(SchoolYear instance);
     partial void InsertSeason(Season instance);
     partial void UpdateSeason(Season instance);
     partial void DeleteSeason(Season instance);
     partial void InsertState(State instance);
     partial void UpdateState(State instance);
     partial void DeleteState(State instance);
+    partial void InsertStudentGroup(StudentGroup instance);
+    partial void UpdateStudentGroup(StudentGroup instance);
+    partial void DeleteStudentGroup(StudentGroup instance);
+    partial void InsertStudentGroupSeason(StudentGroupSeason instance);
+    partial void UpdateStudentGroupSeason(StudentGroupSeason instance);
+    partial void DeleteStudentGroupSeason(StudentGroupSeason instance);
     partial void InsertStudent(Student instance);
     partial void UpdateStudent(Student instance);
     partial void DeleteStudent(Student instance);
@@ -57,12 +66,6 @@ namespace DAL
     partial void InsertStudentSurveyRating(StudentSurveyRating instance);
     partial void UpdateStudentSurveyRating(StudentSurveyRating instance);
     partial void DeleteStudentSurveyRating(StudentSurveyRating instance);
-    partial void InsertSurveyClass(SurveyClass instance);
-    partial void UpdateSurveyClass(SurveyClass instance);
-    partial void DeleteSurveyClass(SurveyClass instance);
-    partial void InsertSurveyDate(SurveyDate instance);
-    partial void UpdateSurveyDate(SurveyDate instance);
-    partial void DeleteSurveyDate(SurveyDate instance);
     #endregion
 		
 		public CocaDataContext() : 
@@ -103,11 +106,11 @@ namespace DAL
 			}
 		}
 		
-		public System.Data.Linq.Table<Survey> Surveys
+		public System.Data.Linq.Table<Year> Years
 		{
 			get
 			{
-				return this.GetTable<Survey>();
+				return this.GetTable<Year>();
 			}
 		}
 		
@@ -127,6 +130,14 @@ namespace DAL
 			}
 		}
 		
+		public System.Data.Linq.Table<SchoolYear> SchoolYears
+		{
+			get
+			{
+				return this.GetTable<SchoolYear>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Season> Seasons
 		{
 			get
@@ -140,6 +151,22 @@ namespace DAL
 			get
 			{
 				return this.GetTable<State>();
+			}
+		}
+		
+		public System.Data.Linq.Table<StudentGroup> StudentGroups
+		{
+			get
+			{
+				return this.GetTable<StudentGroup>();
+			}
+		}
+		
+		public System.Data.Linq.Table<StudentGroupSeason> StudentGroupSeasons
+		{
+			get
+			{
+				return this.GetTable<StudentGroupSeason>();
 			}
 		}
 		
@@ -166,22 +193,6 @@ namespace DAL
 				return this.GetTable<StudentSurveyRating>();
 			}
 		}
-		
-		public System.Data.Linq.Table<SurveyClass> SurveyClasses
-		{
-			get
-			{
-				return this.GetTable<SurveyClass>();
-			}
-		}
-		
-		public System.Data.Linq.Table<SurveyDate> SurveyDates
-		{
-			get
-			{
-				return this.GetTable<SurveyDate>();
-			}
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AnonStudents")]
@@ -196,7 +207,7 @@ namespace DAL
 		
 		private string _Password;
 		
-		private long _SurveyClassId;
+		private long _StudentGroupSeasonId;
 		
 		private System.Nullable<System.DateTime> _LoggedInDate;
 		
@@ -204,7 +215,7 @@ namespace DAL
 		
 		private EntitySet<StudentSurveyRating> _StudentSurveyRatings;
 		
-		private EntityRef<SurveyClass> _SurveyClass;
+		private EntityRef<StudentGroupSeason> _StudentGroupSeason;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -216,8 +227,8 @@ namespace DAL
     partial void OnUserIdChanged();
     partial void OnPasswordChanging(string value);
     partial void OnPasswordChanged();
-    partial void OnSurveyClassIdChanging(long value);
-    partial void OnSurveyClassIdChanged();
+    partial void OnStudentGroupSeasonIdChanging(long value);
+    partial void OnStudentGroupSeasonIdChanged();
     partial void OnLoggedInDateChanging(System.Nullable<System.DateTime> value);
     partial void OnLoggedInDateChanged();
     partial void OnSavedDateChanging(System.Nullable<System.DateTime> value);
@@ -227,7 +238,7 @@ namespace DAL
 		public AnonStudent()
 		{
 			this._StudentSurveyRatings = new EntitySet<StudentSurveyRating>(new Action<StudentSurveyRating>(this.attach_StudentSurveyRatings), new Action<StudentSurveyRating>(this.detach_StudentSurveyRatings));
-			this._SurveyClass = default(EntityRef<SurveyClass>);
+			this._StudentGroupSeason = default(EntityRef<StudentGroupSeason>);
 			OnCreated();
 		}
 		
@@ -291,26 +302,26 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SurveyClassId", DbType="BigInt NOT NULL")]
-		public long SurveyClassId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentGroupSeasonId", DbType="BigInt NOT NULL")]
+		public long StudentGroupSeasonId
 		{
 			get
 			{
-				return this._SurveyClassId;
+				return this._StudentGroupSeasonId;
 			}
 			set
 			{
-				if ((this._SurveyClassId != value))
+				if ((this._StudentGroupSeasonId != value))
 				{
-					if (this._SurveyClass.HasLoadedOrAssignedValue)
+					if (this._StudentGroupSeason.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnSurveyClassIdChanging(value);
+					this.OnStudentGroupSeasonIdChanging(value);
 					this.SendPropertyChanging();
-					this._SurveyClassId = value;
-					this.SendPropertyChanged("SurveyClassId");
-					this.OnSurveyClassIdChanged();
+					this._StudentGroupSeasonId = value;
+					this.SendPropertyChanged("StudentGroupSeasonId");
+					this.OnStudentGroupSeasonIdChanged();
 				}
 			}
 		}
@@ -368,36 +379,36 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SurveyClass_AnonStudent", Storage="_SurveyClass", ThisKey="SurveyClassId", OtherKey="Id", IsForeignKey=true)]
-		public SurveyClass SurveyClass
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentGroupSeason_AnonStudent", Storage="_StudentGroupSeason", ThisKey="StudentGroupSeasonId", OtherKey="Id", IsForeignKey=true)]
+		public StudentGroupSeason StudentGroupSeason
 		{
 			get
 			{
-				return this._SurveyClass.Entity;
+				return this._StudentGroupSeason.Entity;
 			}
 			set
 			{
-				SurveyClass previousValue = this._SurveyClass.Entity;
+				StudentGroupSeason previousValue = this._StudentGroupSeason.Entity;
 				if (((previousValue != value) 
-							|| (this._SurveyClass.HasLoadedOrAssignedValue == false)))
+							|| (this._StudentGroupSeason.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._SurveyClass.Entity = null;
+						this._StudentGroupSeason.Entity = null;
 						previousValue.AnonStudents.Remove(this);
 					}
-					this._SurveyClass.Entity = value;
+					this._StudentGroupSeason.Entity = value;
 					if ((value != null))
 					{
 						value.AnonStudents.Add(this);
-						this._SurveyClassId = value.Id;
+						this._StudentGroupSeasonId = value.Id;
 					}
 					else
 					{
-						this._SurveyClassId = default(long);
+						this._StudentGroupSeasonId = default(long);
 					}
-					this.SendPropertyChanged("SurveyClass");
+					this.SendPropertyChanged("StudentGroupSeason");
 				}
 			}
 		}
@@ -435,49 +446,40 @@ namespace DAL
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Surveys")]
-	public partial class Survey : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Years")]
+	public partial class Year : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private long _Id;
+		private int _Id;
 		
-		private long _SchoolId;
+		private string _Name;
 		
-		private int _ClassLevelId;
+		private string _weight;
 		
-		private EntitySet<Student> _Students;
-		
-		private EntitySet<SurveyDate> _SurveyDates;
-		
-		private EntityRef<ClassLevel> _ClassLevel;
-		
-		private EntityRef<School> _School;
+		private EntitySet<SchoolYear> _SchoolYears;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIdChanging(long value);
+    partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void OnSchoolIdChanging(long value);
-    partial void OnSchoolIdChanged();
-    partial void OnClassLevelIdChanging(int value);
-    partial void OnClassLevelIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnweightChanging(string value);
+    partial void OnweightChanged();
     #endregion
 		
-		public Survey()
+		public Year()
 		{
-			this._Students = new EntitySet<Student>(new Action<Student>(this.attach_Students), new Action<Student>(this.detach_Students));
-			this._SurveyDates = new EntitySet<SurveyDate>(new Action<SurveyDate>(this.attach_SurveyDates), new Action<SurveyDate>(this.detach_SurveyDates));
-			this._ClassLevel = default(EntityRef<ClassLevel>);
-			this._School = default(EntityRef<School>);
+			this._SchoolYears = new EntitySet<SchoolYear>(new Action<SchoolYear>(this.attach_SchoolYears), new Action<SchoolYear>(this.detach_SchoolYears));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="SurveyId", Storage="_Id", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
-		public long Id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="YearId", Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
 		{
 			get
 			{
@@ -496,145 +498,56 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SchoolId", DbType="BigInt NOT NULL")]
-		public long SchoolId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="YearName", Storage="_Name", DbType="VarChar(255)")]
+		public string Name
 		{
 			get
 			{
-				return this._SchoolId;
+				return this._Name;
 			}
 			set
 			{
-				if ((this._SchoolId != value))
+				if ((this._Name != value))
 				{
-					if (this._School.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSchoolIdChanging(value);
+					this.OnNameChanging(value);
 					this.SendPropertyChanging();
-					this._SchoolId = value;
-					this.SendPropertyChanged("SchoolId");
-					this.OnSchoolIdChanged();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClassLevelId", DbType="Int NOT NULL")]
-		public int ClassLevelId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_weight", DbType="VarChar(25)")]
+		public string weight
 		{
 			get
 			{
-				return this._ClassLevelId;
+				return this._weight;
 			}
 			set
 			{
-				if ((this._ClassLevelId != value))
+				if ((this._weight != value))
 				{
-					if (this._ClassLevel.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnClassLevelIdChanging(value);
+					this.OnweightChanging(value);
 					this.SendPropertyChanging();
-					this._ClassLevelId = value;
-					this.SendPropertyChanged("ClassLevelId");
-					this.OnClassLevelIdChanged();
+					this._weight = value;
+					this.SendPropertyChanged("weight");
+					this.OnweightChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Survey_Student", Storage="_Students", ThisKey="Id", OtherKey="SurveyId")]
-		public EntitySet<Student> Students
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Year_SchoolYear", Storage="_SchoolYears", ThisKey="Id", OtherKey="YearId")]
+		public EntitySet<SchoolYear> SchoolYears
 		{
 			get
 			{
-				return this._Students;
+				return this._SchoolYears;
 			}
 			set
 			{
-				this._Students.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Survey_SurveyDate", Storage="_SurveyDates", ThisKey="Id", OtherKey="SurveyId")]
-		public EntitySet<SurveyDate> SurveyDates
-		{
-			get
-			{
-				return this._SurveyDates;
-			}
-			set
-			{
-				this._SurveyDates.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ClassLevel_Survey", Storage="_ClassLevel", ThisKey="ClassLevelId", OtherKey="Id", IsForeignKey=true)]
-		public ClassLevel ClassLevel
-		{
-			get
-			{
-				return this._ClassLevel.Entity;
-			}
-			set
-			{
-				ClassLevel previousValue = this._ClassLevel.Entity;
-				if (((previousValue != value) 
-							|| (this._ClassLevel.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ClassLevel.Entity = null;
-						previousValue.Surveys.Remove(this);
-					}
-					this._ClassLevel.Entity = value;
-					if ((value != null))
-					{
-						value.Surveys.Add(this);
-						this._ClassLevelId = value.Id;
-					}
-					else
-					{
-						this._ClassLevelId = default(int);
-					}
-					this.SendPropertyChanged("ClassLevel");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="School_Survey", Storage="_School", ThisKey="SchoolId", OtherKey="Id", IsForeignKey=true)]
-		public School School
-		{
-			get
-			{
-				return this._School.Entity;
-			}
-			set
-			{
-				School previousValue = this._School.Entity;
-				if (((previousValue != value) 
-							|| (this._School.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._School.Entity = null;
-						previousValue.Surveys.Remove(this);
-					}
-					this._School.Entity = value;
-					if ((value != null))
-					{
-						value.Surveys.Add(this);
-						this._SchoolId = value.Id;
-					}
-					else
-					{
-						this._SchoolId = default(long);
-					}
-					this.SendPropertyChanged("School");
-				}
+				this._SchoolYears.Assign(value);
 			}
 		}
 		
@@ -658,28 +571,16 @@ namespace DAL
 			}
 		}
 		
-		private void attach_Students(Student entity)
+		private void attach_SchoolYears(SchoolYear entity)
 		{
 			this.SendPropertyChanging();
-			entity.Survey = this;
+			entity.Year = this;
 		}
 		
-		private void detach_Students(Student entity)
+		private void detach_SchoolYears(SchoolYear entity)
 		{
 			this.SendPropertyChanging();
-			entity.Survey = null;
-		}
-		
-		private void attach_SurveyDates(SurveyDate entity)
-		{
-			this.SendPropertyChanging();
-			entity.Survey = this;
-		}
-		
-		private void detach_SurveyDates(SurveyDate entity)
-		{
-			this.SendPropertyChanging();
-			entity.Survey = null;
+			entity.Year = null;
 		}
 	}
 	
@@ -695,7 +596,7 @@ namespace DAL
 		
 		private System.Nullable<int> _Weight;
 		
-		private EntitySet<Survey> _Surveys;
+		private EntitySet<StudentGroup> _StudentGroups;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -711,7 +612,7 @@ namespace DAL
 		
 		public ClassLevel()
 		{
-			this._Surveys = new EntitySet<Survey>(new Action<Survey>(this.attach_Surveys), new Action<Survey>(this.detach_Surveys));
+			this._StudentGroups = new EntitySet<StudentGroup>(new Action<StudentGroup>(this.attach_StudentGroups), new Action<StudentGroup>(this.detach_StudentGroups));
 			OnCreated();
 		}
 		
@@ -775,16 +676,16 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ClassLevel_Survey", Storage="_Surveys", ThisKey="Id", OtherKey="ClassLevelId")]
-		public EntitySet<Survey> Surveys
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ClassLevel_StudentGroup", Storage="_StudentGroups", ThisKey="Id", OtherKey="ClassLevelId")]
+		public EntitySet<StudentGroup> StudentGroups
 		{
 			get
 			{
-				return this._Surveys;
+				return this._StudentGroups;
 			}
 			set
 			{
-				this._Surveys.Assign(value);
+				this._StudentGroups.Assign(value);
 			}
 		}
 		
@@ -808,13 +709,13 @@ namespace DAL
 			}
 		}
 		
-		private void attach_Surveys(Survey entity)
+		private void attach_StudentGroups(StudentGroup entity)
 		{
 			this.SendPropertyChanging();
 			entity.ClassLevel = this;
 		}
 		
-		private void detach_Surveys(Survey entity)
+		private void detach_StudentGroups(StudentGroup entity)
 		{
 			this.SendPropertyChanging();
 			entity.ClassLevel = null;
@@ -843,7 +744,7 @@ namespace DAL
 		
 		private string _Zip;
 		
-		private EntitySet<Survey> _Surveys;
+		private EntitySet<SchoolYear> _SchoolYears;
 		
 		private EntityRef<State> _State;
 		
@@ -871,7 +772,7 @@ namespace DAL
 		
 		public School()
 		{
-			this._Surveys = new EntitySet<Survey>(new Action<Survey>(this.attach_Surveys), new Action<Survey>(this.detach_Surveys));
+			this._SchoolYears = new EntitySet<SchoolYear>(new Action<SchoolYear>(this.attach_SchoolYears), new Action<SchoolYear>(this.detach_SchoolYears));
 			this._State = default(EntityRef<State>);
 			OnCreated();
 		}
@@ -1040,16 +941,16 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="School_Survey", Storage="_Surveys", ThisKey="Id", OtherKey="SchoolId")]
-		public EntitySet<Survey> Surveys
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="School_SchoolYear", Storage="_SchoolYears", ThisKey="Id", OtherKey="SchoolId")]
+		public EntitySet<SchoolYear> SchoolYears
 		{
 			get
 			{
-				return this._Surveys;
+				return this._SchoolYears;
 			}
 			set
 			{
-				this._Surveys.Assign(value);
+				this._SchoolYears.Assign(value);
 			}
 		}
 		
@@ -1107,16 +1008,236 @@ namespace DAL
 			}
 		}
 		
-		private void attach_Surveys(Survey entity)
+		private void attach_SchoolYears(SchoolYear entity)
 		{
 			this.SendPropertyChanging();
 			entity.School = this;
 		}
 		
-		private void detach_Surveys(Survey entity)
+		private void detach_SchoolYears(SchoolYear entity)
 		{
 			this.SendPropertyChanging();
 			entity.School = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SchoolYears")]
+	public partial class SchoolYear : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _Id;
+		
+		private long _SchoolId;
+		
+		private int _YearId;
+		
+		private EntitySet<StudentGroup> _StudentGroups;
+		
+		private EntityRef<School> _School;
+		
+		private EntityRef<Year> _Year;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(long value);
+    partial void OnIdChanged();
+    partial void OnSchoolIdChanging(long value);
+    partial void OnSchoolIdChanged();
+    partial void OnYearIdChanging(int value);
+    partial void OnYearIdChanged();
+    #endregion
+		
+		public SchoolYear()
+		{
+			this._StudentGroups = new EntitySet<StudentGroup>(new Action<StudentGroup>(this.attach_StudentGroups), new Action<StudentGroup>(this.detach_StudentGroups));
+			this._School = default(EntityRef<School>);
+			this._Year = default(EntityRef<Year>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="SchoolYearId", Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SchoolId", DbType="BigInt NOT NULL")]
+		public long SchoolId
+		{
+			get
+			{
+				return this._SchoolId;
+			}
+			set
+			{
+				if ((this._SchoolId != value))
+				{
+					if (this._School.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSchoolIdChanging(value);
+					this.SendPropertyChanging();
+					this._SchoolId = value;
+					this.SendPropertyChanged("SchoolId");
+					this.OnSchoolIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_YearId", DbType="Int NOT NULL")]
+		public int YearId
+		{
+			get
+			{
+				return this._YearId;
+			}
+			set
+			{
+				if ((this._YearId != value))
+				{
+					if (this._Year.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnYearIdChanging(value);
+					this.SendPropertyChanging();
+					this._YearId = value;
+					this.SendPropertyChanged("YearId");
+					this.OnYearIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SchoolYear_StudentGroup", Storage="_StudentGroups", ThisKey="Id", OtherKey="SchoolYearId")]
+		public EntitySet<StudentGroup> StudentGroups
+		{
+			get
+			{
+				return this._StudentGroups;
+			}
+			set
+			{
+				this._StudentGroups.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="School_SchoolYear", Storage="_School", ThisKey="SchoolId", OtherKey="Id", IsForeignKey=true)]
+		public School School
+		{
+			get
+			{
+				return this._School.Entity;
+			}
+			set
+			{
+				School previousValue = this._School.Entity;
+				if (((previousValue != value) 
+							|| (this._School.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._School.Entity = null;
+						previousValue.SchoolYears.Remove(this);
+					}
+					this._School.Entity = value;
+					if ((value != null))
+					{
+						value.SchoolYears.Add(this);
+						this._SchoolId = value.Id;
+					}
+					else
+					{
+						this._SchoolId = default(long);
+					}
+					this.SendPropertyChanged("School");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Year_SchoolYear", Storage="_Year", ThisKey="YearId", OtherKey="Id", IsForeignKey=true)]
+		public Year Year
+		{
+			get
+			{
+				return this._Year.Entity;
+			}
+			set
+			{
+				Year previousValue = this._Year.Entity;
+				if (((previousValue != value) 
+							|| (this._Year.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Year.Entity = null;
+						previousValue.SchoolYears.Remove(this);
+					}
+					this._Year.Entity = value;
+					if ((value != null))
+					{
+						value.SchoolYears.Add(this);
+						this._YearId = value.Id;
+					}
+					else
+					{
+						this._YearId = default(int);
+					}
+					this.SendPropertyChanged("Year");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_StudentGroups(StudentGroup entity)
+		{
+			this.SendPropertyChanging();
+			entity.SchoolYear = this;
+		}
+		
+		private void detach_StudentGroups(StudentGroup entity)
+		{
+			this.SendPropertyChanging();
+			entity.SchoolYear = null;
 		}
 	}
 	
@@ -1132,7 +1253,7 @@ namespace DAL
 		
 		private string _Weight;
 		
-		private EntitySet<SurveyDate> _SurveyDates;
+		private EntitySet<StudentGroupSeason> _StudentGroupSeasons;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1148,7 +1269,7 @@ namespace DAL
 		
 		public Season()
 		{
-			this._SurveyDates = new EntitySet<SurveyDate>(new Action<SurveyDate>(this.attach_SurveyDates), new Action<SurveyDate>(this.detach_SurveyDates));
+			this._StudentGroupSeasons = new EntitySet<StudentGroupSeason>(new Action<StudentGroupSeason>(this.attach_StudentGroupSeasons), new Action<StudentGroupSeason>(this.detach_StudentGroupSeasons));
 			OnCreated();
 		}
 		
@@ -1212,16 +1333,16 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Season_SurveyDate", Storage="_SurveyDates", ThisKey="Id", OtherKey="SeasonId")]
-		public EntitySet<SurveyDate> SurveyDates
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Season_StudentGroupSeason", Storage="_StudentGroupSeasons", ThisKey="Id", OtherKey="SeasonId")]
+		public EntitySet<StudentGroupSeason> StudentGroupSeasons
 		{
 			get
 			{
-				return this._SurveyDates;
+				return this._StudentGroupSeasons;
 			}
 			set
 			{
-				this._SurveyDates.Assign(value);
+				this._StudentGroupSeasons.Assign(value);
 			}
 		}
 		
@@ -1245,13 +1366,13 @@ namespace DAL
 			}
 		}
 		
-		private void attach_SurveyDates(SurveyDate entity)
+		private void attach_StudentGroupSeasons(StudentGroupSeason entity)
 		{
 			this.SendPropertyChanging();
 			entity.Season = this;
 		}
 		
-		private void detach_SurveyDates(SurveyDate entity)
+		private void detach_StudentGroupSeasons(StudentGroupSeason entity)
 		{
 			this.SendPropertyChanging();
 			entity.Season = null;
@@ -1372,6 +1493,550 @@ namespace DAL
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StudentGroups")]
+	public partial class StudentGroup : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _Id;
+		
+		private string _Name;
+		
+		private long _SchoolYearId;
+		
+		private System.Nullable<int> _ClassLevelId;
+		
+		private EntitySet<StudentGroupSeason> _StudentGroupSeasons;
+		
+		private EntitySet<Student> _Students;
+		
+		private EntityRef<SchoolYear> _SchoolYear;
+		
+		private EntityRef<ClassLevel> _ClassLevel;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(long value);
+    partial void OnIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnSchoolYearIdChanging(long value);
+    partial void OnSchoolYearIdChanged();
+    partial void OnClassLevelIdChanging(System.Nullable<int> value);
+    partial void OnClassLevelIdChanged();
+    #endregion
+		
+		public StudentGroup()
+		{
+			this._StudentGroupSeasons = new EntitySet<StudentGroupSeason>(new Action<StudentGroupSeason>(this.attach_StudentGroupSeasons), new Action<StudentGroupSeason>(this.detach_StudentGroupSeasons));
+			this._Students = new EntitySet<Student>(new Action<Student>(this.attach_Students), new Action<Student>(this.detach_Students));
+			this._SchoolYear = default(EntityRef<SchoolYear>);
+			this._ClassLevel = default(EntityRef<ClassLevel>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="StudentGroupId", Storage="_Id", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
+		public long Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="StudentGroupName", Storage="_Name", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SchoolYearId", DbType="BigInt NOT NULL")]
+		public long SchoolYearId
+		{
+			get
+			{
+				return this._SchoolYearId;
+			}
+			set
+			{
+				if ((this._SchoolYearId != value))
+				{
+					if (this._SchoolYear.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSchoolYearIdChanging(value);
+					this.SendPropertyChanging();
+					this._SchoolYearId = value;
+					this.SendPropertyChanged("SchoolYearId");
+					this.OnSchoolYearIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClassLevelId", DbType="Int")]
+		public System.Nullable<int> ClassLevelId
+		{
+			get
+			{
+				return this._ClassLevelId;
+			}
+			set
+			{
+				if ((this._ClassLevelId != value))
+				{
+					if (this._ClassLevel.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnClassLevelIdChanging(value);
+					this.SendPropertyChanging();
+					this._ClassLevelId = value;
+					this.SendPropertyChanged("ClassLevelId");
+					this.OnClassLevelIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentGroup_StudentGroupSeason", Storage="_StudentGroupSeasons", ThisKey="Id", OtherKey="StudentGroupId")]
+		public EntitySet<StudentGroupSeason> StudentGroupSeasons
+		{
+			get
+			{
+				return this._StudentGroupSeasons;
+			}
+			set
+			{
+				this._StudentGroupSeasons.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentGroup_Student", Storage="_Students", ThisKey="Id", OtherKey="StudentGroupId")]
+		public EntitySet<Student> Students
+		{
+			get
+			{
+				return this._Students;
+			}
+			set
+			{
+				this._Students.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SchoolYear_StudentGroup", Storage="_SchoolYear", ThisKey="SchoolYearId", OtherKey="Id", IsForeignKey=true)]
+		public SchoolYear SchoolYear
+		{
+			get
+			{
+				return this._SchoolYear.Entity;
+			}
+			set
+			{
+				SchoolYear previousValue = this._SchoolYear.Entity;
+				if (((previousValue != value) 
+							|| (this._SchoolYear.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SchoolYear.Entity = null;
+						previousValue.StudentGroups.Remove(this);
+					}
+					this._SchoolYear.Entity = value;
+					if ((value != null))
+					{
+						value.StudentGroups.Add(this);
+						this._SchoolYearId = value.Id;
+					}
+					else
+					{
+						this._SchoolYearId = default(long);
+					}
+					this.SendPropertyChanged("SchoolYear");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ClassLevel_StudentGroup", Storage="_ClassLevel", ThisKey="ClassLevelId", OtherKey="Id", IsForeignKey=true)]
+		public ClassLevel ClassLevel
+		{
+			get
+			{
+				return this._ClassLevel.Entity;
+			}
+			set
+			{
+				ClassLevel previousValue = this._ClassLevel.Entity;
+				if (((previousValue != value) 
+							|| (this._ClassLevel.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ClassLevel.Entity = null;
+						previousValue.StudentGroups.Remove(this);
+					}
+					this._ClassLevel.Entity = value;
+					if ((value != null))
+					{
+						value.StudentGroups.Add(this);
+						this._ClassLevelId = value.Id;
+					}
+					else
+					{
+						this._ClassLevelId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ClassLevel");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_StudentGroupSeasons(StudentGroupSeason entity)
+		{
+			this.SendPropertyChanging();
+			entity.StudentGroup = this;
+		}
+		
+		private void detach_StudentGroupSeasons(StudentGroupSeason entity)
+		{
+			this.SendPropertyChanging();
+			entity.StudentGroup = null;
+		}
+		
+		private void attach_Students(Student entity)
+		{
+			this.SendPropertyChanging();
+			entity.StudentGroup = this;
+		}
+		
+		private void detach_Students(Student entity)
+		{
+			this.SendPropertyChanging();
+			entity.StudentGroup = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StudentGroupSeason")]
+	public partial class StudentGroupSeason : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _Id;
+		
+		private System.DateTime _SurveyDate;
+		
+		private long _StudentGroupId;
+		
+		private int _SeasonId;
+		
+		private EntitySet<AnonStudent> _AnonStudents;
+		
+		private EntitySet<StudentSurveyDate> _StudentSurveyDates;
+		
+		private EntityRef<StudentGroup> _StudentGroup;
+		
+		private EntityRef<Season> _Season;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(long value);
+    partial void OnIdChanged();
+    partial void OnSurveyDateChanging(System.DateTime value);
+    partial void OnSurveyDateChanged();
+    partial void OnStudentGroupIdChanging(long value);
+    partial void OnStudentGroupIdChanged();
+    partial void OnSeasonIdChanging(int value);
+    partial void OnSeasonIdChanged();
+    #endregion
+		
+		public StudentGroupSeason()
+		{
+			this._AnonStudents = new EntitySet<AnonStudent>(new Action<AnonStudent>(this.attach_AnonStudents), new Action<AnonStudent>(this.detach_AnonStudents));
+			this._StudentSurveyDates = new EntitySet<StudentSurveyDate>(new Action<StudentSurveyDate>(this.attach_StudentSurveyDates), new Action<StudentSurveyDate>(this.detach_StudentSurveyDates));
+			this._StudentGroup = default(EntityRef<StudentGroup>);
+			this._Season = default(EntityRef<Season>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="StudentGroupSeasonId", Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SurveyDate", DbType="DateTime NOT NULL")]
+		public System.DateTime SurveyDate
+		{
+			get
+			{
+				return this._SurveyDate;
+			}
+			set
+			{
+				if ((this._SurveyDate != value))
+				{
+					this.OnSurveyDateChanging(value);
+					this.SendPropertyChanging();
+					this._SurveyDate = value;
+					this.SendPropertyChanged("SurveyDate");
+					this.OnSurveyDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentGroupId", DbType="BigInt NOT NULL")]
+		public long StudentGroupId
+		{
+			get
+			{
+				return this._StudentGroupId;
+			}
+			set
+			{
+				if ((this._StudentGroupId != value))
+				{
+					if (this._StudentGroup.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnStudentGroupIdChanging(value);
+					this.SendPropertyChanging();
+					this._StudentGroupId = value;
+					this.SendPropertyChanged("StudentGroupId");
+					this.OnStudentGroupIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SeasonId", DbType="Int NOT NULL")]
+		public int SeasonId
+		{
+			get
+			{
+				return this._SeasonId;
+			}
+			set
+			{
+				if ((this._SeasonId != value))
+				{
+					if (this._Season.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSeasonIdChanging(value);
+					this.SendPropertyChanging();
+					this._SeasonId = value;
+					this.SendPropertyChanged("SeasonId");
+					this.OnSeasonIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentGroupSeason_AnonStudent", Storage="_AnonStudents", ThisKey="Id", OtherKey="StudentGroupSeasonId")]
+		public EntitySet<AnonStudent> AnonStudents
+		{
+			get
+			{
+				return this._AnonStudents;
+			}
+			set
+			{
+				this._AnonStudents.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentGroupSeason_StudentSurveyDate", Storage="_StudentSurveyDates", ThisKey="Id", OtherKey="SurveyDateId")]
+		public EntitySet<StudentSurveyDate> StudentSurveyDates
+		{
+			get
+			{
+				return this._StudentSurveyDates;
+			}
+			set
+			{
+				this._StudentSurveyDates.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentGroup_StudentGroupSeason", Storage="_StudentGroup", ThisKey="StudentGroupId", OtherKey="Id", IsForeignKey=true)]
+		public StudentGroup StudentGroup
+		{
+			get
+			{
+				return this._StudentGroup.Entity;
+			}
+			set
+			{
+				StudentGroup previousValue = this._StudentGroup.Entity;
+				if (((previousValue != value) 
+							|| (this._StudentGroup.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._StudentGroup.Entity = null;
+						previousValue.StudentGroupSeasons.Remove(this);
+					}
+					this._StudentGroup.Entity = value;
+					if ((value != null))
+					{
+						value.StudentGroupSeasons.Add(this);
+						this._StudentGroupId = value.Id;
+					}
+					else
+					{
+						this._StudentGroupId = default(long);
+					}
+					this.SendPropertyChanged("StudentGroup");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Season_StudentGroupSeason", Storage="_Season", ThisKey="SeasonId", OtherKey="Id", IsForeignKey=true)]
+		public Season Season
+		{
+			get
+			{
+				return this._Season.Entity;
+			}
+			set
+			{
+				Season previousValue = this._Season.Entity;
+				if (((previousValue != value) 
+							|| (this._Season.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Season.Entity = null;
+						previousValue.StudentGroupSeasons.Remove(this);
+					}
+					this._Season.Entity = value;
+					if ((value != null))
+					{
+						value.StudentGroupSeasons.Add(this);
+						this._SeasonId = value.Id;
+					}
+					else
+					{
+						this._SeasonId = default(int);
+					}
+					this.SendPropertyChanged("Season");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_AnonStudents(AnonStudent entity)
+		{
+			this.SendPropertyChanging();
+			entity.StudentGroupSeason = this;
+		}
+		
+		private void detach_AnonStudents(AnonStudent entity)
+		{
+			this.SendPropertyChanging();
+			entity.StudentGroupSeason = null;
+		}
+		
+		private void attach_StudentSurveyDates(StudentSurveyDate entity)
+		{
+			this.SendPropertyChanging();
+			entity.StudentGroupSeason = this;
+		}
+		
+		private void detach_StudentSurveyDates(StudentSurveyDate entity)
+		{
+			this.SendPropertyChanging();
+			entity.StudentGroupSeason = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Students")]
 	public partial class Student : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1384,11 +2049,13 @@ namespace DAL
 		
 		private string _LastName;
 		
-		private long _SurveyId;
+		private string _TeacherName;
+		
+		private long _StudentGroupId;
 		
 		private EntitySet<StudentSurveyDate> _StudentSurveyDates;
 		
-		private EntityRef<Survey> _Survey;
+		private EntityRef<StudentGroup> _StudentGroup;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1400,14 +2067,16 @@ namespace DAL
     partial void OnFirstNameChanged();
     partial void OnLastNameChanging(string value);
     partial void OnLastNameChanged();
-    partial void OnSurveyIdChanging(long value);
-    partial void OnSurveyIdChanged();
+    partial void OnTeacherNameChanging(string value);
+    partial void OnTeacherNameChanged();
+    partial void OnStudentGroupIdChanging(long value);
+    partial void OnStudentGroupIdChanged();
     #endregion
 		
 		public Student()
 		{
 			this._StudentSurveyDates = new EntitySet<StudentSurveyDate>(new Action<StudentSurveyDate>(this.attach_StudentSurveyDates), new Action<StudentSurveyDate>(this.detach_StudentSurveyDates));
-			this._Survey = default(EntityRef<Survey>);
+			this._StudentGroup = default(EntityRef<StudentGroup>);
 			OnCreated();
 		}
 		
@@ -1471,26 +2140,46 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SurveyId", DbType="BigInt NOT NULL")]
-		public long SurveyId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeacherName", DbType="VarChar(100)")]
+		public string TeacherName
 		{
 			get
 			{
-				return this._SurveyId;
+				return this._TeacherName;
 			}
 			set
 			{
-				if ((this._SurveyId != value))
+				if ((this._TeacherName != value))
 				{
-					if (this._Survey.HasLoadedOrAssignedValue)
+					this.OnTeacherNameChanging(value);
+					this.SendPropertyChanging();
+					this._TeacherName = value;
+					this.SendPropertyChanged("TeacherName");
+					this.OnTeacherNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentGroupId", DbType="BigInt NOT NULL")]
+		public long StudentGroupId
+		{
+			get
+			{
+				return this._StudentGroupId;
+			}
+			set
+			{
+				if ((this._StudentGroupId != value))
+				{
+					if (this._StudentGroup.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnSurveyIdChanging(value);
+					this.OnStudentGroupIdChanging(value);
 					this.SendPropertyChanging();
-					this._SurveyId = value;
-					this.SendPropertyChanged("SurveyId");
-					this.OnSurveyIdChanged();
+					this._StudentGroupId = value;
+					this.SendPropertyChanged("StudentGroupId");
+					this.OnStudentGroupIdChanged();
 				}
 			}
 		}
@@ -1508,36 +2197,36 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Survey_Student", Storage="_Survey", ThisKey="SurveyId", OtherKey="Id", IsForeignKey=true)]
-		public Survey Survey
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentGroup_Student", Storage="_StudentGroup", ThisKey="StudentGroupId", OtherKey="Id", IsForeignKey=true)]
+		public StudentGroup StudentGroup
 		{
 			get
 			{
-				return this._Survey.Entity;
+				return this._StudentGroup.Entity;
 			}
 			set
 			{
-				Survey previousValue = this._Survey.Entity;
+				StudentGroup previousValue = this._StudentGroup.Entity;
 				if (((previousValue != value) 
-							|| (this._Survey.HasLoadedOrAssignedValue == false)))
+							|| (this._StudentGroup.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Survey.Entity = null;
+						this._StudentGroup.Entity = null;
 						previousValue.Students.Remove(this);
 					}
-					this._Survey.Entity = value;
+					this._StudentGroup.Entity = value;
 					if ((value != null))
 					{
 						value.Students.Add(this);
-						this._SurveyId = value.Id;
+						this._StudentGroupId = value.Id;
 					}
 					else
 					{
-						this._SurveyId = default(long);
+						this._StudentGroupId = default(long);
 					}
-					this.SendPropertyChanged("Survey");
+					this.SendPropertyChanged("StudentGroup");
 				}
 			}
 		}
@@ -1591,7 +2280,7 @@ namespace DAL
 		
 		private EntityRef<Student> _Student;
 		
-		private EntityRef<SurveyDate> _SurveyDate;
+		private EntityRef<StudentGroupSeason> _StudentGroupSeason;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1609,7 +2298,7 @@ namespace DAL
 		{
 			this._StudentSurveyRatings = new EntitySet<StudentSurveyRating>(new Action<StudentSurveyRating>(this.attach_StudentSurveyRatings), new Action<StudentSurveyRating>(this.detach_StudentSurveyRatings));
 			this._Student = default(EntityRef<Student>);
-			this._SurveyDate = default(EntityRef<SurveyDate>);
+			this._StudentGroupSeason = default(EntityRef<StudentGroupSeason>);
 			OnCreated();
 		}
 		
@@ -1668,7 +2357,7 @@ namespace DAL
 			{
 				if ((this._SurveyDateId != value))
 				{
-					if (this._SurveyDate.HasLoadedOrAssignedValue)
+					if (this._StudentGroupSeason.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1728,26 +2417,26 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SurveyDate_StudentSurveyDate", Storage="_SurveyDate", ThisKey="SurveyDateId", OtherKey="Id", IsForeignKey=true)]
-		public SurveyDate SurveyDate
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentGroupSeason_StudentSurveyDate", Storage="_StudentGroupSeason", ThisKey="SurveyDateId", OtherKey="Id", IsForeignKey=true)]
+		public StudentGroupSeason StudentGroupSeason
 		{
 			get
 			{
-				return this._SurveyDate.Entity;
+				return this._StudentGroupSeason.Entity;
 			}
 			set
 			{
-				SurveyDate previousValue = this._SurveyDate.Entity;
+				StudentGroupSeason previousValue = this._StudentGroupSeason.Entity;
 				if (((previousValue != value) 
-							|| (this._SurveyDate.HasLoadedOrAssignedValue == false)))
+							|| (this._StudentGroupSeason.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._SurveyDate.Entity = null;
+						this._StudentGroupSeason.Entity = null;
 						previousValue.StudentSurveyDates.Remove(this);
 					}
-					this._SurveyDate.Entity = value;
+					this._StudentGroupSeason.Entity = value;
 					if ((value != null))
 					{
 						value.StudentSurveyDates.Add(this);
@@ -1757,7 +2446,7 @@ namespace DAL
 					{
 						this._SurveyDateId = default(long);
 					}
-					this.SendPropertyChanged("SurveyDate");
+					this.SendPropertyChanged("StudentGroupSeason");
 				}
 			}
 		}
@@ -2056,505 +2745,6 @@ namespace DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SurveyClasses")]
-	public partial class SurveyClass : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _Id;
-		
-		private string _Teacher;
-		
-		private string _ClassName;
-		
-		private int _AnonStudentCount;
-		
-		private long _SurveyDateId;
-		
-		private EntitySet<AnonStudent> _AnonStudents;
-		
-		private EntityRef<SurveyDate> _SurveyDate;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(long value);
-    partial void OnIdChanged();
-    partial void OnTeacherChanging(string value);
-    partial void OnTeacherChanged();
-    partial void OnClassNameChanging(string value);
-    partial void OnClassNameChanged();
-    partial void OnAnonStudentCountChanging(int value);
-    partial void OnAnonStudentCountChanged();
-    partial void OnSurveyDateIdChanging(long value);
-    partial void OnSurveyDateIdChanged();
-    #endregion
-		
-		public SurveyClass()
-		{
-			this._AnonStudents = new EntitySet<AnonStudent>(new Action<AnonStudent>(this.attach_AnonStudents), new Action<AnonStudent>(this.detach_AnonStudents));
-			this._SurveyDate = default(EntityRef<SurveyDate>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="SurveyClassId", Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Teacher", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Teacher
-		{
-			get
-			{
-				return this._Teacher;
-			}
-			set
-			{
-				if ((this._Teacher != value))
-				{
-					this.OnTeacherChanging(value);
-					this.SendPropertyChanging();
-					this._Teacher = value;
-					this.SendPropertyChanged("Teacher");
-					this.OnTeacherChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClassName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string ClassName
-		{
-			get
-			{
-				return this._ClassName;
-			}
-			set
-			{
-				if ((this._ClassName != value))
-				{
-					this.OnClassNameChanging(value);
-					this.SendPropertyChanging();
-					this._ClassName = value;
-					this.SendPropertyChanged("ClassName");
-					this.OnClassNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AnonStudentCount", DbType="Int NOT NULL")]
-		public int AnonStudentCount
-		{
-			get
-			{
-				return this._AnonStudentCount;
-			}
-			set
-			{
-				if ((this._AnonStudentCount != value))
-				{
-					this.OnAnonStudentCountChanging(value);
-					this.SendPropertyChanging();
-					this._AnonStudentCount = value;
-					this.SendPropertyChanged("AnonStudentCount");
-					this.OnAnonStudentCountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SurveyDateId", DbType="BigInt NOT NULL")]
-		public long SurveyDateId
-		{
-			get
-			{
-				return this._SurveyDateId;
-			}
-			set
-			{
-				if ((this._SurveyDateId != value))
-				{
-					if (this._SurveyDate.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSurveyDateIdChanging(value);
-					this.SendPropertyChanging();
-					this._SurveyDateId = value;
-					this.SendPropertyChanged("SurveyDateId");
-					this.OnSurveyDateIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SurveyClass_AnonStudent", Storage="_AnonStudents", ThisKey="Id", OtherKey="SurveyClassId")]
-		public EntitySet<AnonStudent> AnonStudents
-		{
-			get
-			{
-				return this._AnonStudents;
-			}
-			set
-			{
-				this._AnonStudents.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SurveyDate_SurveyClass", Storage="_SurveyDate", ThisKey="SurveyDateId", OtherKey="Id", IsForeignKey=true)]
-		public SurveyDate SurveyDate
-		{
-			get
-			{
-				return this._SurveyDate.Entity;
-			}
-			set
-			{
-				SurveyDate previousValue = this._SurveyDate.Entity;
-				if (((previousValue != value) 
-							|| (this._SurveyDate.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SurveyDate.Entity = null;
-						previousValue.SurveyClasses.Remove(this);
-					}
-					this._SurveyDate.Entity = value;
-					if ((value != null))
-					{
-						value.SurveyClasses.Add(this);
-						this._SurveyDateId = value.Id;
-					}
-					else
-					{
-						this._SurveyDateId = default(long);
-					}
-					this.SendPropertyChanged("SurveyDate");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_AnonStudents(AnonStudent entity)
-		{
-			this.SendPropertyChanging();
-			entity.SurveyClass = this;
-		}
-		
-		private void detach_AnonStudents(AnonStudent entity)
-		{
-			this.SendPropertyChanging();
-			entity.SurveyClass = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SurveyDates")]
-	public partial class SurveyDate : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _Id;
-		
-		private System.DateTime _DateTaken;
-		
-		private long _SurveyId;
-		
-		private System.Nullable<int> _SeasonId;
-		
-		private EntitySet<StudentSurveyDate> _StudentSurveyDates;
-		
-		private EntitySet<SurveyClass> _SurveyClasses;
-		
-		private EntityRef<Survey> _Survey;
-		
-		private EntityRef<Season> _Season;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(long value);
-    partial void OnIdChanged();
-    partial void OnDateTakenChanging(System.DateTime value);
-    partial void OnDateTakenChanged();
-    partial void OnSurveyIdChanging(long value);
-    partial void OnSurveyIdChanged();
-    partial void OnSeasonIdChanging(System.Nullable<int> value);
-    partial void OnSeasonIdChanged();
-    #endregion
-		
-		public SurveyDate()
-		{
-			this._StudentSurveyDates = new EntitySet<StudentSurveyDate>(new Action<StudentSurveyDate>(this.attach_StudentSurveyDates), new Action<StudentSurveyDate>(this.detach_StudentSurveyDates));
-			this._SurveyClasses = new EntitySet<SurveyClass>(new Action<SurveyClass>(this.attach_SurveyClasses), new Action<SurveyClass>(this.detach_SurveyClasses));
-			this._Survey = default(EntityRef<Survey>);
-			this._Season = default(EntityRef<Season>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="SurveyDateId", Storage="_Id", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
-		public long Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="SurveyDate", Storage="_DateTaken", DbType="DateTime NOT NULL")]
-		public System.DateTime DateTaken
-		{
-			get
-			{
-				return this._DateTaken;
-			}
-			set
-			{
-				if ((this._DateTaken != value))
-				{
-					this.OnDateTakenChanging(value);
-					this.SendPropertyChanging();
-					this._DateTaken = value;
-					this.SendPropertyChanged("DateTaken");
-					this.OnDateTakenChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SurveyId", DbType="BigInt NOT NULL")]
-		public long SurveyId
-		{
-			get
-			{
-				return this._SurveyId;
-			}
-			set
-			{
-				if ((this._SurveyId != value))
-				{
-					if (this._Survey.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSurveyIdChanging(value);
-					this.SendPropertyChanging();
-					this._SurveyId = value;
-					this.SendPropertyChanged("SurveyId");
-					this.OnSurveyIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SeasonId", DbType="Int")]
-		public System.Nullable<int> SeasonId
-		{
-			get
-			{
-				return this._SeasonId;
-			}
-			set
-			{
-				if ((this._SeasonId != value))
-				{
-					if (this._Season.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSeasonIdChanging(value);
-					this.SendPropertyChanging();
-					this._SeasonId = value;
-					this.SendPropertyChanged("SeasonId");
-					this.OnSeasonIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SurveyDate_StudentSurveyDate", Storage="_StudentSurveyDates", ThisKey="Id", OtherKey="SurveyDateId")]
-		public EntitySet<StudentSurveyDate> StudentSurveyDates
-		{
-			get
-			{
-				return this._StudentSurveyDates;
-			}
-			set
-			{
-				this._StudentSurveyDates.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SurveyDate_SurveyClass", Storage="_SurveyClasses", ThisKey="Id", OtherKey="SurveyDateId")]
-		public EntitySet<SurveyClass> SurveyClasses
-		{
-			get
-			{
-				return this._SurveyClasses;
-			}
-			set
-			{
-				this._SurveyClasses.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Survey_SurveyDate", Storage="_Survey", ThisKey="SurveyId", OtherKey="Id", IsForeignKey=true)]
-		public Survey Survey
-		{
-			get
-			{
-				return this._Survey.Entity;
-			}
-			set
-			{
-				Survey previousValue = this._Survey.Entity;
-				if (((previousValue != value) 
-							|| (this._Survey.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Survey.Entity = null;
-						previousValue.SurveyDates.Remove(this);
-					}
-					this._Survey.Entity = value;
-					if ((value != null))
-					{
-						value.SurveyDates.Add(this);
-						this._SurveyId = value.Id;
-					}
-					else
-					{
-						this._SurveyId = default(long);
-					}
-					this.SendPropertyChanged("Survey");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Season_SurveyDate", Storage="_Season", ThisKey="SeasonId", OtherKey="Id", IsForeignKey=true)]
-		public Season Season
-		{
-			get
-			{
-				return this._Season.Entity;
-			}
-			set
-			{
-				Season previousValue = this._Season.Entity;
-				if (((previousValue != value) 
-							|| (this._Season.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Season.Entity = null;
-						previousValue.SurveyDates.Remove(this);
-					}
-					this._Season.Entity = value;
-					if ((value != null))
-					{
-						value.SurveyDates.Add(this);
-						this._SeasonId = value.Id;
-					}
-					else
-					{
-						this._SeasonId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Season");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_StudentSurveyDates(StudentSurveyDate entity)
-		{
-			this.SendPropertyChanging();
-			entity.SurveyDate = this;
-		}
-		
-		private void detach_StudentSurveyDates(StudentSurveyDate entity)
-		{
-			this.SendPropertyChanging();
-			entity.SurveyDate = null;
-		}
-		
-		private void attach_SurveyClasses(SurveyClass entity)
-		{
-			this.SendPropertyChanging();
-			entity.SurveyDate = this;
-		}
-		
-		private void detach_SurveyClasses(SurveyClass entity)
-		{
-			this.SendPropertyChanging();
-			entity.SurveyDate = null;
 		}
 	}
 }
