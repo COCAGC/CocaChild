@@ -16,6 +16,7 @@
     <div align="center">
     <ul>
     <li><a href="CreateSchool.aspx">Create School</a></li>
+    <li><a href="ListSchools.aspx">View Schools</a></li>
     <li><a href="NewSurvey.aspx">Begin New Survey</a></li>
     <li><a href="#">Edit Existing Survey</a></li>
     <li><a href="#">Run Reports</a></li>

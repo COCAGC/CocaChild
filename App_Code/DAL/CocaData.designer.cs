@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Data
+namespace DAL
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -23,7 +23,7 @@ namespace Data
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="CocaChild")]
-	public partial class CocaDataDataContext : System.Data.Linq.DataContext
+	public partial class CocaDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -65,31 +65,31 @@ namespace Data
     partial void DeleteSurveyDate(SurveyDate instance);
     #endregion
 		
-		public CocaDataDataContext() : 
+		public CocaDataContext() : 
 				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["CocaChildConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public CocaDataDataContext(string connection) : 
+		public CocaDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public CocaDataDataContext(System.Data.IDbConnection connection) : 
+		public CocaDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public CocaDataDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public CocaDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public CocaDataDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public CocaDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
