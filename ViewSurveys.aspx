@@ -6,7 +6,15 @@
 <div align="center">
 View Surveys
 </div>
-    <asp:ListView ID="ListView1" runat="server">
-    </asp:ListView>
+    <div>
+            <asp:GridView ID="gvSurveyList" runat="server" EnableModelValidation="True" 
+            AutoGenerateColumns="False" >
+            <Columns>
+                <asp:BoundField DataField="SurveyDate" HeaderText="SurveyDate" />
+                <asp:BoundField DataField="StudentGroupName" HeaderText="StudentGroupName" />
+                <asp:BoundField DataField="SchoolYear" HeaderText="SchoolYear" />
+            </Columns>
+        </asp:GridView>
+    </div>
 </asp:Content>
 

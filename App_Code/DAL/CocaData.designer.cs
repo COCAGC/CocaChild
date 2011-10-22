@@ -1854,6 +1854,8 @@ namespace DAL
 		
 		private EntitySet<AnonStudent> _AnonStudents;
 		
+		private EntitySet<StudentSurveyDate> _StudentSurveyDates;
+		
 		private EntityRef<StudentGroup> _StudentGroup;
 		
 		private EntityRef<Season> _Season;
@@ -1875,6 +1877,7 @@ namespace DAL
 		public StudentGroupSeason()
 		{
 			this._AnonStudents = new EntitySet<AnonStudent>(new Action<AnonStudent>(this.attach_AnonStudents), new Action<AnonStudent>(this.detach_AnonStudents));
+			this._StudentSurveyDates = new EntitySet<StudentSurveyDate>(new Action<StudentSurveyDate>(this.attach_StudentSurveyDates), new Action<StudentSurveyDate>(this.detach_StudentSurveyDates));
 			this._StudentGroup = default(EntityRef<StudentGroup>);
 			this._Season = default(EntityRef<Season>);
 			OnCreated();
@@ -1981,6 +1984,19 @@ namespace DAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentGroupSeason_StudentSurveyDate", Storage="_StudentSurveyDates", ThisKey="Id", OtherKey="StudentGroupSeasonId")]
+		public EntitySet<StudentSurveyDate> StudentSurveyDates
+		{
+			get
+			{
+				return this._StudentSurveyDates;
+			}
+			set
+			{
+				this._StudentSurveyDates.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentGroup_StudentGroupSeason", Storage="_StudentGroup", ThisKey="StudentGroupId", OtherKey="Id", IsForeignKey=true)]
 		public StudentGroup StudentGroup
 		{
@@ -2076,6 +2092,18 @@ namespace DAL
 		}
 		
 		private void detach_AnonStudents(AnonStudent entity)
+		{
+			this.SendPropertyChanging();
+			entity.StudentGroupSeason = null;
+		}
+		
+		private void attach_StudentSurveyDates(StudentSurveyDate entity)
+		{
+			this.SendPropertyChanging();
+			entity.StudentGroupSeason = this;
+		}
+		
+		private void detach_StudentSurveyDates(StudentSurveyDate entity)
 		{
 			this.SendPropertyChanging();
 			entity.StudentGroupSeason = null;
@@ -2325,6 +2353,8 @@ namespace DAL
 		
 		private EntityRef<Student> _Student;
 		
+		private EntityRef<StudentGroupSeason> _StudentGroupSeason;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2341,6 +2371,7 @@ namespace DAL
 		{
 			this._StudentSurveyRatings = new EntitySet<StudentSurveyRating>(new Action<StudentSurveyRating>(this.attach_StudentSurveyRatings), new Action<StudentSurveyRating>(this.detach_StudentSurveyRatings));
 			this._Student = default(EntityRef<Student>);
+			this._StudentGroupSeason = default(EntityRef<StudentGroupSeason>);
 			OnCreated();
 		}
 		
@@ -2399,6 +2430,10 @@ namespace DAL
 			{
 				if ((this._StudentGroupSeasonId != value))
 				{
+					if (this._StudentGroupSeason.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnStudentGroupSeasonIdChanging(value);
 					this.SendPropertyChanging();
 					this._StudentGroupSeasonId = value;
@@ -2451,6 +2486,40 @@ namespace DAL
 						this._StudentId = default(long);
 					}
 					this.SendPropertyChanged("Student");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentGroupSeason_StudentSurveyDate", Storage="_StudentGroupSeason", ThisKey="StudentGroupSeasonId", OtherKey="Id", IsForeignKey=true)]
+		public StudentGroupSeason StudentGroupSeason
+		{
+			get
+			{
+				return this._StudentGroupSeason.Entity;
+			}
+			set
+			{
+				StudentGroupSeason previousValue = this._StudentGroupSeason.Entity;
+				if (((previousValue != value) 
+							|| (this._StudentGroupSeason.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._StudentGroupSeason.Entity = null;
+						previousValue.StudentSurveyDates.Remove(this);
+					}
+					this._StudentGroupSeason.Entity = value;
+					if ((value != null))
+					{
+						value.StudentSurveyDates.Add(this);
+						this._StudentGroupSeasonId = value.Id;
+					}
+					else
+					{
+						this._StudentGroupSeasonId = default(long);
+					}
+					this.SendPropertyChanged("StudentGroupSeason");
 				}
 			}
 		}
