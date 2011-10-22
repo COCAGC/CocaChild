@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using DAL;
+using System.Collections.Generic;
+using System.Data.Linq;
 
 public partial class ListSchools : System.Web.UI.Page
 {
@@ -23,9 +25,12 @@ public partial class ListSchools : System.Web.UI.Page
         }
 
         using (CocaDataContext ctx = new CocaDataContext()) {
-            var x = from StudentGroupSeason apr in ctx.StudentGroupSeasons
+
+            IEnumerable<EntitySet<StudentSurveyDate>> x = from StudentGroupSeason apr in ctx.StudentGroupSeasons
                     where apr.Id == 1
-                    select new { FirstName = apr.StudentSurveyDates };
+                    select apr.StudentSurveyDates;
+
+            
         }
     }
 }
