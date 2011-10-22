@@ -22,14 +22,5 @@ public partial class ListSchools : System.Web.UI.Page
                 ).ToList();
             gvSchoolList.DataBind();
         }
-
-        using (CocaDataContext ctx = new CocaDataContext()) {
-
-            IEnumerable<EntitySet<StudentSurveyDate>> x = from StudentGroupSeason apr in ctx.StudentGroupSeasons
-                    where apr.Id == 1
-                    select apr.StudentSurveyDates;
-
-            
-        }
     }
 }

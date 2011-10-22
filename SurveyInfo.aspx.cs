@@ -9,7 +9,7 @@ using DAL;
 public partial class SurveyInfo : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
-    {       
+    {
         //using (CocaDataContext ctx = new CocaDataContext())
         //{
         //    var s = from StudentGroupSeason apr in StudentGroupSeason
@@ -20,12 +20,16 @@ public partial class SurveyInfo : System.Web.UI.Page
         //                LastName = apr.StudentSurveyDate.Students.LastName
         //            };
         //}
-        DalOld dal = new DalOld();
+        using (CocaDataContext ctx = new CocaDataContext())
+        {
 
-        lvStudentBullyList.DataSource = dal.SurveyListView(1);
-        lvStudentBullyList.DataBind();      
+            IQueryable<StudentSurveyDate> ssds = from StudentSurveyDate ssd in ctx.StudentSurveyDates where ssd.StudentGroupSeason.Id == 1 || true select ssd;
 
+            lvStudentBullyList.DataSource = (from StudentSurveyDate ssd in ssds select new { FirstName = ssd.Student.FirstName, LastName = ssd.Student.LastName, Id = ssd.Id, Comments="Test" }).ToList();
+            lvStudentBullyList.DataBind();
+        }
     }
+    
     protected void FinishedId_Click(object sender, EventArgs e)
     {
       for (int i = 0; i < lvStudentBullyList.Items.Count(); i++)
