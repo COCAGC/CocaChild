@@ -4,15 +4,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
     
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
     <title>COCA</title>
     <link type="text/css" href="CocaChild.css" rel="Stylesheet" />
-</head>
-<body>
-    <form id="form1" runat="server">
+    
     <div align="center">    
         <asp:Label ID="lblAnonSurvey" runat="server" 
             Text="Anonymous Peer Rating Survey" Font-Bold="True" Font-Names="Tahoma" 
