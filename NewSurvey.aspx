@@ -10,6 +10,7 @@ Sed volutpat dictum eros, eu posuere quam ornare ac. Donec sagittis quam sed jus
     <asp:DropDownList ID="GradeSelector" runat="server" />
     <asp:DropDownList ID="SchoolYearSelector" runat="server" />
     <asp:DropDownList ID="SchoolSelector" runat="server" />
+    <asp:Calendar ID="SurveyDate" runat="server" />
     <asp:TextBox ID="GroupName" ToolTip="GroupName" runat="server" />
     <asp:FileUpload ID="File" runat="server" ToolTip="Upload files" />
     <asp:Button ID="Upload" runat="server" OnClick="OnUploadClick" Text="Upload" />

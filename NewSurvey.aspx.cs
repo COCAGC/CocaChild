@@ -51,9 +51,7 @@ public partial class NewSurvey : System.Web.UI.Page
 
             StudentGroup group = GenerateAndInsertNewStudentGroup(context);
 
-            var studentGroupSeason = GenerateStudentGroupSeason(context, seasonName);
-
-            studentGroupSeason.StudentGroup = group;
+            var studentGroupSeason = GenerateStudentGroupSeason(context, seasonName, group);
 
 
             foreach (StudentCSVImportItem row in items)
@@ -79,7 +77,7 @@ public partial class NewSurvey : System.Web.UI.Page
         var schoolYear = new SchoolYear()
             {                
                 Year = ctx.Years.Where(y => y.Name == SchoolYearSelector.SelectedValue).SingleOrDefault(),
-                School = ctx.Schools.Where(s=> s.Name == SchoolSelector.SelectedValue).SingleOrDefault()                
+                School = ctx.Schools.Where(s=> s.Name == SchoolSelector.SelectedValue).SingleOrDefault()                  
             };
         ctx.SchoolYears.InsertOnSubmit(schoolYear);
 
@@ -113,11 +111,16 @@ public partial class NewSurvey : System.Web.UI.Page
         return SeasonSelector.SelectedValue;
     }
 
-    private StudentGroupSeason GenerateStudentGroupSeason(CocaDataContext ctx, string seasonName)
+    private StudentGroupSeason GenerateStudentGroupSeason(CocaDataContext ctx, string seasonName, StudentGroup group)
     {
         var season = ctx.Seasons.Where(s => s.Name == seasonName).SingleOrDefault();
-        var groupSeason = new StudentGroupSeason();
-        groupSeason.Season = season;
+        var groupSeason = new StudentGroupSeason()
+            {
+                Season = season,
+                SurveyDate = SurveyDate.SelectedDate,
+                StudentGroup = group
+            };
+       
         return groupSeason;
     }
 
