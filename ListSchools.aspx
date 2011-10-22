@@ -11,9 +11,14 @@
     <form id="form1" runat="server">
     <div>
     
-        <asp:GridView ID="gvSchoolList" runat="server" EnableModelValidation="True">
+        <asp:GridView ID="gvSchoolList" runat="server" EnableModelValidation="True" 
+            AutoGenerateColumns="False" >
             <Columns>
-                <asp:HyperLinkField Text="SchoolName" />
+                <asp:HyperLinkField DataTextField="Name" HeaderText="School Name" 
+                    SortExpression="Name" />
+                <asp:BoundField DataField="City" HeaderText="City" />
+                <asp:BoundField DataField="State" HeaderText="State" />
+                <asp:BoundField DataField="Zip" HeaderText="Zip" />
             </Columns>
         </asp:GridView>
     
