@@ -39,6 +39,9 @@ namespace DAL
     partial void InsertClassLevel(ClassLevel instance);
     partial void UpdateClassLevel(ClassLevel instance);
     partial void DeleteClassLevel(ClassLevel instance);
+    partial void InsertRandomWord(RandomWord instance);
+    partial void UpdateRandomWord(RandomWord instance);
+    partial void DeleteRandomWord(RandomWord instance);
     partial void InsertSchool(School instance);
     partial void UpdateSchool(School instance);
     partial void DeleteSchool(School instance);
@@ -69,7 +72,7 @@ namespace DAL
     #endregion
 		
 		public CocaDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["CocaChildConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["sql2008r2_847344_surveysConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -119,6 +122,14 @@ namespace DAL
 			get
 			{
 				return this.GetTable<ClassLevel>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RandomWord> RandomWords
+		{
+			get
+			{
+				return this.GetTable<RandomWord>();
 			}
 		}
 		
@@ -456,7 +467,7 @@ namespace DAL
 		
 		private string _Name;
 		
-		private string _weight;
+		private string _Weight;
 		
 		private EntitySet<SchoolYear> _SchoolYears;
 		
@@ -468,8 +479,8 @@ namespace DAL
     partial void OnIdChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
-    partial void OnweightChanging(string value);
-    partial void OnweightChanged();
+    partial void OnWeightChanging(string value);
+    partial void OnWeightChanged();
     #endregion
 		
 		public Year()
@@ -518,22 +529,22 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_weight", DbType="VarChar(25)")]
-		public string weight
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weight", DbType="VarChar(25)")]
+		public string Weight
 		{
 			get
 			{
-				return this._weight;
+				return this._Weight;
 			}
 			set
 			{
-				if ((this._weight != value))
+				if ((this._Weight != value))
 				{
-					this.OnweightChanging(value);
+					this.OnWeightChanging(value);
 					this.SendPropertyChanging();
-					this._weight = value;
-					this.SendPropertyChanged("weight");
-					this.OnweightChanged();
+					this._Weight = value;
+					this.SendPropertyChanged("Weight");
+					this.OnWeightChanged();
 				}
 			}
 		}
@@ -719,6 +730,68 @@ namespace DAL
 		{
 			this.SendPropertyChanging();
 			entity.ClassLevel = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RandomWords")]
+	public partial class RandomWord : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Word;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnWordChanging(string value);
+    partial void OnWordChanged();
+    #endregion
+		
+		public RandomWord()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Word", DbType="VarChar(25) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Word
+		{
+			get
+			{
+				return this._Word;
+			}
+			set
+			{
+				if ((this._Word != value))
+				{
+					this.OnWordChanging(value);
+					this.SendPropertyChanging();
+					this._Word = value;
+					this.SendPropertyChanged("Word");
+					this.OnWordChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	
@@ -1911,7 +1984,7 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentGroupSeason_StudentSurveyDate", Storage="_StudentSurveyDates", ThisKey="Id", OtherKey="SurveyDateId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentGroupSeason_StudentSurveyDate", Storage="_StudentSurveyDates", ThisKey="Id", OtherKey="StudentGroupSeasonId")]
 		public EntitySet<StudentSurveyDate> StudentSurveyDates
 		{
 			get
@@ -2274,7 +2347,7 @@ namespace DAL
 		
 		private long _StudentId;
 		
-		private long _SurveyDateId;
+		private long _StudentGroupSeasonId;
 		
 		private EntitySet<StudentSurveyRating> _StudentSurveyRatings;
 		
@@ -2290,8 +2363,8 @@ namespace DAL
     partial void OnIdChanged();
     partial void OnStudentIdChanging(long value);
     partial void OnStudentIdChanged();
-    partial void OnSurveyDateIdChanging(long value);
-    partial void OnSurveyDateIdChanged();
+    partial void OnStudentGroupSeasonIdChanging(long value);
+    partial void OnStudentGroupSeasonIdChanged();
     #endregion
 		
 		public StudentSurveyDate()
@@ -2346,26 +2419,26 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SurveyDateId", DbType="BigInt NOT NULL")]
-		public long SurveyDateId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentGroupSeasonId", DbType="BigInt NOT NULL")]
+		public long StudentGroupSeasonId
 		{
 			get
 			{
-				return this._SurveyDateId;
+				return this._StudentGroupSeasonId;
 			}
 			set
 			{
-				if ((this._SurveyDateId != value))
+				if ((this._StudentGroupSeasonId != value))
 				{
 					if (this._StudentGroupSeason.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnSurveyDateIdChanging(value);
+					this.OnStudentGroupSeasonIdChanging(value);
 					this.SendPropertyChanging();
-					this._SurveyDateId = value;
-					this.SendPropertyChanged("SurveyDateId");
-					this.OnSurveyDateIdChanged();
+					this._StudentGroupSeasonId = value;
+					this.SendPropertyChanged("StudentGroupSeasonId");
+					this.OnStudentGroupSeasonIdChanged();
 				}
 			}
 		}
@@ -2417,7 +2490,7 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentGroupSeason_StudentSurveyDate", Storage="_StudentGroupSeason", ThisKey="SurveyDateId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentGroupSeason_StudentSurveyDate", Storage="_StudentGroupSeason", ThisKey="StudentGroupSeasonId", OtherKey="Id", IsForeignKey=true)]
 		public StudentGroupSeason StudentGroupSeason
 		{
 			get
@@ -2440,11 +2513,11 @@ namespace DAL
 					if ((value != null))
 					{
 						value.StudentSurveyDates.Add(this);
-						this._SurveyDateId = value.Id;
+						this._StudentGroupSeasonId = value.Id;
 					}
 					else
 					{
-						this._SurveyDateId = default(long);
+						this._StudentGroupSeasonId = default(long);
 					}
 					this.SendPropertyChanged("StudentGroupSeason");
 				}

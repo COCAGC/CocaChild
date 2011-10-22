@@ -8,7 +8,6 @@ public partial class ListSchools : System.Web.UI.Page
     {
         using (CocaDataContext ctx = new CocaDataContext())
         {
-
             gvSchoolList.DataSource = (
                     from School d in ctx.Schools orderby d.Name
                     select new
@@ -25,6 +24,12 @@ public partial class ListSchools : System.Web.UI.Page
                     }
                 ).ToList();
             gvSchoolList.DataBind();
+        }
+
+        using (CocaDataContext ctx = new CocaDataContext()) {
+            var x = from StudentGroupSeason apr in ctx.StudentGroupSeasons
+                    where apr.Id == 1
+                    select new { FirstName = apr.StudentSurveyDates };
         }
     }
 }
