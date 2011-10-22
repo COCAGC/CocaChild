@@ -7,7 +7,7 @@
         <asp:Label ID="Label1" runat="server" Text="Label"><h1>Start Survey Here</h1></asp:Label>    
     <div>
     <div >
-    <fieldset>
+    <fieldset class="student_login">
         <legend>Survey Login</legend>
 
         <asp:Label ID="lblARPID" AssociatedControlId="txtARPID" runat="server" Text="Label">ARP ID</asp:Label>
