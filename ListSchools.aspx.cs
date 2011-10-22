@@ -8,7 +8,6 @@ public partial class ListSchools : System.Web.UI.Page
     {
         using (CocaDataContext ctx = new CocaDataContext())
         {
-
             gvSchoolList.DataSource = (
                     from School d in ctx.Schools
                     select new

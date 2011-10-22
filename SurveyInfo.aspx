@@ -1,36 +1,26 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="SurveyInfo.aspx.cs" Inherits="SurveyInfo" %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/StudentSite.master" CodeFile="SurveyInfo.aspx.cs" Inherits="SurveyInfo" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
     <div>
           <asp:ListView ID="lvStudentBullyList" runat="server" Visible="true" >
             <LayoutTemplate>            
                 <table id="tableOne" class="yui">    
                     <tr class="header">                         
                         <th style="text-align: left">                         
-                            <asp:Label runat="server" ID="FirstName">First Name</asp:Label>
-                          
+                            <asp:Label runat="server" ID="FirstName">First Name</asp:Label>                          
                         </th>                    
                         <th style="text-align: left">
-                            <asp:Label runat="server" ID="LastName">Last Name</asp:Label>
-                           
+                            <asp:Label runat="server" ID="LastName">Last Name</asp:Label>                          
                         </th>
                         <th style="text-align: left">
-                            <asp:Label runat="server" ID="BullyOthersCount">Bully others Count</asp:Label>
-                          
+                            <asp:Label runat="server" ID="BullyOthersCount">Bully others Count</asp:Label>                          
                         </th>
                         <th style="text-align: left">
                             <asp:Label runat="server" ID="BulliedByOthersCount">Bullied By others Count</asp:Label>                         
                         </th>
                         <th style="text-align: left">
-                            <asp:Label runat="server" ID="Comments">Comments</asp:Label>
-                          
+                            <asp:Label runat="server" ID="Comments">Comments</asp:Label>                       
                         </th>
                          <th style="text-align: left"></th>
                     </tr>
@@ -38,25 +28,15 @@
                             
                 </table>     
             </LayoutTemplate>
-            <ItemTemplate>
-                <tr>                             
-                    <td><%# Eval("FirstName")%></td>
-                    <td><%# Eval("LastName")%></td>
-                    <td><%# Eval("BullyOthersCount")%></td>    
-                    <td><%# Eval("BulliedByOthersCount")%></td>  
-                    <td><%# Eval("Comments")%></td>                                       
-                </tr>
-            </ItemTemplate>
-                   
-            <EditItemTemplate> 
+                         
+            <ItemTemplate> 
                 <tr style="">
                     <td>
                         <asp:Label ID="lblEditFirstName" runat="server" Text='<%# Eval("FirstName") %>' />
                     </td>  
                      <td>
                         <asp:Label ID="lblEditLastName" runat="server" Text='<%# Eval("LastName") %>' />
-                    </td>  
-                                      
+                    </td>                                        
                     <td>                                        
                         <asp:DropDownList ID="ddlBullyOthersCountID" runat="server"  DataTextField="BullyOthersCount" DataValueField="BullyOthersCount" >
                         <asp:ListItem>0</asp:ListItem>
@@ -76,16 +56,16 @@
                     </td>  
 
                     <td>
-                        <asp:TextBox ID="Label1" runat="server" Text='<%# Eval("Comments") %>' />
+                        <asp:TextBox ID="txtComments" runat="server" Text='<%# Eval("Comments") %>' />
                     </td>                                    
                    
                 </tr> 
-            </EditItemTemplate>
+            </ItemTemplate>
                    
         </asp:ListView>
 
- 
+ <asp:Button Text="Finished" runat="server"  ID="FinishedId" onclick="FinishedId_Click"/>
     </div>
-    </form>
-</body>
-</html>
+    </asp:Content>
+    
+

@@ -72,7 +72,7 @@ namespace DAL
     #endregion
 		
 		public CocaDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["CocaChildConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["sql2008r2_847344_surveysConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

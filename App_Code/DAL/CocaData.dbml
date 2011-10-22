@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SQL2008R2_847344_surveys" Class="CocaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=SQL2K805.DiscountAsp.net;Initial Catalog=SQL2008R2_847344_surveys;Persist Security Info=True;User ID=SQL2008R2_847344_Surveys_User" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CocaChildConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=SQL2k805.discountasp.net;Initial Catalog=sql2008r2_847344_surveys;Persist Security Info=True;User ID=sql2008r2_847344_surveys_user" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="sql2008r2_847344_surveysConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AnonStudents" Member="AnonStudents">
     <Type Name="AnonStudent">
       <Column Name="AnonStudentId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
