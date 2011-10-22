@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Create School</title>
     <style type="text/css">
         .style1
         {
@@ -20,6 +20,7 @@
             width: 208px;
         }
     </style>
+    <link type="text/css" href="CocaChild.css" rel="Stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
