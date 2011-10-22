@@ -15,7 +15,7 @@
             Font-Size="20pt" ForeColor="Blue"></asp:Label>    
     </div>
     <div align="center">
-    <ul>
+    <ul class="navigation">
     <li><a href="CreateSchool.aspx">Create School</a></li>
     <li><a href="ListSchools.aspx">View Schools</a></li>
     <li><a href="NewSurvey.aspx">Begin New Survey</a></li>
