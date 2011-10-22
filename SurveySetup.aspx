@@ -6,8 +6,8 @@
 
     <div align="center">
         <ul>
-            <li><a href="NewSurvey.aspx">Begin New Survey</a></li>
-            <li><a href="EditSurvey.aspx">Edit Existing Survey</a></li>
+            <li><a href="Survey.aspx">Begin New Survey</a></li>
+            <li><a href="ViewSurveys.aspx">View/Edit Surveys</a></li>
         </ul>    
     </div>
 </asp:Content>

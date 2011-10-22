@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title> COCA Anonymous Peer Rating Survey System</title>
+    <link href="COCAChild.css" rel="stylesheet" type="text/css" />     
     <link href="Site.css" rel="stylesheet" type="text/css" />     
     <asp:ContentPlaceHolder id="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
