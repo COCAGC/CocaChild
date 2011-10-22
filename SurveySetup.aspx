@@ -7,7 +7,7 @@
     <div align="center">
         <ul>
             <li><a href="Survey.aspx">Begin New Survey</a></li>
-            <li><a href="ViewSurveys.aspx">View/Edit Surveys</a></li>
+            <li><a href="CopyExistingSurvey.aspx">Copy Existing Surveys</a></li>
         </ul>    
     </div>
 </asp:Content>
