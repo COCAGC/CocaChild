@@ -5,21 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Start Survey</title>
-<style>
-fieldset {
-  padding: 1em;  
-}
-label 
-{
-  clear:left;
-  float:left;
-  width:15%;
-  margin-right:0.5em;
-  padding-top:0.2em;
-  text-align:right;
-  font-weight:bold;
-  }
-    </style>
+    <link type="text/css" href="CocaChild.css" rel="Stylesheet" />
 </head>
 <body>
         <asp:Label ID="Label1" runat="server" Text="Label"><h1>Start Survey Here</h1></asp:Label>
