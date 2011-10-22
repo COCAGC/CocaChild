@@ -16,7 +16,7 @@
     <Type Name="Year">
       <Column Name="YearId" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="YearName" Member="Name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="weight" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="Weight" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
       <Association Name="Year_SchoolYear" Member="SchoolYears" ThisKey="Id" OtherKey="YearId" Type="SchoolYear" />
     </Type>
   </Table>
@@ -26,6 +26,11 @@
       <Column Name="ClassLevelName" Member="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Weight" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="ClassLevel_StudentGroup" Member="StudentGroups" ThisKey="Id" OtherKey="ClassLevelId" Type="StudentGroup" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RandomWords" Member="RandomWords">
+    <Type Name="RandomWord">
+      <Column Name="Word" Type="System.String" DbType="VarChar(25) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.Schools" Member="Schools">
@@ -86,7 +91,6 @@
       <Column Name="StudentGroupId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="SeasonId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="StudentGroupSeason_AnonStudent" Member="AnonStudents" ThisKey="Id" OtherKey="StudentGroupSeasonId" Type="AnonStudent" />
-      <Association Name="StudentGroupSeason_StudentSurveyDate" Member="StudentSurveyDates" ThisKey="Id" OtherKey="SurveyDateId" Type="StudentSurveyDate" />
       <Association Name="StudentGroup_StudentGroupSeason" Member="StudentGroup" ThisKey="StudentGroupId" OtherKey="Id" Type="StudentGroup" IsForeignKey="true" />
       <Association Name="Season_StudentGroupSeason" Member="Season" ThisKey="SeasonId" OtherKey="Id" Type="Season" IsForeignKey="true" />
     </Type>
@@ -106,10 +110,9 @@
     <Type Name="StudentSurveyDate">
       <Column Name="StudentSurveyDateId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="StudentId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="SurveyDateId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="StudentGroupSeasonId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Association Name="StudentSurveyDate_StudentSurveyRating" Member="StudentSurveyRatings" ThisKey="Id" OtherKey="StudentSurveyDateId" Type="StudentSurveyRating" />
       <Association Name="Student_StudentSurveyDate" Member="Student" ThisKey="StudentId" OtherKey="Id" Type="Student" IsForeignKey="true" />
-      <Association Name="StudentGroupSeason_StudentSurveyDate" Member="StudentGroupSeason" ThisKey="SurveyDateId" OtherKey="Id" Type="StudentGroupSeason" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.StudentSurveyRatings" Member="StudentSurveyRatings">
