@@ -1,0 +1,50 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="COCAsite.master.cs" Inherits="COCAsite" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title> COCA Anonymous Peer Rating Survey System</title>
+    <link href="Site.css" rel="stylesheet" type="text/css" />     
+    <asp:ContentPlaceHolder id="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+     <form id="Form1" runat="server">    
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <h1>                    
+                    COCA Anonymous Peer Rating 
+                    <span class="subheader">Survey System</span>
+                    <span class="topright"><input id="imgSchool" type="image" src="" alt="logo" Height="120px" Width="170px" /></span>
+                </h1>                            
+                <br />                                    
+            </div>      
+            <div class="clear hideSkiplink">
+                <asp:Panel ID="pnlSiteMaster" runat="server">  
+                    <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                        <Items>                                              
+                            <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
+                            <asp:MenuItem NavigateUrl="~/SchoolSetup.aspx" Text="Setup Schools"/>                            
+                            <asp:MenuItem NavigateUrl="~/SurveySetup.aspx" Text="Survey Setup"/>
+                            <asp:MenuItem NavigateUrl="~/Reports.aspx" Text="Reports"/>                             
+                        </Items>
+                    </asp:Menu>                        
+                </asp:Panel> 
+        
+                <br />              
+            </div>            
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+</body>
+</html>
