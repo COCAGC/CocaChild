@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="COCAsite.master.cs" Inherits="COCAsite" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="StudentSite.master.cs" Inherits="COCAsite" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -21,21 +21,7 @@
                 </h1>                            
                 <br />                                    
             </div>      
-            <div class="clear hideSkiplink">
-                <asp:Panel ID="pnlSiteMaster" runat="server">  
-                    <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
-                        <Items>                                              
-                            <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
-                            <asp:MenuItem NavigateUrl="~/SchoolSetup.aspx" Text="Setup Schools"/>                            
-                            <asp:MenuItem NavigateUrl="~/SurveySetup.aspx" Text="Survey Setup"/>
-                            <asp:MenuItem NavigateUrl="~/Reports.aspx" Text="Reports"/> 
-                            <asp:MenuItem NavigateUrl="~/StartSurvey.aspx" Text="Student Survey" />                            
-                        </Items>
-                    </asp:Menu>                        
-                </asp:Panel> 
         
-                <br />              
-            </div>            
         </div>
         <div class="main">
             <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
