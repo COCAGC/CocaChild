@@ -1,16 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ListSchools.aspx.cs" Inherits="ListSchools" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/COCAsite.master"  CodeFile="ListSchools.aspx.cs" Inherits="ListSchools" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
     <div>
     
-        <asp:GridView ID="gvSchoolList" runat="server" EnableModelValidation="True" 
+<%--        <asp:GridView ID="gvSchoolList" runat="server" EnableModelValidation="True" 
             AutoGenerateColumns="False" >
             <Columns>
                 <asp:HyperLinkField DataTextField="Name" HeaderText="School Name" 
@@ -19,9 +11,16 @@
                 <asp:BoundField DataField="State" HeaderText="State" />
                 <asp:BoundField DataField="Zip" HeaderText="Zip" />
             </Columns>
+        </asp:GridView>--%>
+            <asp:GridView ID="gvSchoolList" runat="server" EnableModelValidation="True" 
+            AutoGenerateColumns="False" >
+            <Columns>
+                <asp:HyperLinkField DataTextField="SchoolName" HeaderText="School Name" 
+                    SortExpression="SchoolName" />
+                <asp:BoundField DataField="City" HeaderText="City" />
+                <asp:BoundField DataField="StateName" HeaderText="StateName" />
+                <asp:BoundField DataField="Zip" HeaderText="Zip" />
+            </Columns>
         </asp:GridView>
-    
     </div>
-    </form>
-</body>
-</html>
+ 

@@ -25,7 +25,8 @@ public class DalOld
             DbCommand _dbCommand;
             _dbCommand = _dbProvider.CreateCommand();
             _dbCommand.Connection = _dbConn;
-            _dbCommand.CommandText = "Select * from Schools";
+            //_dbCommand.CommandText = "Select * from Schools";
+            _dbCommand.CommandText = "Select SchoolID, SchoolName, City, StateName, Zip FROM [CocaChild].[dbo].[Schools] sch, [CocaChild].[dbo].[States] st Where sch.stateid = st.stateid";
             _dbCommand.CommandType = CommandType.Text;
             
             DbDataAdapter _dbDataAdaptor = _dbProvider.CreateDataAdapter();
