@@ -68,7 +68,7 @@ public partial class NewSurvey : System.Web.UI.Page
 
             context.SubmitChanges();
 
-            ExecuteStoredProcedure();                  
+            ExecuteStoredProcedure(context, studentGroupSeason.Id);                  
         }
     }
 
@@ -100,10 +100,9 @@ public partial class NewSurvey : System.Web.UI.Page
         UploadAction();
     }
 
-    private long ExecuteStoredProcedure()
+    private void ExecuteStoredProcedure(CocaDataContext ctx, long groupId)
     {
-        //hand him the student group season id
-        return 1;
+        ctx.ExecuteCommand("exec coca_AddAllStudentsAndGenerateAnnonLogins @StudentGroupSeasonId = {0}", groupId);
     }
 
     private string GetSeasonName()
@@ -114,10 +113,14 @@ public partial class NewSurvey : System.Web.UI.Page
     private StudentGroupSeason GenerateStudentGroupSeason(CocaDataContext ctx, string seasonName, StudentGroup group)
     {
         var season = ctx.Seasons.Where(s => s.Name == seasonName).SingleOrDefault();
+        DateTime date;
+        if(!DateTime.TryParse(SurveyDate.Text, out date))
+            throw new InvalidDataException("Not a date");
+
         var groupSeason = new StudentGroupSeason()
             {
                 Season = season,
-                SurveyDate = SurveyDate.SelectedDate,
+                SurveyDate = date,
                 StudentGroup = group
             };
        
