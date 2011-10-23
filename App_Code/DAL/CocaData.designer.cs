@@ -1572,7 +1572,7 @@ namespace DAL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private long _Id;
+		private long _Id = default(long);
 		
 		private string _Name;
 		
@@ -1592,8 +1592,6 @@ namespace DAL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIdChanging(long value);
-    partial void OnIdChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
     partial void OnSchoolYearIdChanging(long value);
@@ -1611,23 +1609,12 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="StudentGroupId", Storage="_Id", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="StudentGroupId", Storage="_Id", DbType="BigInt NOT NULL", IsPrimaryKey=true, IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
 		public long Id
 		{
 			get
 			{
 				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
 			}
 		}
 		
