@@ -165,7 +165,9 @@ public partial class SelectorControl : System.Web.UI.UserControl
             long groupID = 0;
             long.TryParse(ddlGroupName.SelectedValue, out groupID);
 
-            _seasonGroupID = ctx.StudentGroupSeasons.Where(sgs => sgs.Season.Name == ddlSeason.SelectedValue && sgs.StudentGroup.Id == groupID).SingleOrDefault().Id.ToString();             
+            var seasonGroup = ctx.StudentGroupSeasons.Where(sgs => sgs.Season.Name == ddlSeason.SelectedValue && sgs.StudentGroup.Id == groupID).SingleOrDefault()
+            if(seasonGroup != null)
+                _seasonGroupID = seasonGroup.Id.ToString();             
         }
     }
 }
