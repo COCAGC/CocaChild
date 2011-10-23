@@ -9,7 +9,9 @@
     <div align="center">    
              <h1>Anonymous Peer Rating Survey</h1>               
     </div>
-    <div align="center">
+    <br />
+    <br />
+    <div align="center">    
     <table>
         <tr>
             <td align="left">

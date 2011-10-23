@@ -85,7 +85,7 @@ public partial class NewSurvey : System.Web.UI.Page
             context.SubmitChanges();
 
             ExecuteStoredProcedure(context, studentGroupSeason.Id);
-            ReportUrl = string.Format("/ReportAnonUser.aspx?StudentGroupSeasonId={0}", studentGroupSeason.Id);
+            ReportUrl = string.Format("ReportAnonUser.aspx?StudentGroupSeasonId={0}", studentGroupSeason.Id);
             Page.DataBind();
             LinkToUserList.Visible = true;
         }

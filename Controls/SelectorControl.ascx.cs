@@ -57,6 +57,7 @@ public partial class SelectorControl : System.Web.UI.UserControl
                 ddlSchool.DataTextField = "Name";
                 ddlSchool.DataValueField = "ID";
                 ddlSchool.DataBind();
+                ddlSchool.Items.Insert(0, new ListItem("--Select School--", "0"));     
                 ddlSchool.SelectedIndex = 0;
 
 
