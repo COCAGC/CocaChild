@@ -6,34 +6,31 @@
 <head runat="server">
     <title> COCA Anonymous Peer Rating Survey System</title>
     <link href="COCAChild.css" rel="stylesheet" type="text/css" />     
-    <link href="Site.css" rel="stylesheet" type="text/css" />     
+    <link href="Site.css" rel="stylesheet" type="text/css" />
+    <link href="Scripts/jquery-ui-1.8.16.custom.css" rel="Stylesheet" type="text/css" />  
+    <script src="Scripts/jquery-1.6.2.min.js"></script>   
+    <script src="Scripts/jquery-ui-1.8.16.custom.min.js"></script>     
     <asp:ContentPlaceHolder id="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
      <form id="Form1" runat="server">    
     <div class="page">
-        <div class="header">
+        <div>
             <div class="title">
-                <h1>                    
-                    COCA Anonymous Peer Rating 
-                    <span class="subheader">Survey System</span>
-                    <span class="topright"><input id="imgSchool" type="image" src="cocalogo.jpg" alt="logo" Height="131px" Width="220px" /></span>
-                </h1>                            
-                <br />                                    
             </div>      
             <div class="clear hideSkiplink">
-                <asp:Panel ID="pnlSiteMaster" runat="server">  
-                    <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
-                        <Items>                                              
-                            <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
-                            <asp:MenuItem NavigateUrl="~/SchoolSetup.aspx" Text="Setup Schools"/>                            
-                            <asp:MenuItem NavigateUrl="~/SurveySetup.aspx" Text="Survey Setup"/>
-                            <asp:MenuItem NavigateUrl="~/Reports.aspx" Text="Reports"/> 
-                            <asp:MenuItem NavigateUrl="~/StartSurvey.aspx" Text="Student Survey" />                            
-                        </Items>
-                    </asp:Menu>                        
-                </asp:Panel> 
+
+
+<div id="nav-menu">
+<ul>
+<li><a href="Default.aspx">Admin Home</a></li>
+<li><a href="ListSchools.aspx">List Schools</a></li>
+<li><a href="ViewSurveys.aspx">View Surveys</a></li>
+<li><a href="Reports.aspx">Reports</a></li>
+</ul>
+</div> 
+
         
                 <br />              
             </div>            
