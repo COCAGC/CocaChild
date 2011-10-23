@@ -48,6 +48,12 @@ public partial class NewSurvey : System.Web.UI.Page
             var students = new List<Student>();
 
             var items = GetCSVRows();
+            if (items.Count() < 1)
+            {
+                ErrorText.Text = "Please look for a file using the browse button before hitting upload";
+                ErrorText.Visible = true;
+                return;
+            }
 
             StudentGroup group = GenerateAndInsertNewStudentGroup(context);
 
@@ -128,7 +134,7 @@ public partial class NewSurvey : System.Web.UI.Page
     }
 
     private StudentCSVImportItem[] GetCSVRows()
-    {
+    {       
         StreamReader sr = new StreamReader(File.FileContent);
         FileHelperEngine<StudentCSVImportItem> engine = new FileHelperEngine<StudentCSVImportItem>();
         var items = engine.ReadStream(sr);
