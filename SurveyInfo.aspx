@@ -59,7 +59,7 @@
                         </asp:DropDownList>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtComments" runat="server" Text='<%# Eval("Comments") %>' />
+                        <asp:TextBox ID="txtComments" runat="server" Text='<%# Eval("Comment") %>' />
                     </td>
                     <td>
                         <asp:TextBox ID="TextBox1" runat="server" Text='<%# Eval("RandomNumber") %>' />
