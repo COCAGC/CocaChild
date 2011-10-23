@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/COCAsite.master" CodeFile="CreateSchool.aspx.cs" Inherits="CreateSchool" %>
-
+<%@ Register TagPrefix="stateCtrl" TagName="headerCtrl" Src="~/Controls/StateControl.ascx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">        
 <style type="text/css">
@@ -73,8 +73,8 @@
                 State
                 </td>
             <td class="style1" align="left">
-                <asp:DropDownList ID="ddlStates" runat="server" Width="139px" >
-                </asp:DropDownList>
+                <br />
+                  <stateCtrl:headerCtrl ID="selControls" runat="server" />              
 &nbsp;&nbsp; Zip
                 <asp:TextBox ID="txtZip" runat="server" MaxLength="10" Width="50px"></asp:TextBox>
             </td>
