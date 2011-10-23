@@ -4,23 +4,50 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
 
+<div align="center">
         <asp:Label ID="Label1" runat="server" Text="Label"><h1>Start Survey Here</h1></asp:Label>    
     <div>
-    <div >
-    <span class="student_login">
-    <fieldset>
-        <asp:Label ID="lblARPID" AssociatedControlId="txtARPID" runat="server" Text="Label" CssClass="labelfloat">ARP ID</asp:Label>
-        <asp:TextBox ID="txtARPID" runat="server"></asp:TextBox>
+    <div >    
+    <fieldset class="student_login">
+        <legend>Survey Login</legend>
+         <table>
+            <tr>
+                <td align="right">
+                    <asp:Label ID="lblARPID" AssociatedControlId="txtARPID" runat="server" Text="Label">ARP ID</asp:Label>                    
+                </td>
+                <td>
+                    <asp:TextBox ID="txtARPID" runat="server" MaxLength="10"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="revAPR_ID" runat="server" 
+                        ErrorMessage="Enter numeric value" ControlToValidate="txtARPID" 
+                        ValidationExpression="^\d+$"></asp:RegularExpressionValidator>
+                </td>
+            </tr>
+         </table>
+         <br />
+         <table>              
+            <tr>
+                <td align="right">
+                    <asp:Label ID="lblStudentID" AssociatedControlId="txtStudentID" runat="server" Text="Label">Student ID</asp:Label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtStudentID" runat="server" MaxLength="10"></asp:TextBox>
+                </td>
+                <td align="right">
+                    <asp:Label ID="lblPassword" AssociatedControlId="txtPassword" runat="server" Text="Label">Password</asp:Label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtPassword" runat="server" MaxLength="10"></asp:TextBox>
+                </td>
+            </tr>
+        </table>
         <br />
-        <asp:Label ID="lblStudentID" AssociatedControlId="txtStudentID" runat="server" Text="Label" CssClass="labelfloat">Student ID</asp:Label>
-        <asp:TextBox ID="txtStudentID" runat="server"></asp:TextBox>
         <br />
-        <br />
-        <span style="padding-left: 30%"><asp:Button ID="btnStartSurvey" runat="server" 
-            Text="Start Survey" onclick="btnStartSurvey_Click" /></span>
+        <asp:Button ID="btnStartSurvey" runat="server" Text="Start Survey" onclick="btnStartSurvey_Click" 
+           />
+        <br />  
 
-    </fieldset>
-    </span>
+    </fieldset>    
     </div>
-    </div>    
+    </div>
+ </div>    
 </asp:Content>
