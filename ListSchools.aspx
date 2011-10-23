@@ -4,6 +4,11 @@
     <link type="text/css" href="CocaChild.css" rel="Stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
+ <div align="center">    
+             <h1>School Listing</h1>               
+    </div>
+    <br />
+    <br />
     <div align="center">    
             <asp:GridView ID="gvSchoolList" runat="server" EnableModelValidation="True" 
             AutoGenerateColumns="False" >

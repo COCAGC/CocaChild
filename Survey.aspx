@@ -7,10 +7,8 @@
     
     <link type="text/css" href="CocaChild.css" rel="Stylesheet" />
 
-    <div align="center">    
-        <asp:Label ID="lblSurvey" runat="server" 
-            Text="Create Survey" Font-Bold="True" Font-Names="Tahoma" 
-            Font-Size="20pt" ForeColor="Blue"></asp:Label>    
+    <div align="center">     
+            <h1>Create Survey</h1>  
         <br />
         <br />
         <br />
