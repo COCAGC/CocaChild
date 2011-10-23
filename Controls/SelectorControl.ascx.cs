@@ -30,6 +30,14 @@ public partial class SelectorControl : System.Web.UI.UserControl
         get { return ddlSeason.SelectedValue; }
     }
 
+    private string _seasonGroupID;
+    public string SeasonGroupID
+    {
+        get
+        {
+            return _seasonGroupID;            
+        }
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -55,46 +63,7 @@ public partial class SelectorControl : System.Web.UI.UserControl
                 BindYears();
                 BindGroups();
                 BindSeasons();
-
-
-            
-                //--------------------------
-            //    ddlYear.DataSource = (
-            //        from Year y in ctx.Years
-            //        orderby y.Name
-            //        select new
-            //        {
-            //            YearName = y.Name
-            //        }
-            //    ).ToList();
-            //    ddlYear.DataTextField = "YearName";
-            //    ddlYear.DataValueField = "YearName";
-            //    ddlYear.DataBind();
-            //    --------------------------
-            //    ddlGroupName.DataSource = (
-            //        from StudentGroup sg in ctx.StudentGroups
-            //        orderby sg.Name
-            //        select new
-            //        {
-            //            StudentID = sg.Id,
-            //            StudentGroup = sg.Name
-            //        }
-            //    ).ToList();
-            //    ddlGroupName.DataTextField = "StudentGroup";
-            //    ddlGroupName.DataValueField = "StudentID";
-            //    ddlGroupName.DataBind();
-            //    --------------------------
-            //    ddlSeason.DataSource = (
-            //        from Season sea in ctx.Seasons
-            //        orderby sea.Name
-            //        select new
-            //        {
-            //            SeasonName = sea.Name
-            //        }
-            //    ).ToList();
-            //    ddlSeason.DataTextField = "SeasonName";
-            //    ddlSeason.DataValueField = "SeasonName";
-            //    ddlSeason.DataBind();
+                BindSeasonGroupID();
             }            
         }
     }    
@@ -104,21 +73,25 @@ public partial class SelectorControl : System.Web.UI.UserControl
         BindYears();
         BindGroups();
         BindSeasons();
+        BindSeasonGroupID();
 
     }
     protected void ddlYear_SelectedIndexChanged(object sender, EventArgs e)
     {
         BindGroups();
         BindSeasons();
+        BindSeasonGroupID();
     }
 
     protected void ddlGroupName_SelectedIndexChanged(object sender, EventArgs e)
     {
         BindSeasons();
+        BindSeasonGroupID();
     }
+
     protected void ddlSeason_SelectedIndexChanged(object sender, EventArgs e)
     {
-
+        BindSeasonGroupID();
     }
    
     private void BindYears()
@@ -181,7 +154,18 @@ public partial class SelectorControl : System.Web.UI.UserControl
                  ).ToList();
             ddlSeason.DataTextField = "SeasonName";
             ddlSeason.DataValueField = "SeasonName";
-            ddlSeason.DataBind();
+            ddlSeason.DataBind();            
+        }
+    }
+
+    private void BindSeasonGroupID()
+    {
+        using (CocaDataContext ctx = new CocaDataContext())
+        {
+            long groupID = 0;
+            long.TryParse(ddlGroupName.SelectedValue, out groupID);
+
+            _seasonGroupID = ctx.StudentGroupSeasons.Where(sgs => sgs.Season.Name == ddlSeason.SelectedValue && sgs.StudentGroup.Id == groupID).SingleOrDefault().Id.ToString();             
         }
     }
 }

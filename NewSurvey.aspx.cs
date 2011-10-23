@@ -10,6 +10,8 @@ using DAL;
 
 public partial class NewSurvey : System.Web.UI.Page
 {
+    protected string ReportUrl;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         List<string> seasonNames;
@@ -82,7 +84,10 @@ public partial class NewSurvey : System.Web.UI.Page
 
             context.SubmitChanges();
 
-            ExecuteStoredProcedure(context, studentGroupSeason.Id);                  
+            ExecuteStoredProcedure(context, studentGroupSeason.Id);
+            ReportUrl = string.Format("/ReportAnonUser.aspx?StudentGroupSeasonId={0}", studentGroupSeason.Id);
+            Page.DataBind();
+            LinkToUserList.Visible = true;
         }
     }
 

@@ -27,6 +27,58 @@
           </tr>
       </table>
       <asp:Label Visible="false" runat="server" ID="ErrorText" />
+      <asp:GridView ID="StudentGrid" runat="server" AutoGenerateColumns="False"
+        BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px"
+        CellPadding="3" CellSpacing="2" DataKeyNames="Id" EnableModelValidation="True"
+        OnRowCancelingEdit="grdStudent_RowCancelingEdit" 
+        OnRowDataBound="grdStudent_RowDataBound" 
+        OnRowEditing="grdStudent_RowEditing" 
+        OnRowUpdating="grdStudent_RowUpdating" ShowFooter="True" 
+        OnRowCommand="grdStudent_RowCommand" 
+        OnRowDeleting="grdStudent_RowDeleting">
+            <Columns>
+                <asp:TemplateField HeaderText="First Name">
+                <ItemTemplate>
+                    <asp:Label ID="fname" runat="server" Text='<%# Bind("FirstName") %>'></asp:Label>
+                </ItemTemplate>
+                <EditItemTemplate>
+                    <asp:TextBox ID="fnameEdit" runat="server" Text='<%# Bind("FirstName") %>'></asp:TextBox>                    
+                </EditItemTemplate>
+                <ControlStyle Width="150px" />
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Last Name">
+                <ItemTemplate>
+                    <asp:Label Id="lname" runat="server" Text='<%# Bind("LastName") %>'></asp:Label>
+                </ItemTemplate>
+                <EditItemTemplate>
+                    <asp:TextBox ID="lnameEdit" runat="server" Text='<%# Bind("LastName") %>'></asp:TextBox>                    
+                </EditItemTemplate>
+                <ControlStyle Width="150px" />
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Teacher">
+                <ItemTemplate>
+                    <asp:Label ID="teacher" runat="server" Text='<%# Bind("TeacherName") %>'></asp:Label>
+                </ItemTemplate>
+                <EditItemTemplate>
+                    <asp:TextBox ID="teacherEdit" runat="server" Text='<%# Bind("TeacherName") %>'></asp:TextBox>                    
+                </EditItemTemplate>
+                <ControlStyle Width="150px" />
+            </asp:TemplateField>
+             <asp:TemplateField HeaderText="Edit" ShowHeader="False" HeaderStyle-HorizontalAlign="Left"> 
+                 <EditItemTemplate> 
+                       <asp:LinkButton ID="lbkUpdate" runat="server" CausesValidation="True" CommandName="Update" Text="Update"></asp:LinkButton> 
+                       <asp:LinkButton ID="lnkCancel" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton> 
+                   </EditItemTemplate> 
+                   <FooterTemplate> 
+                       <asp:LinkButton ID="lnkAdd" runat="server" CausesValidation="False" CommandName="Insert" Text="Insert"></asp:LinkButton> 
+                   </FooterTemplate> 
+                   <ItemTemplate> 
+                       <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton> 
+                   </ItemTemplate> 
+               </asp:TemplateField> 
+               <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" /> 
+            </Columns>
+        </asp:GridView>
   </div>
 </asp:Content>
 

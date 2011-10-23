@@ -40,5 +40,6 @@
     <br />
     <asp:Label Visible="false" ID="ErrorText" runat="server"/>
     <asp:Label CssClass="display_message" Visible="false" ID="MsgText" runat="server"/>
+    <asp:HyperLink runat="server" ID="LinkToUserList" Text="Go To List of Anonymous Students" Visible="false"  NavigateUrl='<%# ReportUrl %>'></asp:HyperLink>
 </div>
 </asp:Content>

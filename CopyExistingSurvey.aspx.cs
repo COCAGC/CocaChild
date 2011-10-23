@@ -19,44 +19,42 @@ public partial class CopyExistingSurvey : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         ErrorText.Visible = false;
+        if (!IsPostBack)
+        {
+            StudentGrid.Visible = false;
+        }
     }
 
     protected void OnbtnCopyClick(object sender, EventArgs e)
     {
-        //Make grid visible
+        FillGrid();
+    }
+
+    private void FillGrid()
+    {
+         StudentGrid.Visible = true;
+        StudentGrid.DataSource = retrieveStudents();
+        StudentGrid.DataBind();
     }
 
     protected void OnbtnExportClick(object sender, EventArgs e)
     {
-        List<StudentCSVImportItem> students = new List<StudentCSVImportItem>();
-        try
-        {
-            using (CocaDataContext ctx = new CocaDataContext())
-            {
-                var school = ctx.Schools.Where(s => s.Id == _school).SingleOrDefault();
-                var year = school.SchoolYears.Where(y => y.Year.Name == _year).SingleOrDefault();
-                var group =  year.StudentGroups.Where(g => g.Id == _groupId && g.StudentGroupSeasons.Any(sg => sg.Season.Name == _season || string.IsNullOrEmpty(_season))).SingleOrDefault();
-                students = group.Students.Select(s => new StudentCSVImportItem()
-                                                {
-                                                    Teacher = s.TeacherName,
-                                                    FirstName = s.FirstName,
-                                                    LastName = s.LastName
-                                                }).ToList();
-
-                if (students.Count < 1) throw new InvalidDataException("No students found");
-            }
-        }
-        catch(Exception ex)
-        {
-            ErrorText.Text = "Unable to find the students for the data you selected:" + ex.Message;
-            ErrorText.Visible=true;
+        var students = retrieveStudents();
+        if (students.Count < 1)
             return;
-        }
-        students.Insert(0, new StudentCSVImportItem() { FirstName = "First Name", LastName = "Last Name", Teacher = "Teacher" });
+
+        List<StudentCSVImportItem> studentRows = students.Select(s => new StudentCSVImportItem()
+                {
+                    Teacher = s.TeacherName,
+                    FirstName = s.FirstName,
+                    LastName = s.LastName
+                }).ToList();
+
+        studentRows.Insert(0, new StudentCSVImportItem() { FirstName = "First Name", LastName = "Last Name", Teacher = "Teacher" });
         FileHelperEngine<StudentCSVImportItem> engine = new FileHelperEngine<StudentCSVImportItem>();
         MemoryStream stream = new MemoryStream();
         TextWriter writer = new StreamWriter( stream);
-        engine.WriteStream(writer, students);
+        engine.WriteStream(writer, studentRows);
         writer.Close();
 
         HttpResponse response = Response;
@@ -77,5 +75,60 @@ public partial class CopyExistingSurvey : System.Web.UI.Page
         response.Close();
      
     }
+
+    private IList<Student> retrieveStudents()
+    {
+        IList<Student> students;
+        try
+        {
+            using (CocaDataContext ctx = new CocaDataContext())
+            {
+                var school = ctx.Schools.Where(s => s.Id == _school).SingleOrDefault();
+                var year = school.SchoolYears.Where(y => y.Year.Name == _year).SingleOrDefault();
+                var group = year.StudentGroups.Where(g => g.Id == _groupId && g.StudentGroupSeasons.Any(sg => sg.Season.Name == _season || string.IsNullOrEmpty(_season))).SingleOrDefault();
+                students = group.Students.ToList();
+
+                if (students.Count < 1) throw new InvalidDataException("No students found");
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorText.Text = "Unable to find the students for the data you selected:" + ex.Message;
+            ErrorText.Visible = true;
+            return null;
+        }
+
+        return students;
+    }
+
+    //Grid Methods
+    protected void grdStudent_RowCancelingEdit(object sender, EventArgs e)
+    {
     
+    }
+
+    protected void grdStudent_RowDataBound(object sender, EventArgs e)
+    {
+       
+    }
+
+    protected void grdStudent_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        StudentGrid.EditIndex = e.NewEditIndex;
+        FillGrid();
+    }
+    
+    protected void grdStudent_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+    
+    }
+    
+    protected void grdStudent_RowCommand(object sender, EventArgs e)
+    {
+    
+    }
+
+    protected void grdStudent_RowDeleting(object sender, EventArgs e)
+    {
+    }        
 }
