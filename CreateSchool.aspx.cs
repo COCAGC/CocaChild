@@ -50,6 +50,9 @@ public partial class CreateSchool : System.Web.UI.Page
         ctx.Schools.InsertOnSubmit(sch);            
 
         ctx.SubmitChanges();
+
+        MsgText.Text = "School successfully created.";
+        MsgText.Visible = true;
         
     }
 }
