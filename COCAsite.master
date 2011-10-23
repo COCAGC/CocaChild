@@ -1,47 +1,54 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="COCAsite.master.cs" Inherits="COCAsite" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title> COCA Anonymous Peer Rating Survey System</title>
-    <link href="COCAChild.css" rel="stylesheet" type="text/css" />     
+    <title>COCA Anonymous Peer Rating Survey System</title>
+    <link href="COCAChild.css" rel="stylesheet" type="text/css" />
     <link href="Site.css" rel="stylesheet" type="text/css" />
-    <link href="Scripts/jquery-ui-1.8.16.custom.css" rel="Stylesheet" type="text/css" />  
-    <script src="Scripts/jquery-1.6.2.min.js"></script>   
-    <script src="Scripts/jquery-ui-1.8.16.custom.min.js"></script>     
-    <asp:ContentPlaceHolder id="HeadContent" runat="server">
+    <link href="Scripts/jquery-ui-1.8.16.custom.css" rel="Stylesheet" type="text/css" />
+    <script src="Scripts/jquery-1.6.2.min.js"></script>
+    <script src="Scripts/jquery-ui-1.8.16.custom.min.js"></script>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-     <form id="Form1" runat="server">    
+    <form id="Form1" runat="server">
     <div class="page">
         <div>
             <div class="clear hideSkiplink">
-
-<ul id="nav">
-<li class="smwid"><a href="default.aspx">Home</a></li>
-<li class="smwid"><a href="#">Schools</a>
-<ul class="subsmwid">						
-<li><a href="ListSchools.aspx" title="">View Schools</a></li>                   			
-<li><a href="CreateSchool.aspx" title="">Create Schools</a></li>                   			
-</ul>
-</li>
-<li  class="smwid"><a href="#">Surveys</a>
-<ul class="subsmwid">						
-<li><a href="NewSurvey.aspx" title="">Create Survey</a></li>                   			
-<li><a href="CopyExistingSurvey.aspx" title="">Copy Existing Survey</a></li>                   			
-<li><a href="EditSurveys.aspx" title="">Edit Surveys</a></li>                   			
-</ul>
-</li>
-<li class="smwid"><a href="Reports.aspx">Reports</a></li>
-<li class="smwid"><a href="StartSurvey.aspx">Student Survey</a></li>
-</ul>
-
-            </div>            
+                <asp:LoginView ID="lvLogout" runat="server">
+                    <AnonymousTemplate>
+                        <ul id="nav">
+                            <li class="smwid"><a href="default.aspx">Home</a></li>
+                            <li class="smwid"><a href="StartSurvey.aspx">Student Survey</a></li>
+                        </ul>
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>                                <ul id="nav">
+                                    <li class="smwid"><a href="default.aspx">Home</a></li>
+                                    <li class="smwid"><a href="#">Schools</a>
+                                        <ul class="subsmwid">
+                                            <li><a href="ListSchools.aspx" title="">View Schools</a></li>
+                                            <li><a href="CreateSchool.aspx" title="">Create Schools</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="smwid"><a href="#">Surveys</a>
+                                        <ul class="subsmwid">
+                                            <li><a href="NewSurvey.aspx" title="">Create Survey</a></li>
+                                            <li><a href="CopyExistingSurvey.aspx" title="">Copy Existing Survey</a></li>
+                                            <li><a href="EditSurveys.aspx" title="">Edit Surveys</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="smwid"><a href="Reports.aspx">Reports</a></li>
+                                    <li class="smwid"><a href="StartSurvey.aspx">Student Survey</a></li>
+                                    <li class="smwid"><a href="Logout.aspx">Logout</a></li>
+                                </ul>
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
         </div>
         <div class="main">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
         </div>
         <div class="clear">
         </div>
