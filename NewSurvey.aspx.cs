@@ -48,6 +48,12 @@ public partial class NewSurvey : System.Web.UI.Page
             var students = new List<Student>();
 
             var items = GetCSVRows();
+            if (items.Count() < 1)
+            {
+                ErrorText.Text = "Please look for a file using the browse button before hitting upload";
+                ErrorText.Visible = true;
+                return;
+            }
 
             StudentGroup group = GenerateAndInsertNewStudentGroup(context);
 
@@ -68,7 +74,7 @@ public partial class NewSurvey : System.Web.UI.Page
 
             context.SubmitChanges();
 
-            ExecuteStoredProcedure();                  
+            ExecuteStoredProcedure(context, studentGroupSeason.Id);                  
         }
     }
 
@@ -100,10 +106,9 @@ public partial class NewSurvey : System.Web.UI.Page
         UploadAction();
     }
 
-    private long ExecuteStoredProcedure()
+    private void ExecuteStoredProcedure(CocaDataContext ctx, long groupId)
     {
-        //hand him the student group season id
-        return 1;
+        ctx.ExecuteCommand("exec coca_AddAllStudentsAndGenerateAnnonLogins @StudentGroupSeasonId = {0}", groupId);
     }
 
     private string GetSeasonName()
@@ -114,9 +119,14 @@ public partial class NewSurvey : System.Web.UI.Page
     private StudentGroupSeason GenerateStudentGroupSeason(CocaDataContext ctx, string seasonName, StudentGroup group)
     {
         var season = ctx.Seasons.Where(s => s.Name == seasonName).SingleOrDefault();
+        DateTime date;
+        if(!DateTime.TryParse(SurveyDate.Text, out date))
+            throw new InvalidDataException("Not a date");
+
         var groupSeason = new StudentGroupSeason()
             {
                 Season = season,
+                SurveyDate = date,
                // SurveyDate = SurveyDate.SelectedDate,
                 StudentGroup = group
             };
@@ -125,7 +135,7 @@ public partial class NewSurvey : System.Web.UI.Page
     }
 
     private StudentCSVImportItem[] GetCSVRows()
-    {
+    {       
         StreamReader sr = new StreamReader(File.FileContent);
         FileHelperEngine<StudentCSVImportItem> engine = new FileHelperEngine<StudentCSVImportItem>();
         var items = engine.ReadStream(sr);

@@ -3,7 +3,7 @@
 
 body   
 {
-    background: #b6b7bc;
+    background: #FEDFA7;
     font-size: .80em;
     font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
     margin: 0px;
@@ -97,9 +97,12 @@ first child of the left and right table columns */
 .page
 {
     width: 960px;
-    background-color: #fff;
-    margin: 20px auto 0px auto;
+    margin: 1px auto 0px auto;
     border: 1px solid #8C7B69;
+    background: url('COCA_header_960.jpg');
+    background-repeat:no-repeat;
+    background-position:right top;
+    clear: both;
 }
 
 .header
@@ -125,9 +128,11 @@ first child of the left and right table columns */
 
 .main
 {
+    
     padding: 0px 12px;
     margin: 12px 8px 8px 8px;
     min-height: 420px;
+    padding-top: 0px;
 }
 
 .leftCol
@@ -153,7 +158,10 @@ first child of the left and right table columns */
 
 div.hideSkiplink
 {
-    background-color:#8C7B69;
+    ZZZborder: 3px solid black;
+    margin-top: 150px;
+    height: 30px;
+    background-color:#584F70;
     width:100%;
 }
 
