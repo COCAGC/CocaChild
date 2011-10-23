@@ -27,7 +27,7 @@
          <table>              
             <tr>
                 <td align="right">
-                    <asp:Label ID="lblStudentID" AssociatedControlId="txtStudentID" runat="server" Text="Label">Student ID</asp:Label>
+                    <asp:Label ID="lblStudentID" AssociatedControlId="txtStudentID" runat="server" Text="Label">Survey ID</asp:Label>
                 </td>
                 <td>
                     <asp:TextBox ID="txtStudentID" runat="server" MaxLength="10"></asp:TextBox>
