@@ -117,6 +117,8 @@ public partial class NewSurvey : System.Web.UI.Page
     protected void btnUpload_Click(object sender, EventArgs e)
     {
         UploadAction();
+        MsgText.Text = "Survey successfully uploaded!.";
+        MsgText.Visible = true;
     }
 
     private void ExecuteStoredProcedure(CocaDataContext ctx, long groupId)

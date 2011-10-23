@@ -39,5 +39,6 @@
         Text="Upload" />
     <br />
     <asp:Label Visible="false" ID="ErrorText" runat="server"/>
+    <asp:Label Visible="false" ID="MsgText" runat="server"/>
 </div>
 </asp:Content>
