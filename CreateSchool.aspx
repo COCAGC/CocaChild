@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/COCAsite.master" CodeFile="CreateSchool.aspx.cs" Inherits="CreateSchool" %>
-<%@ Register TagPrefix="stateCtrl" TagName="headerCtrl" Src="~/Controls/StateControl.ascx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">        
     <style type="text/css">
@@ -33,36 +32,35 @@
             <td class="style2" align="right">
                 &nbsp;
                 School Name</td>
-            <td align="left">
+            <td align="left" colspan="2">
                 <asp:TextBox ID="txtSchool" runat="server" Width="360px"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td class="style2" align="right">                
-                Address 
-                Line 1</td>
-            <td align="left">                
+                Address Line 1</td>
+            <td align="left" colspan="2">                
                 <asp:TextBox ID="txtAddress1" runat="server" Width="360px"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td class="style2" align="right">                
                 Address Line 2</td>
-            <td align="left">                
+            <td align="left" colspan="2">                
                 <asp:TextBox ID="txtAddress2" runat="server" Width="360px"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td class="style2" align="right">                
                 Address Line 3</td>
-            <td align="left">                
+            <td align="left" colspan="2">                
                 <asp:TextBox ID="txtAddress3" runat="server" Width="360px"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td class="style3" align="right">                
                 City</td>
-            <td class="style1" align="left">                
+            <td class="style1" align="left" colspan="2">                
                 <asp:TextBox ID="txtCity" runat="server" Width="200px"></asp:TextBox>
             </td>
         </tr>
@@ -70,10 +68,11 @@
             <td class="style3" align="right">
                 State
                 </td>
-            <td class="style1" align="left">
-                <br />
-                  <stateCtrl:headerCtrl ID="selControls" runat="server" />              
-&nbsp;&nbsp; Zip
+            <td class="style1" align="left">                
+                 <asp:DropDownList ID="ddlStates" runat="server"></asp:DropDownList>
+            </td>
+            <td align="left">        
+            Zip
                 <asp:TextBox ID="txtZip" runat="server" MaxLength="10" Width="50px"></asp:TextBox>
             </td>
         </tr>
