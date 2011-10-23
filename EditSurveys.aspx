@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/COCAsite.master" AutoEventWireup="true" CodeFile="ViewSurveys.aspx.cs" Inherits="ViewSurveys" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/COCAsite.master" AutoEventWireup="true" CodeFile="EditSurveys.aspx.cs" Inherits="ViewSurveys" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
@@ -6,7 +6,7 @@
 
 <div align="center">    
         <asp:Label ID="lblExistingSurvey" runat="server" 
-            Text="New Survey Copy" Font-Bold="True" Font-Names="Tahoma" 
+            Text="Copy Existing Survey (B)" Font-Bold="True" Font-Names="Tahoma" 
             Font-Size="20pt" ForeColor="Blue"></asp:Label>    
         <br />
         <br />
@@ -28,8 +28,7 @@
                 <asp:Button ID="btnExport" runat="server" Text="Export" />  
               </td>
               <td>
-               <asp:Button ID="btnEdit" runat="server" Text="Create Copy" />
-              </td>
+                  &nbsp;</td>
           </tr>
       </table>
   </div>

@@ -117,7 +117,7 @@ public partial class NewSurvey : System.Web.UI.Page
         var groupSeason = new StudentGroupSeason()
             {
                 Season = season,
-                SurveyDate = SurveyDate.SelectedDate,
+               // SurveyDate = SurveyDate.SelectedDate,
                 StudentGroup = group
             };
        
