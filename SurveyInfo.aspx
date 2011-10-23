@@ -2,71 +2,54 @@
     CodeFile="SurveyInfo.aspx.cs" Inherits="SurveyInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
-    
     <style type="text/css">
-    .yui {width:100%;}
+        .yui {
+            width: 100%;
+            clear: both;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
-    <table id="tableOne" class="yui">
-        <asp:ListView ID="lvStudentBullyList" runat="server" Visible="true">
-            <LayoutTemplate>
-                <tr class="header">
-                    <th style="text-align: left">
-                        <asp:Label runat="server" ID="FirstName">First Name</asp:Label>
-                    </th>
-                    <th style="text-align: left">
-                        <asp:Label runat="server" ID="LastName">Last Name</asp:Label>
-                    </th>
-                    <th style="text-align: left">
-                        <asp:Label runat="server" ID="BullyOthersCount">Number of times you have seen this student bully another student</asp:Label>
-                    </th>
-                    <th style="text-align: left">
-                        <asp:Label runat="server" ID="BulliedByOthersCount">Number of times you have seen this student be a target of bullying</asp:Label>
-                    </th>
-                    <th style="text-align: left">
-                        <asp:Label runat="server" ID="Comments">Comments</asp:Label>
-                    </th>
-                    <th style="text-align: left">
-                    </th>
-                </tr>
-                <tr runat="server" id="itemPlaceholder" />
-            </LayoutTemplate>
-            <ItemTemplate>
-                <tr style="">
-                    <td>
-                        <asp:Label ID="lblEditFirstName" runat="server" Text='<%# Eval("FirstName") %>' />
-                    </td>
-                    <td>
-                        <asp:Label ID="lblEditLastName" runat="server" Text='<%# Eval("LastName") %>' />
-                    </td>
-                    <td>
-                        <asp:DropDownList ID="ddlBullyOthersCountID" runat="server" DataTextField="BullyOthersCount"
-                            DataValueField="BullyOthersCount">
-                            <asp:ListItem>0</asp:ListItem>
-                            <asp:ListItem>1</asp:ListItem>
-                            <asp:ListItem>2</asp:ListItem>
-                            <asp:ListItem>3</asp:ListItem>
-                        </asp:DropDownList>
-                    </td>
-                    <td>
-                        <asp:DropDownList ID="ddlBulliedByOthersCount" runat="server" DataTextField="BulliedByOthersCount"
-                            DataValueField="BulliedByOthersCount">
-                            <asp:ListItem>0</asp:ListItem>
-                            <asp:ListItem>1</asp:ListItem>
-                            <asp:ListItem>2</asp:ListItem>
-                            <asp:ListItem>3</asp:ListItem>
-                        </asp:DropDownList>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtComments" runat="server" Text='<%# Eval("Comment") %>' />
-                    </td>
-                    <td>
-                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Eval("RandomNumber") %>' />
-                    </td>
-                </tr>
-            </ItemTemplate>
-        </asp:ListView>
-    </table>
+    <asp:GridView ID="gvStudentSurveyList" runat="server" AutoGenerateColumns="False"
+        BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px"
+        CellPadding="3" CellSpacing="2" DataKeyNames="Id" EnableModelValidation="True">
+        <Columns>
+            <asp:TemplateField HeaderText="First Name">
+                <ItemTemplate>
+                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("FirstName") %>'></asp:Label>
+                </ItemTemplate>
+                <ControlStyle Width="150px" />
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Last Name">
+                <ItemTemplate>
+                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("LastName") %>'></asp:Label>
+                </ItemTemplate>
+                <ControlStyle Width="150px" />
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Number of times you have seen this student bully another student">
+                <ItemTemplate>
+                    <asp:Label ID="Label1" runat="server"></asp:Label>
+                </ItemTemplate>
+                <ControlStyle Width="100px" />
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Number of times you have seen this student as a target of bullying">
+                <ItemTemplate>
+                    <asp:Label ID="Label2" runat="server"></asp:Label>
+                </ItemTemplate>
+                <ControlStyle Width="100px" />
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Comments" ControlStyle-Width="200px">
+                <ItemTemplate>
+                    <asp:TextBox ID="txtComment" runat="server"></asp:TextBox>
+                </ItemTemplate>
+                <ControlStyle Width="200px"></ControlStyle>
+            </asp:TemplateField>
+        </Columns>
+        <FooterStyle BackColor="#F7DFB5" ForeColor="#8C4510" />
+        <HeaderStyle BackColor="#A55129" Font-Bold="True" ForeColor="White" />
+        <PagerStyle ForeColor="#8C4510" HorizontalAlign="Center" />
+        <RowStyle BackColor="#FFF7E7" ForeColor="#8C4510" />
+        <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="White" />
+    </asp:GridView>
     <asp:Button Text="Finished" runat="server" ID="FinishedId" OnClick="FinishedId_Click" />
 </asp:Content>

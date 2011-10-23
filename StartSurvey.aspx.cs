@@ -11,4 +11,8 @@ public partial class StartSurvey : System.Web.UI.Page
     {
 
     }
+    protected void btnStartSurvey_Click(object sender, EventArgs e)
+    {
+
+    }
 }
