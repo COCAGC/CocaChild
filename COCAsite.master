@@ -19,7 +19,6 @@
         <div>
             <div class="clear hideSkiplink">
 
-
 <ul id="nav">
 <li class="smwid"><a href="default.aspx">Home</a></li>
 <li class="smwid"><a href="#">Schools</a>
@@ -39,27 +38,6 @@
 <li class="smwid"><a href="StartSurvey.aspx">Student Survey</a></li>
 </ul>
 
-
-
-
-
-
-<!--
-<div id="nav-menu">
-<ul>
-<li><a href="Default.aspx">Admin Home</a></li>
-<li><a href="SchoolSetup.aspx">Admin Schools</a></li>
-<li><a href="SurveySetup.aspx">Admin Surveys</a></li>
-<li><a href="Reports.aspx">Admin Reports</a></li>
-<li><a href="StartSurvey.aspx">Student Survey</a></li>
-</ul>
-</div>
--->
-
-
-
-
- 
             </div>            
         </div>
         <div class="main">

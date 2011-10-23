@@ -36,62 +36,7 @@ a:visited
 }
 
 
-
-
-
-#nav-menu ul
-{
-    width: 60em;
-list-style: none;
-padding: 0;
-margin: 0;
-}
-
-#nav-menu li
-{
-float: left;
-margin: 0 0.15em;
-}
-
-#nav-menu li a
-{
-background: #eee;
-height: 1.5em;
-line-height: 1.5em;
-float: left;
-width: 7em;
-display: block;
-border: 0.1em solid #dcdce9;
-color: #0d2474;
-text-decoration: none;
-text-align: center;
-}
-#nav-menu li a:hover 
-{
-    background-color: #ea4;
-    border: 1px solid yellow;
-}
-
-/* Hide from IE5-Mac \*/
-#nav-menu li a
-{
-float: none
-}
-/* End hide */
-
-#nav-menu
-{
-width:30em
-} 
-
-
-
-
-
-
-
-
-
+/* Main admin navigation css: */
 
 #navbar {
 	position:relative;
