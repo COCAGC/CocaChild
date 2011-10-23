@@ -17,23 +17,27 @@
      <form id="Form1" runat="server">    
     <div class="page">
         <div>
-            <div class="title">
-            </div>      
             <div class="clear hideSkiplink">
 
-
-<div id="nav-menu">
-<ul>
-<li><a href="Default.aspx">Admin Home</a></li>
-<li><a href="SchoolSetup.aspx">Admin Schools</a></li>
-<li><a href="SurveySetup.aspx">Admin Surveys</a></li>
-<li><a href="Reports.aspx">Admin Reports</a></li>
-<li><a href="StartSurvey.aspx">Student Survey</a></li>
+<ul id="nav">
+<li class="smwid"><a href="default.aspx">Home</a></li>
+<li class="smwid"><a href="#">Schools</a>
+<ul class="subsmwid">						
+<li><a href="ListSchools.aspx" title="">View Schools</a></li>                   			
+<li><a href="CreateSchool.aspx" title="">Create Schools</a></li>                   			
 </ul>
-</div> 
+</li>
+<li  class="smwid"><a href="#">Surveys</a>
+<ul class="subsmwid">						
+<li><a href="NewSurvey.aspx" title="">Create Survey</a></li>                   			
+<li><a href="CopyExistingSurvey.aspx" title="">Copy Existing Survey</a></li>                   			
+<li><a href="EditSurveys.aspx" title="">Edit Surveys</a></li>                   			
+</ul>
+</li>
+<li class="smwid"><a href="Reports.aspx">Reports</a></li>
+<li class="smwid"><a href="StartSurvey.aspx">Student Survey</a></li>
+</ul>
 
-        
-                <br />              
             </div>            
         </div>
         <div class="main">
@@ -41,9 +45,6 @@
         </div>
         <div class="clear">
         </div>
-    </div>
-    <div class="footer">
-        
     </div>
     </form>
 </body>

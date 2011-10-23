@@ -42,24 +42,23 @@ select
 
 h1, h2, h3, h4, h5, h6
 {
-    font-size: 1.5em;
     color: #111;
     font-variant: small-caps;
     text-transform: none;
-    font-weight: 200;
+    font-weight: bolder;
     margin-bottom: 0px;
 }
 
 h1
 {
-    font-size: 1.6em;
+    font-size: 160%;
     padding-bottom: 0px;
     margin-bottom: 0px;
 }
 
 h2
 {
-    font-size: 1.5em;
+    font-size: 120%;
     font-weight: 600;
     text-align:center
 }
@@ -93,7 +92,7 @@ first child of the left and right table columns */
 {
     width: 960px;
     margin: 1px auto 0px auto;
-    border: 1px solid #8C7B69;
+    border: 2px solid #584F70;
     background: url('COCA_header_960.jpg');
     background-repeat:no-repeat;
     background-position:right top;
@@ -123,11 +122,9 @@ first child of the left and right table columns */
 
 .main
 {
-    
-    padding: 0px 12px;
+    /* padding-top: 120px; */
     margin: 12px 8px 8px 8px;
-    min-height: 420px;
-    padding-top: 0px;
+    min-height: 420px;    
 }
 
 .leftCol
@@ -137,16 +134,6 @@ first child of the left and right table columns */
     width: 200px;
     min-height: 200px;
 }
-
-.footer
-{
-    color: #4e5766;
-    padding: 8px 0px 0px 0px;
-    margin: 0px auto;
-    text-align: center;
-    line-height: normal;
-}
-
 
 /* TAB MENU   
 ----------------------------------------------------------*/
