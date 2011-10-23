@@ -42,11 +42,9 @@
         </table>
         <br />
         <br />
-        <asp:Button ID="btnStartSurvey" runat="server" Text="Start Survey" 
-            onclick="btnStartSurvey_Click" />
-        <br />
-        <span style="padding-left: 30%"><asp:Button ID="btnStartSurvey" runat="server" 
-            Text="Start Survey" onclick="btnStartSurvey_Click" /></span>
+        <asp:Button ID="btnStartSurvey" runat="server" Text="Start Survey" onclick="btnStartSurvey_Click" 
+           />
+        <br />  
 
     </fieldset>    
     </div>

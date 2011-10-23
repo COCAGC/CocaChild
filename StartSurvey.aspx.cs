@@ -12,6 +12,7 @@ public partial class StartSurvey : System.Web.UI.Page
     {
 
     }
+
     protected void btnStartSurvey_Click(object sender, EventArgs e)
     {
         using (CocaDataContext ctx = new CocaDataContext())
@@ -26,9 +27,5 @@ public partial class StartSurvey : System.Web.UI.Page
                 //Session.Add() = txtStudentID.Text;
             }
         }
-    }
-    protected void btnStartSurvey_Click(object sender, EventArgs e)
-    {
-
     }
 }
