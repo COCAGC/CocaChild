@@ -42,8 +42,13 @@
         </table>
         <br />
         <br />
-        <asp:Button ID="btnStartSurvey" runat="server" Text="Start Survey" onclick="btnStartSurvey_Click" 
+        <asp:Button ID="btnStartSurvey" runat="server" Text="Start Survey" 
+            onclick="btnStartSurvey_Click" Height="26px" 
            />
+        &nbsp;
+        <br />
+        <asp:Label ID="lblLoginError" runat="server" ForeColor="#CC0000" 
+            Text="Login unsuccessful, try again." Visible="False"></asp:Label>
         <br />  
 
     </fieldset>    
