@@ -90,7 +90,7 @@
         <tr>
         <td></td>
         <td>
-         <asp:Label CssClass="fixme" Visible="false" ID="MsgText" runat="server"/>
+         <asp:Label CssClass="display_message" Visible="false" ID="MsgText" runat="server"/>
         </td>
         </tr>
     </table>  
