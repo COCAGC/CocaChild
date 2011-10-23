@@ -19,7 +19,8 @@ public partial class StartSurvey : System.Web.UI.Page
         {
             long anonStudentID = (from AnonStudent s in ctx.AnonStudents
                                       where s.UserId == txtStudentID.Text && s.Password == txtPassword.Text
-                                       && s.StudentGroupSeasonId == Convert.ToInt32(txtARPID.Text)
+                                       && s.StudentGroupSeasonId == Convert.ToInt32(txtARPID.Text) 
+                                       && s.SavedDate == null
                                       select s.Id).FirstOrDefault();
 
             if (anonStudentID != 0)
