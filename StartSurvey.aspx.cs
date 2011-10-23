@@ -17,14 +17,20 @@ public partial class StartSurvey : System.Web.UI.Page
     {
         using (CocaDataContext ctx = new CocaDataContext())
         {
-            bool anonStudentExists = (from AnonStudent s in ctx.AnonStudents
+            long anonStudentID = (from AnonStudent s in ctx.AnonStudents
                                       where s.UserId == txtStudentID.Text && s.Password == txtPassword.Text
                                        && s.StudentGroupSeasonId == Convert.ToInt32(txtARPID.Text)
-                                      select s).Any();
+                                      select s.Id).FirstOrDefault();
 
-            if (anonStudentExists)
+            if (anonStudentID != 0)
             {
-                //Session.Add() = txtStudentID.Text;
+                Session["LoggedIn_AnonStudentId"] = anonStudentID;
+                Response.Redirect("SurveyInfo.aspx");
+            }
+            else
+            {
+                lblLoginError.Text = "Login unsuccessful, try again.";
+                lblLoginError.Visible = true;
             }
         }
     }
