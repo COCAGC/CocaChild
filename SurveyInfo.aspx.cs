@@ -90,7 +90,7 @@ public partial class SurveyInfo : System.Web.UI.Page
                     rating.WasBulliedValue = timesTarget;
                 rating.Comment = commentText.Text;
 
-                ctx.StudentSurveyRatings.Attach(rating);
+                ctx.StudentSurveyRatings.InsertOnSubmit(rating);
               
             }
             loggedInStudent.SavedDate = DateTime.Today;
