@@ -61,6 +61,9 @@
                     <td>
                         <asp:TextBox ID="txtComments" runat="server" Text='<%# Eval("Comments") %>' />
                     </td>
+                    <td>
+                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Eval("RandomNumber") %>' />
+                    </td>
                 </tr>
             </ItemTemplate>
         </asp:ListView>

@@ -6,23 +6,23 @@
 <head runat="server">
     <title> COCA Anonymous Peer Rating Survey System</title>
     <link href="Site.css" rel="stylesheet" type="text/css" />  
+    <link href="CocaChild.css" rel="stylesheet" type="text/css" />  
 <asp:ContentPlaceHolder id="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
      <form id="Form1" runat="server">    
     <div class="page">
-        <div class="header">
+        <div>
             <div class="title">
-                <h1>                    
-                    COCA Anonymous Peer Rating 
-                    <span class="subheader">Survey System</span>
-                    <span class="topright"><input id="imgSchool" type="image" src="cocalogo.jpg" alt="logo" Height="131px" Width="220px" /></span>
-                </h1>                            
-                <br />                                    
             </div>      
-        
+            <div class="clear hideSkiplink">
+            </div>            
         </div>
+
+
+
+
         <div class="main">
             <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
         </div>

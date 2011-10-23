@@ -21,14 +21,14 @@ a:visited
     list-style: none;
 }
 
-.student_login {
+.student_login fieldset {
   padding: 1em;  
 }
-.student_login legend 
+.labelfloat
 {
   clear:left;
   float:left;
-  width:15%;
+  width:35%;
   margin-right:0.5em;
   padding-top:0.2em;
   text-align:right;
@@ -41,6 +41,7 @@ a:visited
 
 #nav-menu ul
 {
+    width: 60em;
 list-style: none;
 padding: 0;
 margin: 0;

@@ -7,45 +7,28 @@
     <link type="text/css" href="CocaChild.css" rel="Stylesheet" />
     
     <div align="center">    
-        <asp:Label ID="lblAnonSurvey" runat="server" 
-            Text="Anonymous Peer Rating Survey" Font-Bold="True" Font-Names="Tahoma" 
-            Font-Size="20pt" ForeColor="Blue"></asp:Label>    
+             <h1>Anonymous Peer Rating Survey</h1>               
     </div>
+    <br />
+    <br />
     <div align="center">
     <table>
         <tr>
             <td align="left">
                 <ul class="navigation">
-                    <li><a href="SchoolSetup.aspx">School Setup</a></li>
-                    <li><a href="CreateSchool.aspx">- Create School</a></li>
-                    <li><a href="ListSchools.aspx">- View Schools</a></li>
-                    <li><a href="SurveySetup.aspx">Survey Setup</a></li>
-                    <li><a href="Survey.aspx">- Create Survey</a></li>
-                    <li><a href="NewSurvey.aspx">- Survey Upload</a></li>
-                    <li><a href="CopyExistingSurvey.aspx">- Copy Exising Survey</a></li>
-                    <li><a href="#">Edit Existing Survey</a></li>
-                    <li><a href="#">Run Reports</a></li>
-                    <li><a href="#">Begin Student Survey</a></li>
-                    <li><a href="#">Begin Student Survey - Admin</a></li>
+                    <li><b><span style="color: #0000ff;">School Setup</span></b></li>
+                    <li>-&nbsp;&nbsp;<a href="CreateSchool.aspx">Create School</a></li>
+                    <li>-&nbsp;&nbsp;<a href="ListSchools.aspx">View Schools</a></li>
+                    <li><b><span style="color: #0000ff;">Survey Setup</span></b></li>
+                    <li>-&nbsp;&nbsp;<a href="Survey.aspx">Create Survey</a></li>
+                    <li>-&nbsp;&nbsp;<a href="NewSurvey.aspx">Survey Upload</a></li>  
+                    <li>-&nbsp;&nbsp;<a href="CopyExistingSurvey.aspx">Copy Exising Survey</a></li>
+                    <li>-&nbsp;&nbsp;<a href="EditSurveys.aspx">Edit Surveys</a></li>                                                                              
+                    <li><b><span style="color: #0000ff;"><a href="Reports.aspx">Reports</a></span></b></li>
+                    <li><b><span style="color: #0000ff;"><a href="StartSurvey.aspx">Student Survey</a></span></b></li>                    
                 </ul>  
             </td>
         </tr>
     </table>  
-
-<%--
-    x CreateSchool.aspx
-    x ListSchools.aspx
-    x Survey.aspx  (Create)
-     CopyExistingSurvey.aspx
-     Reports.aspx
-     StartSurvey.aspx
-
-    - NewSurvey.aspx
-    - SurveyInfo.aspx
-    - EditSurveys.aspx
-
-    Landing pages
-      - SchoolSetup.aspx
-      - SurveySetup.aspx--%>
-        </div>
+    </div>
 </asp:Content>

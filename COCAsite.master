@@ -25,9 +25,10 @@
 <div id="nav-menu">
 <ul>
 <li><a href="Default.aspx">Admin Home</a></li>
-<li><a href="ListSchools.aspx">List Schools</a></li>
-<li><a href="ViewSurveys.aspx">View Surveys</a></li>
-<li><a href="Reports.aspx">Reports</a></li>
+<li><a href="SchoolSetup.aspx">Admin Schools</a></li>
+<li><a href="SurveySetup.aspx">Admin Surveys</a></li>
+<li><a href="Reports.aspx">Admin Reports</a></li>
+<li><a href="StartSurvey.aspx">Student Survey</a></li>
 </ul>
 </div> 
 

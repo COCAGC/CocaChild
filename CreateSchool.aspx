@@ -2,7 +2,7 @@
 <%@ Register TagPrefix="stateCtrl" TagName="headerCtrl" Src="~/Controls/StateControl.ascx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">        
-<style type="text/css">
+    <style type="text/css">
         .style1
         {
             height: 23px;
@@ -21,10 +21,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
         
-    <div align="center">    
-        <asp:Label ID="lblSchool" runat="server" 
-            Text="Create School" Font-Bold="True" Font-Names="Tahoma" 
-            Font-Size="20pt" ForeColor="Blue"></asp:Label>    
+    <div align="center">       
+            <h1>Create School</h1>
         <br />
         <br />
         <br />
