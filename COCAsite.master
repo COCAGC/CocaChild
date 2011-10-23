@@ -35,8 +35,7 @@
                                     <li class="smwid"><a href="#">Surveys</a>
                                         <ul class="subsmwid">
                                             <li><a href="NewSurvey.aspx" title="">Create Survey</a></li>
-                                            <li><a href="CopyExistingSurvey.aspx" title="">Copy Existing Survey</a></li>
-                                            <li><a href="EditSurveys.aspx" title="">Edit Surveys</a></li>
+                                            <li><a href="CopyExistingSurvey.aspx" title="">Copy Existing Survey</a></li>                                            
                                         </ul>
                                     </li>
                                     <li class="smwid"><a href="Reports.aspx">Reports</a></li>

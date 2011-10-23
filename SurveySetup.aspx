@@ -11,8 +11,7 @@
                 <ul class="navigation">
                     <li><b><span style="color: #0000ff;">Survey Setup</span></b></li>
                     <li>-&nbsp;&nbsp;<a href="NewSurvey.aspx">Create Survey</a></li>                      
-                    <li>-&nbsp;&nbsp;<a href="CopyExistingSurvey.aspx">Copy Exising Survey</a></li>
-                    <li>-&nbsp;&nbsp;<a href="EditSurveys.aspx">Edit Surveys</a></li>                                                                                               
+                    <li>-&nbsp;&nbsp;<a href="CopyExistingSurvey.aspx">Copy Exising Survey</a></li>                                                                                                                
                 </ul>  
             </td>
         </tr>
