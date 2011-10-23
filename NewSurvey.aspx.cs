@@ -21,7 +21,7 @@ public partial class NewSurvey : System.Web.UI.Page
         {
             seasonNames = context.Seasons.Select(s=> s.Name).ToList();
             years = context.Years.Select(y => y.Name).ToList();
-            grades = context.ClassLevels.Select(l => l.Name).ToList();
+            grades = context.ClassLevels.OrderBy(l => l.Weight).Select(l => l.Name).ToList();
             schools = context.Schools.Select(s => s.Name).ToList();
         }
 
