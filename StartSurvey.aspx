@@ -16,7 +16,8 @@
         <asp:TextBox ID="txtStudentID" runat="server"></asp:TextBox>
         <br />
         <br />
-        <span style="padding-left: 30%"><asp:Button ID="btnStartSurvey" runat="server" Text="Start Survey" /></span>
+        <span style="padding-left: 30%"><asp:Button ID="btnStartSurvey" runat="server" 
+            Text="Start Survey" onclick="btnStartSurvey_Click" /></span>
 
     </fieldset>
     </span>
