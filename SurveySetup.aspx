@@ -5,9 +5,18 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
 
     <div align="center">
-        <ul>
-            <li><a href="Survey.aspx">Begin New Survey</a></li>
-            <li><a href="CopyExistingSurvey.aspx">Copy Existing Surveys</a></li>
-        </ul>    
+    <table>
+        <tr>
+            <td align="left">
+                <ul class="navigation">
+                    <li><b><span style="color: #0000ff;">Survey Setup</span></b></li>
+                    <li>-&nbsp;&nbsp;<a href="Survey.aspx">Create Survey</a></li>
+                    <li>-&nbsp;&nbsp;<a href="NewSurvey.aspx">Survey Upload</a></li>  
+                    <li>-&nbsp;&nbsp;<a href="CopyExistingSurvey.aspx">Copy Exising Survey</a></li>
+                    <li>-&nbsp;&nbsp;<a href="EditSurveys.aspx">Edit Surveys</a></li>                                                                                               
+                </ul>  
+            </td>
+        </tr>
+    </table>    
     </div>
 </asp:Content>
