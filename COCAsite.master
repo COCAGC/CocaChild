@@ -6,7 +6,10 @@
 <head runat="server">
     <title> COCA Anonymous Peer Rating Survey System</title>
     <link href="COCAChild.css" rel="stylesheet" type="text/css" />     
-    <link href="Site.css" rel="stylesheet" type="text/css" />     
+    <link href="Site.css" rel="stylesheet" type="text/css" />
+    <link href="Scripts/jquery-ui-1.8.16.custom.css" rel="Stylesheet" type="text/css" />  
+    <script src="Scripts/jquery-1.6.2.min.js"></script>   
+    <script src="Scripts/jquery-ui-1.8.16.custom.min.js"></script>     
     <asp:ContentPlaceHolder id="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
