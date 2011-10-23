@@ -28,7 +28,7 @@
 <li><a href="CreateSchool.aspx" title="">Create Schools</a></li>                   			
 </ul>
 </li>
-<li  class="smwid"><a href="/blogs/press/">Surveys</a>
+<li  class="smwid"><a href="#">Surveys</a>
 <ul class="subsmwid">						
 <li><a href="NewSurvey.aspx" title="">Create Survey</a></li>                   			
 <li><a href="CopyExistingSurvey.aspx" title="">Copy Existing Survey</a></li>                   			
