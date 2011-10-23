@@ -25,7 +25,7 @@
             </tr>
         </table>
         <br />
-        <div align="right">
+        <div align="center">
             <asp:Button ID="btnGenerateReport" runat="server" Text="Run Report" />
         </div>
     </div>
