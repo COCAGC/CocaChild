@@ -172,7 +172,7 @@ public partial class SelectorControl : System.Web.UI.UserControl
 
             ddlSeason.DataSource = (
                      from Season sea in ctx.Seasons
-                     where sea.StudentGroupSeasons.Any(sg => sg.Id == groupID)
+                     where sea.StudentGroupSeasons.Any(sg => sg.StudentGroup.Id == groupID)
                      orderby sea.Name
                      select new
                      {
