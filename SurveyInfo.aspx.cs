@@ -24,12 +24,17 @@ public partial class SurveyInfo : System.Web.UI.Page
         {
 
             IQueryable<StudentSurveyDate> ssds = from StudentSurveyDate ssd in ctx.StudentSurveyDates where ssd.StudentGroupSeason.Id == 1 || true select ssd;
-
-            lvStudentBullyList.DataSource = (from StudentSurveyDate ssd in ssds select new { FirstName = ssd.Student.FirstName, LastName = ssd.Student.LastName, Id = ssd.Id, Comments="Test" }).ToList();
+            Random randomNumber = new Random();
+            lvStudentBullyList.DataSource = (from StudentSurveyDate ssd in ssds select new { FirstName = ssd.Student.FirstName, LastName = ssd.Student.LastName, Id = ssd.Id, Comments="Test", RandomNumber = GetRandom() }).OrderBy(s=>s.RandomNumber).ToList();
             lvStudentBullyList.DataBind();
         }
     }
-    
+
+    private int GetRandom() {
+        Random rn = new Random();
+        return rn.Next();
+    }
+
     protected void FinishedId_Click(object sender, EventArgs e)
     {
       for (int i = 0; i < lvStudentBullyList.Items.Count(); i++)
