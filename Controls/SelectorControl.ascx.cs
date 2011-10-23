@@ -8,7 +8,8 @@ using System.Linq;
 using DAL;
 
 public partial class SelectorControl : System.Web.UI.UserControl
-{   
+{
+    private const string KEY_SeasonGroupID = "SeasonGroupID";
 
     public string School
     {
@@ -30,12 +31,15 @@ public partial class SelectorControl : System.Web.UI.UserControl
         get { return ddlSeason.SelectedValue; }
     }
 
-    private string _seasonGroupID;
     public string SeasonGroupID
     {
         get
         {
-            return _seasonGroupID;            
+            return (string)ViewState[KEY_SeasonGroupID];
+        }
+        private set
+        {
+            ViewState[KEY_SeasonGroupID] = value;
         }
     }
     protected void Page_Load(object sender, EventArgs e)
@@ -64,9 +68,9 @@ public partial class SelectorControl : System.Web.UI.UserControl
                 BindGroups();
                 BindSeasons();
                 BindSeasonGroupID();
-            }            
+            }
         }
-    }    
+    }
 
     protected void ddlSchool_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -93,7 +97,7 @@ public partial class SelectorControl : System.Web.UI.UserControl
     {
         BindSeasonGroupID();
     }
-   
+
     private void BindYears()
     {
         using (CocaDataContext ctx = new CocaDataContext())
@@ -133,7 +137,7 @@ public partial class SelectorControl : System.Web.UI.UserControl
             ddlGroupName.DataTextField = "StudentGroup";
             ddlGroupName.DataValueField = "StudentID";
             ddlGroupName.DataBind();
-        }        
+        }
     }
 
     private void BindSeasons()
@@ -154,7 +158,7 @@ public partial class SelectorControl : System.Web.UI.UserControl
                  ).ToList();
             ddlSeason.DataTextField = "SeasonName";
             ddlSeason.DataValueField = "SeasonName";
-            ddlSeason.DataBind();            
+            ddlSeason.DataBind();
         }
     }
 
@@ -165,9 +169,11 @@ public partial class SelectorControl : System.Web.UI.UserControl
             long groupID = 0;
             long.TryParse(ddlGroupName.SelectedValue, out groupID);
 
-            var seasonGroup = ctx.StudentGroupSeasons.Where(sgs => sgs.Season.Name == ddlSeason.SelectedValue && sgs.StudentGroup.Id == groupID).SingleOrDefault()
-            if(seasonGroup != null)
-                _seasonGroupID = seasonGroup.Id.ToString();             
+            var seasonGroup = ctx.StudentGroupSeasons.Where(sgs => sgs.Season.Name == ddlSeason.SelectedValue && sgs.StudentGroup.Id == groupID).SingleOrDefault();
+            if (seasonGroup != null)
+                this.SeasonGroupID = seasonGroup.Id.ToString();
+            else
+                this.SeasonGroupID = null;
         }
     }
 }

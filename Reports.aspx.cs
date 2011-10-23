@@ -14,13 +14,33 @@ public partial class Reports : System.Web.UI.Page
     }
     protected void btnGenerateReport_Click(object sender, EventArgs e)
     {
-      //  string seasonGroupID = selControls.SeasonGroupID;
-        int seasonGroupID = 0;
-        bool result = int.TryParse(selControls.SeasonGroupID, out seasonGroupID);
-        Response.Redirect(String.Format("/ReportAnonUser.aspx?StudentGroupSeasonId={0}", seasonGroupID));
+        string seasonGroupID = selControls.SeasonGroupID;
 
-       
+        if (!String.IsNullOrEmpty(seasonGroupID))
 
+            switch (rblSelectReport.SelectedIndex)
+            {
+                case 0:
+                    break;
+                case 1:
+                    if (!String.IsNullOrEmpty(seasonGroupID))
+                        Response.Redirect(String.Format("ReportClassRmDetail.aspx?StudentGroupSeasonId={0}", seasonGroupID));
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    if (!String.IsNullOrEmpty(seasonGroupID))
+                        Response.Redirect(String.Format("ReportAnonUser.aspx?StudentGroupSeasonId={0}", seasonGroupID));
+                    break;
+                default:
+                    if (!String.IsNullOrEmpty(seasonGroupID))
+                        Response.Redirect(String.Format("ReportAnonUser.aspx?StudentGroupSeasonId={0}", seasonGroupID));
+                    break;
 
+            }
+
+        
     }
 }
