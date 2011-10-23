@@ -19,13 +19,14 @@
       <table>
           <tr>
               <td>
-                <asp:Button ID="btnExport" runat="server" Text="Export" />  
+                <asp:Button ID="btnExport" runat="server" OnClick="OnbtnExportClick" Text="Export" />  
               </td>
               <td>
-               <asp:Button ID="btnCopy" runat="server" Text="Copy" />
+               <asp:Button ID="btnCopy" runat="server" OnClick="OnbtnCopyClick" Text="Copy" />
               </td>
           </tr>
       </table>
+      <asp:Label Visible="false" runat="server" ID="ErrorText" />
   </div>
 </asp:Content>
 

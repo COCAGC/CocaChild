@@ -22,7 +22,7 @@
                     <li><a href="SurveySetup.aspx">Survey Setup</a></li>
                     <li><a href="Survey.aspx">- Create Survey</a></li>
                     <li><a href="NewSurvey.aspx">- Survey Upload</a></li>
-                    <li><a href="NewSurvey.aspx">- Copy Exising Survey</a></li>
+                    <li><a href="CopyExistingSurvey.aspx">- Copy Exising Survey</a></li>
                     <li><a href="#">Edit Existing Survey</a></li>
                     <li><a href="#">Run Reports</a></li>
                     <li><a href="#">Begin Student Survey</a></li>
