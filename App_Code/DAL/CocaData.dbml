@@ -2,7 +2,7 @@
   <Connection Mode="WebSettings" ConnectionString="Data Source=SQL2k805.discountasp.net;Initial Catalog=sql2008r2_847344_surveys;Persist Security Info=True;User ID=sql2008r2_847344_surveys_user" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="sql2008r2_847344_surveysConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AnonStudents" Member="AnonStudents">
     <Type Name="AnonStudent">
-      <Column Name="AnonStudentId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AnonStudentId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" />
       <Column Name="UserId" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Password" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="StudentGroupSeasonId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
@@ -22,7 +22,7 @@
   </Table>
   <Table Name="dbo.ClassLevels" Member="ClassLevels">
     <Type Name="ClassLevel">
-      <Column Name="ClassLevelId" Member="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ClassLevelId" Member="Id" AutoSync="Never" Type="System.Int32" DbType="Int NOT NULL" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" />
       <Column Name="ClassLevelName" Member="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Weight" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="ClassLevel_StudentGroup" Member="StudentGroups" ThisKey="Id" OtherKey="ClassLevelId" Type="StudentGroup" />
@@ -59,7 +59,7 @@
   </Table>
   <Table Name="dbo.Seasons" Member="Seasons">
     <Type Name="Season">
-      <Column Name="SeasonId" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SeasonId" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" />
       <Column Name="SeasonName" Member="Name" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
       <Column Name="Weight" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
       <Association Name="Season_StudentGroupSeason" Member="StudentGroupSeasons" ThisKey="Id" OtherKey="SeasonId" Type="StudentGroupSeason" />
@@ -86,7 +86,7 @@
   </Table>
   <Table Name="dbo.StudentGroupSeason" Member="StudentGroupSeasons">
     <Type Name="StudentGroupSeason">
-      <Column Name="StudentGroupSeasonId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StudentGroupSeasonId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" />
       <Column Name="SurveyDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="StudentGroupId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="SeasonId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -98,7 +98,7 @@
   </Table>
   <Table Name="dbo.Students" Member="Students">
     <Type Name="Student">
-      <Column Name="StudentId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StudentId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" />
       <Column Name="FirstName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="LastName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="TeacherName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
@@ -109,7 +109,7 @@
   </Table>
   <Table Name="dbo.StudentSurveyDates" Member="StudentSurveyDates">
     <Type Name="StudentSurveyDate">
-      <Column Name="StudentSurveyDateId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StudentSurveyDateId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" />
       <Column Name="StudentId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="StudentGroupSeasonId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Association Name="StudentSurveyDate_StudentSurveyRating" Member="StudentSurveyRatings" ThisKey="Id" OtherKey="StudentSurveyDateId" Type="StudentSurveyRating" />
@@ -119,7 +119,7 @@
   </Table>
   <Table Name="dbo.StudentSurveyRatings" Member="StudentSurveyRatings">
     <Type Name="StudentSurveyRating">
-      <Column Name="StudentSurveyRatingId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StudentSurveyRatingId" Member="Id" AutoSync="Never" Type="System.Int64" DbType="BigInt NOT NULL" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" />
       <Column Name="StudentSurveyDateId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="AnonStudentId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="WasBulliedValue" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />

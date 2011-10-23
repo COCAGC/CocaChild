@@ -8,6 +8,8 @@ using DAL;
 
 public partial class SurveyInfo : System.Web.UI.Page
 {
+    private const string KEY_AnonStudent = "LoggedIn_AnonStudentId";
+    private const string PAGE_StudentLogin = "~/StartSurvey.aspx";
 
     private long aprId
     {
@@ -18,17 +20,21 @@ public partial class SurveyInfo : System.Web.UI.Page
     {
         get
         {
-            var loggedInId = Session["LoggedIn_AnonStudentId"];
+            var loggedInId = Session[KEY_AnonStudent];
             if (loggedInId != null)
                 return (long)loggedInId;
             return 4;
         }
     }
 
+    private void ReturnToLogin() {
+        Response.Redirect(PAGE_StudentLogin);
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (anonStudentId == 0)
-            Response.Redirect("~/StartSurvey.aspx");
+            ReturnToLogin();
 
         if (!IsPostBack)
         {
@@ -59,19 +65,39 @@ public partial class SurveyInfo : System.Web.UI.Page
     {
         using (CocaDataContext ctx = new CocaDataContext())
         {
+            AnonStudent loggedInStudent = (from AnonStudent a in ctx.AnonStudents where a.Id == this.anonStudentId select a).FirstOrDefault();
+            List<StudentSurveyDate> ssds = (from StudentSurveyDate ssd in ctx.StudentSurveyDates
+                                                  where ssd.StudentGroupSeason.Equals(loggedInStudent.StudentGroupSeason)
+                                                  select ssd).ToList();
             foreach (GridViewRow row in gvStudentSurveyList.Rows)
             {
                 long ssdId = (long)gvStudentSurveyList.DataKeys[row.RowIndex].Value;
+                StudentSurveyDate ssd = (from s in ssds where s.Id == ssdId select s).FirstOrDefault();
+                
                 TextBox commentText = (TextBox)row.FindControl("txtComment");
+                DropDownList bullyAmount = (DropDownList)row.FindControl("ddlBullyTimes");
+                DropDownList targetAmount = (DropDownList)row.FindControl("ddlTargetTimes");
+
                 StudentSurveyRating rating = new StudentSurveyRating();
-                rating.AnonStudentId = this.anonStudentId;
-                rating.StudentSurveyDateId = ssdId;
+
+                rating.AnonStudent = loggedInStudent;
+                rating.StudentSurveyDate = ssd;
+                int timesBully;
+                int timesTarget;
+                if(!string.IsNullOrEmpty(bullyAmount.SelectedValue) && int.TryParse(bullyAmount.SelectedValue,out timesBully  ))
+                    rating.IsBullyValue = timesBully;
+                if(!string.IsNullOrEmpty(targetAmount.SelectedValue) && int.TryParse(targetAmount.SelectedValue, out timesTarget))
+                    rating.WasBulliedValue = timesTarget;
                 rating.Comment = commentText.Text;
 
                 ctx.StudentSurveyRatings.Attach(rating);
+              
             }
+            loggedInStudent.SavedDate = DateTime.Today;
+            loggedInStudent.LoggedInDate = DateTime.Now;
+            Session.Remove(KEY_AnonStudent);
             ctx.SubmitChanges();
+            ReturnToLogin();
         }
-
     }
 }

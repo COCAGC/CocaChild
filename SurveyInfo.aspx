@@ -28,13 +28,41 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Number of times you have seen this student bully another student">
                 <ItemTemplate>
-                    <asp:Label ID="Label1" runat="server"></asp:Label>
+                    <asp:DropDownList ID="ddlBullyTimes" runat="server">
+                         <asp:ListItem Value="">[Select]</asp:ListItem>
+                        <asp:ListItem Value="0">0</asp:ListItem>
+                        <asp:ListItem Value="1">1</asp:ListItem>
+                        <asp:ListItem Value="2">2</asp:ListItem>
+                        <asp:ListItem Value="3">3</asp:ListItem>
+                        <asp:ListItem Value="4">4</asp:ListItem>
+                        <asp:ListItem Value="5">5</asp:ListItem>
+                        <asp:ListItem Value="6">6</asp:ListItem>
+                        <asp:ListItem Value="7">7</asp:ListItem>
+                        <asp:ListItem Value="8">8</asp:ListItem>
+                        <asp:ListItem Value="9">9</asp:ListItem>
+                        <asp:ListItem Value="10">10</asp:ListItem>
+                        <asp:ListItem Value="11">10+</asp:ListItem>
+                    </asp:DropDownList>
                 </ItemTemplate>
                 <ControlStyle Width="100px" />
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Number of times you have seen this student as a target of bullying">
                 <ItemTemplate>
-                    <asp:Label ID="Label2" runat="server"></asp:Label>
+                    <asp:DropDownList ID="ddlTargetTimes" runat="server">
+                        <asp:ListItem Value="">[Select]</asp:ListItem>
+                        <asp:ListItem Value="0">0</asp:ListItem>
+                        <asp:ListItem Value="1">1</asp:ListItem>
+                        <asp:ListItem Value="2">2</asp:ListItem>
+                        <asp:ListItem Value="3">3</asp:ListItem>
+                        <asp:ListItem Value="4">4</asp:ListItem>
+                        <asp:ListItem Value="5">5</asp:ListItem>
+                        <asp:ListItem Value="6">6</asp:ListItem>
+                        <asp:ListItem Value="7">7</asp:ListItem>
+                        <asp:ListItem Value="8">8</asp:ListItem>
+                        <asp:ListItem Value="9">9</asp:ListItem>
+                        <asp:ListItem Value="10">10</asp:ListItem>
+                        <asp:ListItem Value="11">10+</asp:ListItem>
+                    </asp:DropDownList>
                 </ItemTemplate>
                 <ControlStyle Width="100px" />
             </asp:TemplateField>
