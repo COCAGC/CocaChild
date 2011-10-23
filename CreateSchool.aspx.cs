@@ -28,7 +28,8 @@ public partial class CreateSchool : System.Web.UI.Page
                 ddlStates.DataTextField = "State";
                 ddlStates.DataValueField = "ID";
                 ddlStates.DataBind();
-                ddlStates.Items.Insert(0, new ListItem("--Select State--","0"));               
+                ddlStates.Items.Insert(0, new ListItem("--Select State--","0"));       
+        
             }
         }
 

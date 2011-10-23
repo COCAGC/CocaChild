@@ -29,12 +29,20 @@ public partial class NewSurvey : System.Web.UI.Page
         {
             SeasonSelector.DataSource = seasonNames;
             SeasonSelector.DataBind();
+            SeasonSelector.Items.Insert(0, new ListItem("--Select Season--", "0"));
+
             SchoolYearSelector.DataSource = years;
             SchoolYearSelector.DataBind();
+            SchoolYearSelector.Items.Insert(0, new ListItem("--Select Year--", "0"));
+
             GradeSelector.DataSource = grades;
             GradeSelector.DataBind();
+            GradeSelector.Items.Insert(0, new ListItem("--Select Grade--", "0"));
+
             SchoolSelector.DataSource = schools;
             SchoolSelector.DataBind();
+            SchoolSelector.Items.Insert(0, new ListItem("--Select School--", "0"));
+
         }
     }
 
@@ -101,7 +109,12 @@ public partial class NewSurvey : System.Web.UI.Page
         return studentGroup;        
     }
 
-    protected void OnUploadClick(object sender, EventArgs e)
+    //protected void OnUploadClick(object sender, EventArgs e)
+    //{
+    //    UploadAction();
+    //}
+
+    protected void btnUpload_Click(object sender, EventArgs e)
     {
         UploadAction();
     }
@@ -142,5 +155,4 @@ public partial class NewSurvey : System.Web.UI.Page
         return items;
     }
 
-    
 }

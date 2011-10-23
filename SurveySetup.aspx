@@ -10,8 +10,7 @@
             <td align="left">
                 <ul class="navigation">
                     <li><b><span style="color: #0000ff;">Survey Setup</span></b></li>
-                    <li>-&nbsp;&nbsp;<a href="Survey.aspx">Create Survey</a></li>
-                    <li>-&nbsp;&nbsp;<a href="NewSurvey.aspx">Survey Upload</a></li>  
+                    <li>-&nbsp;&nbsp;<a href="NewSurvey.aspx">Create Survey</a></li>                      
                     <li>-&nbsp;&nbsp;<a href="CopyExistingSurvey.aspx">Copy Exising Survey</a></li>
                     <li>-&nbsp;&nbsp;<a href="EditSurveys.aspx">Edit Surveys</a></li>                                                                                               
                 </ul>  
