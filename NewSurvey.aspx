@@ -3,12 +3,18 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
     <script type="text/javascript">
         $(document).ready(function() {
-		    $( ".date" ).datepicker();
+		    $(".date").datepicker();
 	    });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
 <div class="clear">
+    <div align="center">
+        <h1>Create Survey</h1>  
+    </div>
+        <br />
+        <br />
+        <br />
     <asp:Label ID="lblSeasonSelector" AssociatedControlId="SeasonSelector" runat="server" Text="Label" CssClass="labelfloat">Season Selector</asp:Label>
     <asp:DropDownList ID="SeasonSelector" runat="server" />
     <br />
@@ -29,6 +35,8 @@
     <br />
     <asp:Label ID="lblFile" AssociatedControlId="File" runat="server" Text="Label" CssClass="labelfloat">Browse for student file</asp:Label>
      <asp:FileUpload ID="File" runat="server" ToolTip="Upload files" />
+    &nbsp;<asp:Button ID="btnUpload" runat="server" onclick="btnUpload_Click" 
+        Text="Upload" />
     <br />
     <asp:Label Visible="false" ID="ErrorText" runat="server"/>
 </div>

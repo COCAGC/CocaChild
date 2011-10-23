@@ -34,22 +34,15 @@
             <td class="style2" align="right">                
                 Grade</td>
             <td align="left">                
-                <asp:DropDownList ID="ddlGrade" runat="server" Width="58px" >
+                <asp:DropDownList ID="ddlGrade" runat="server" Width="122px" >
                 </asp:DropDownList>
             </td>
         </tr>
         <tr>
             <td class="style2" align="right">                
-                Section</td>
+                Group Name</td>
             <td align="left">                
-                <asp:TextBox ID="txtSection" runat="server" Width="84px"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td class="style2" align="right">                
-                Classroom</td>
-            <td align="left">                
-                <asp:TextBox ID="txtClassroom" runat="server" Width="84px"></asp:TextBox>
+                <asp:TextBox ID="txtGroupName" runat="server" Width="84px"></asp:TextBox>
             </td>
         </tr>
         <tr>
