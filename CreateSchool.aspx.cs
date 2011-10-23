@@ -51,7 +51,7 @@ public partial class CreateSchool : System.Web.UI.Page
 
         ctx.SubmitChanges();
 
-        MsgText.Text = "School successfully created.";
+        MsgText.Text = "School successfully created!.";
         MsgText.Visible = true;
         
     }
