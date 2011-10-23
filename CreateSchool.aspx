@@ -87,6 +87,12 @@
                 <asp:Button ID="btnSave" runat="server" Text="Save" onclick="btnSave_Click" />
             </td>
         </tr>
-    </table>
+        <tr>
+        <td></td>
+        <td>
+         <asp:Label CssClass="fixme" Visible="false" ID="MsgText" runat="server"/>
+        </td>
+        </tr>
+    </table>  
 </div>    
 </asp:Content>

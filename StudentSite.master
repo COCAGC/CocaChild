@@ -14,23 +14,14 @@
      <form id="Form1" runat="server">    
     <div class="page">
         <div>
-            <div class="title">
-            </div>      
             <div class="clear hideSkiplink">
             </div>            
         </div>
-
-
-
-
         <div class="main">
             <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
         </div>
         <div class="clear">
         </div>
-    </div>
-    <div class="footer">
-        
     </div>
     </form>
 </body>
