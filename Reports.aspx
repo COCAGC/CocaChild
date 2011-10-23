@@ -18,14 +18,16 @@
                         <asp:ListItem Value="1">Group Summary</asp:ListItem>
                         <asp:ListItem Value="2">Group Detail</asp:ListItem>
                         <asp:ListItem Value="3">Group Comment Details</asp:ListItem>
-                        <asp:ListItem Value="4">Group Season Comparison</asp:ListItem>                        
+                        <asp:ListItem Value="4">Group Season Comparison</asp:ListItem>    
+                        <asp:ListItem Value="5">Anonymous Users</asp:ListItem>                      
                     </asp:RadioButtonList>
                 </td>
             </tr>
         </table>
         <br />
         <div align="center">
-            <asp:Button ID="btnGenerateReport" runat="server" Text="Run Report" />
+            <asp:Button ID="btnGenerateReport" runat="server" Text="Run Report" 
+                onclick="btnGenerateReport_Click" />
         </div>
     </div>
 
