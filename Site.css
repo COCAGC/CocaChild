@@ -123,11 +123,9 @@ first child of the left and right table columns */
 
 .main
 {
-    
-    padding: 0px 12px;
+    /* padding-top: 120px; */
     margin: 12px 8px 8px 8px;
-    min-height: 420px;
-    padding-top: 0px;
+    min-height: 420px;    
 }
 
 .leftCol
@@ -137,16 +135,6 @@ first child of the left and right table columns */
     width: 200px;
     min-height: 200px;
 }
-
-.footer
-{
-    color: #4e5766;
-    padding: 8px 0px 0px 0px;
-    margin: 0px auto;
-    text-align: center;
-    line-height: normal;
-}
-
 
 /* TAB MENU   
 ----------------------------------------------------------*/

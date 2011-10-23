@@ -17,11 +17,7 @@
      <form id="Form1" runat="server">    
     <div class="page">
         <div>
-            <div class="title">
-            </div>      
             <div class="clear hideSkiplink">
-
-
 <div id="nav-menu">
 <ul>
 <li><a href="Default.aspx">Admin Home</a></li>
@@ -31,9 +27,6 @@
 <li><a href="StartSurvey.aspx">Student Survey</a></li>
 </ul>
 </div> 
-
-        
-                <br />              
             </div>            
         </div>
         <div class="main">
@@ -41,9 +34,6 @@
         </div>
         <div class="clear">
         </div>
-    </div>
-    <div class="footer">
-        
     </div>
     </form>
 </body>
