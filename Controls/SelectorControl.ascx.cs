@@ -18,12 +18,12 @@ public partial class SelectorControl : System.Web.UI.UserControl
             {
 
                 ddlSchool.DataSource = (
-                        from School d in ctx.Schools
-                        orderby d.Name
+                        from School sc in ctx.Schools
+                        orderby sc.Name
                         select new
                         {
-                            ID = d.Id,
-                            Name = d.Name
+                            ID = sc.Id,
+                            Name = sc.Name
                         }
                     ).ToList();
                 ddlSchool.DataTextField = "Name";
@@ -31,11 +31,11 @@ public partial class SelectorControl : System.Web.UI.UserControl
                 ddlSchool.DataBind();
                 //--------------------------
                 ddlYear.DataSource = (
-                    from Year d in ctx.Years
-                    orderby d.Name
+                    from Year y in ctx.Years
+                    orderby y.Name
                     select new
                     {
-                        YearName = d.Name                        
+                        YearName = y.Name                        
                     }
                 ).ToList();
                 ddlYear.DataTextField = "YearName";
@@ -43,12 +43,12 @@ public partial class SelectorControl : System.Web.UI.UserControl
                 ddlYear.DataBind();
                 //--------------------------
                 ddlGroupName.DataSource = (
-                    from StudentGroup d in ctx.StudentGroups
-                    orderby d.Name
+                    from StudentGroup sg in ctx.StudentGroups
+                    orderby sg.Name
                     select new
                     {
-                        StudentID = d.Id,
-                        StudentGroup = d.Name                        
+                        StudentID = sg.Id,
+                        StudentGroup = sg.Name                        
                     }
                 ).ToList();
                 ddlGroupName.DataTextField = "StudentGroup";
@@ -56,11 +56,11 @@ public partial class SelectorControl : System.Web.UI.UserControl
                 ddlGroupName.DataBind();
                 //--------------------------
                 ddlSeason.DataSource = (
-                    from Season d in ctx.Seasons
-                    orderby d.Name
+                    from Season sea in ctx.Seasons
+                    orderby sea.Name
                     select new
                     {
-                        SeasonName = d.Name
+                        SeasonName = sea.Name
                     }
                 ).ToList();
                 ddlSeason.DataTextField = "SeasonName";
@@ -71,33 +71,64 @@ public partial class SelectorControl : System.Web.UI.UserControl
         }
     }    
 
-    public void dropdownBind()
+        protected void ddlSchool_SelectedIndexChanged(object sender, EventArgs e)
     {
-       // var results = ddl.SchoolYearList();
-        //ddlSchool.DataSource = results;
-        //ddlSchool.DataTextField = "SchoolYear";
-        //ddlSchool.DataValueField = "SchoolYear";
-        //ddlSchool.DataBind();
-        //ddlSchool.SelectedValue = Convert.ToString(DateTime.Today.Year - 1) + "-" + Convert.ToString(DateTime.Today.Year);
-        //if (String.IsNullOrEmpty(BaseProperties.propSchoolYear))
-        //{
-        //    BaseProperties.propSchoolYear = ddlSchoolYear.SelectedValue;
-        //}
-        //else
-        //{
-        //    ddlSchoolYear.SelectedValue = BaseProperties.propSchoolYear;
-        //}
+        using (CocaDataContext ctx = new CocaDataContext())
+        {
+  
+            string theType = ddlSchool.SelectedValue;
+
+            ddlYear.DataSource = (
+                  from Year y in ctx.Years //, SchoolYear sy in ctx.SchoolYears 
+                     // where sy.SchoolId = theType
+                  orderby y.Name
+                  select new
+                  {
+                      YearName = y.Name
+                  }
+              ).ToList();
+            ddlYear.DataTextField = "YearName";
+            ddlYear.DataValueField = "YearName";
+            ddlYear.DataBind();
+        }
+
     }
     protected void ddlYear_SelectedIndexChanged(object sender, EventArgs e)
     {
+        using (CocaDataContext ctx = new CocaDataContext())
+        {
+            ddlGroupName.DataSource = (
+                      from StudentGroup sg in ctx.StudentGroups
+                      orderby sg.Name
+                      select new
+                      {
+                          StudentID = sg.Id,
+                          StudentGroup = sg.Name
+                      }
+                  ).ToList();
+            ddlGroupName.DataTextField = "StudentGroup";
+            ddlGroupName.DataValueField = "StudentID";
+            ddlGroupName.DataBind();
+        }
 
     }
-    protected void ddlSchool_SelectedIndexChanged(object sender, EventArgs e)
-    {
 
-    }
     protected void ddlGroupName_SelectedIndexChanged(object sender, EventArgs e)
     {
+        using (CocaDataContext ctx = new CocaDataContext())
+        {
+            ddlSeason.DataSource = (
+                     from Season sea in ctx.Seasons
+                     orderby sea.Name
+                     select new
+                     {
+                         SeasonName = sea.Name
+                     }
+                 ).ToList();
+            ddlSeason.DataTextField = "SeasonName";
+            ddlSeason.DataValueField = "SeasonName";
+            ddlSeason.DataBind();
+        }
 
     }
     protected void ddlSeason_SelectedIndexChanged(object sender, EventArgs e)
