@@ -7,7 +7,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
     <div align="center">  
-<h1>Classroom Deatil</h1>
+<h1>Classroom Detail</h1>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <rsweb:ReportViewer ID="ReportViewer1" Width="100%" runat="server" 
@@ -21,7 +21,7 @@
        
     </rsweb:ReportViewer>
    
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server"    
         ConnectionString="<%$ ConnectionStrings:sql2008r2_847344_surveysConnectionString %>" 
         SelectCommand="coca_rpt_AnonymousIds" SelectCommandType="StoredProcedure">
         <SelectParameters>
@@ -30,5 +30,6 @@
         </SelectParameters>
     </asp:SqlDataSource>
     </div>  
+    <%--ConnectionString="<%$ ConnectionStrings:LocalSqlServer %>" --%>
 </asp:Content>
 
