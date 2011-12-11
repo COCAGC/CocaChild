@@ -33,6 +33,14 @@ public partial class SurveyInfo : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        // Disable page caching:
+        Response.Buffer = true;
+        Response.ExpiresAbsolute = DateTime.Now.AddHours(-1);
+        Response.Expires = -1500;
+        Response.AddHeader("Pragma", "no-cache");
+        Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
+        Response.Cache.SetNoStore();
+
         if (anonStudentId == 0)
             ReturnToLogin();
 
@@ -97,6 +105,7 @@ public partial class SurveyInfo : System.Web.UI.Page
             loggedInStudent.LoggedInDate = DateTime.Now;
             Session.Remove(KEY_AnonStudent);
             ctx.SubmitChanges();
+            Session.Clear();
             ReturnToLogin();
         }
     }

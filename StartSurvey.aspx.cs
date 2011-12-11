@@ -10,7 +10,13 @@ public partial class StartSurvey : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        // Disable page caching:
+        Response.Buffer = true;
+        Response.ExpiresAbsolute = DateTime.Now.AddHours(-1);
+        Response.Expires = -1500;
+        Response.AddHeader("Pragma", "no-cache");
+        Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
+        Response.Cache.SetNoStore();
     }
 
     protected void btnStartSurvey_Click(object sender, EventArgs e)

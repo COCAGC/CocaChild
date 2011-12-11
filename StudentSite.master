@@ -6,19 +6,22 @@
 <head runat="server">
     <title> COCA Anonymous Peer Rating Survey System</title>
     <link href="Site.css" rel="stylesheet" type="text/css" />  
-    <link href="CocaChild.css" rel="stylesheet" type="text/css" />  
-<asp:ContentPlaceHolder id="HeadContent" runat="server">
-    </asp:ContentPlaceHolder>
+    <link href="CocaChild.css" rel="stylesheet" type="text/css" /> 
+    <script type="text/javascript">
+        window.history.forward(1); // "Disable" back button via javascript   
+    </script> 
+<asp:contentPlaceHolder id="Headcontent" runat="server">
+    </asp:contentPlaceHolder>
 </head>
 <body>
-     <form id="Form1" runat="server" AUTOCOMPLETE="off" >    
+     <form id="Form1" runat="server" autocomplete="off" >    
     <div class="page">
         <div>
             <div class="clear hideSkiplink">
             </div>            
         </div>
         <div class="main">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+            <asp:contentPlaceHolder ID="Maincontent" runat="server"/>
         </div>
         <div class="clear">
         </div>
