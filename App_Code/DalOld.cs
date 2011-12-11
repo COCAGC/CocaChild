@@ -44,7 +44,8 @@ public class DalOld
     public DataView SurveyListView(int aprID)
     {
         DataTable dt = new DataTable();
-        ConnectionStringSettings _configSettings = ConfigurationManager.ConnectionStrings["sql2008r2_847344_surveysConnectionString"];
+        //ConnectionStringSettings _configSettings = ConfigurationManager.ConnectionStrings["sql2008r2_847344_surveysConnectionString"];
+        ConnectionStringSettings _configSettings = ConfigurationManager.ConnectionStrings["LocalSqlServer"];
         DbProviderFactory _dbProvider = DbProviderFactories.GetFactory(_configSettings.ProviderName);
         //Create a connection to connect as per provided provider name 
         using (DbConnection _dbConn = _dbProvider.CreateConnection())

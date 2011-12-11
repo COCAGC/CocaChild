@@ -70,13 +70,13 @@ namespace DAL
     partial void UpdateStudentSurveyRating(StudentSurveyRating instance);
     partial void DeleteStudentSurveyRating(StudentSurveyRating instance);
     #endregion
-		
-		public CocaDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["sql2008r2_847344_surveysConnectionString"].ConnectionString, mappingSource)
-		{
-			OnCreated();
-		}
-		
+
+    public CocaDataContext() :
+        base(global::System.Configuration.ConfigurationManager.ConnectionStrings["sql2008r2_847344_surveysConnectionString"].ConnectionString, mappingSource)
+    {
+        OnCreated();
+    }
+
 		public CocaDataContext(string connection) : 
 				base(connection, mappingSource)
 		{

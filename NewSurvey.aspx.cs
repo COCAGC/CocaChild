@@ -93,12 +93,25 @@ public partial class NewSurvey : System.Web.UI.Page
 
     private StudentGroup GenerateAndInsertNewStudentGroup(CocaDataContext ctx)
     {
-        var schoolYear = new SchoolYear()
-            {                
-                Year = ctx.Years.Where(y => y.Name == SchoolYearSelector.SelectedValue).SingleOrDefault(),
-                School = ctx.Schools.Where(s=> s.Name == SchoolSelector.SelectedValue).SingleOrDefault()                  
-            };
-        ctx.SchoolYears.InsertOnSubmit(schoolYear);
+
+        SchoolYear schoolYear;
+
+        Year yr = ctx.Years.Where(y => y.Name == SchoolYearSelector.SelectedValue).SingleOrDefault();
+        School sch = ctx.Schools.Where(s => s.Name == SchoolSelector.SelectedValue).SingleOrDefault();
+
+        schoolYear = (from sy in ctx.SchoolYears where sy.Year.Equals(yr) && sy.School.Equals(sch)
+                         select sy).FirstOrDefault();
+
+        if (schoolYear == null)
+        {
+            schoolYear = new SchoolYear()
+                {                
+                    Year = yr,
+                    School = sch                
+                };
+
+            ctx.SchoolYears.InsertOnSubmit(schoolYear);
+        }        
 
 
         var studentGroup = new StudentGroup()

@@ -522,7 +522,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!TimesReportedWasBullied.Value)</Value>
+                              <Value>=Sum(Fields!TimesReportedIsBullying.Value)</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -630,7 +630,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!UsersReportedWasBullied.Value)</Value>
+                              <Value>=Sum(Fields!TimesReportedWasBullied.Value)</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -666,7 +666,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!UsersReportedIsBully.Value)</Value>
+                              <Value>=Sum(Fields!UsersReportedWasBullied.Value)</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -880,7 +880,7 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox43">
+                    <Textbox Name="Textbox8">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -899,7 +899,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox43</rd:DefaultName>
+                      <rd:DefaultName>Textbox8</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>#aab292</Color>
@@ -959,7 +959,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!UsersReportedWasBullied.Value)</Value>
+                              <Value>=Sum(Fields!TimesReportedWasBullied.Value)</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -995,7 +995,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!UsersReportedIsBully.Value)</Value>
+                              <Value>=Sum(Fields!UsersReportedWasBullied.Value)</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -1293,7 +1293,7 @@
         <DataSetName>rpt_GroupDetail</DataSetName>
         <Top>1.79166in</Top>
         <Height>1.58334in</Height>
-        <Width>12.82292in</Width>
+        <Width>12.82293in</Width>
         <Style>
           <Border>
             <Style>None</Style>
