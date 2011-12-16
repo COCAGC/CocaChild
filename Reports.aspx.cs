@@ -21,6 +21,8 @@ public partial class Reports : System.Web.UI.Page
             switch (rblSelectReport.SelectedIndex)
             {
                 case 0:
+                    if (!String.IsNullOrEmpty(seasonGroupID))
+                        Response.Redirect(String.Format("ReportClassRmSmry.aspx?StudentGroupSeasonId={0}", seasonGroupID));
                     break;
                 case 1:
                     if (!String.IsNullOrEmpty(seasonGroupID))
