@@ -60,6 +60,10 @@
               <Mapping SourceColumn="TotalStudentsReportingBullies" DataSetColumn="TotalStudentsReportingBullies" />
               <Mapping SourceColumn="TotalStudentsIdentifiedAsTargets" DataSetColumn="TotalStudentsIdentifiedAsTargets" />
               <Mapping SourceColumn="TotalStudentsReportingTargets" DataSetColumn="TotalStudentsReportingTargets" />
+              <Mapping SourceColumn="COCA_1_Count" DataSetColumn="COCA_1_Count" />
+              <Mapping SourceColumn="COCA_1V_Count" DataSetColumn="COCA_1V_Count" />
+              <Mapping SourceColumn="COCA_2_Count" DataSetColumn="COCA_2_Count" />
+              <Mapping SourceColumn="COCA_3_Count" DataSetColumn="COCA_3_Count" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -172,6 +176,10 @@
               <xs:element name="TotalStudentsReportingBullies" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTotalStudentsReportingBullies" msprop:Generator_ColumnPropNameInRow="TotalStudentsReportingBullies" msprop:Generator_ColumnPropNameInTable="TotalStudentsReportingBulliesColumn" msprop:Generator_UserColumnName="TotalStudentsReportingBullies" type="xs:int" minOccurs="0" />
               <xs:element name="TotalStudentsIdentifiedAsTargets" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTotalStudentsIdentifiedAsTargets" msprop:Generator_ColumnPropNameInRow="TotalStudentsIdentifiedAsTargets" msprop:Generator_ColumnPropNameInTable="TotalStudentsIdentifiedAsTargetsColumn" msprop:Generator_UserColumnName="TotalStudentsIdentifiedAsTargets" type="xs:int" minOccurs="0" />
               <xs:element name="TotalStudentsReportingTargets" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTotalStudentsReportingTargets" msprop:Generator_ColumnPropNameInRow="TotalStudentsReportingTargets" msprop:Generator_ColumnPropNameInTable="TotalStudentsReportingTargetsColumn" msprop:Generator_UserColumnName="TotalStudentsReportingTargets" type="xs:int" minOccurs="0" />
+              <xs:element name="COCA_1_Count" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCOCA_1_Count" msprop:Generator_ColumnPropNameInRow="COCA_1_Count" msprop:Generator_ColumnPropNameInTable="COCA_1_CountColumn" msprop:Generator_UserColumnName="COCA_1_Count" type="xs:int" minOccurs="0" />
+              <xs:element name="COCA_1V_Count" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCOCA_1V_Count" msprop:Generator_ColumnPropNameInRow="COCA_1V_Count" msprop:Generator_ColumnPropNameInTable="COCA_1V_CountColumn" msprop:Generator_UserColumnName="COCA_1V_Count" type="xs:int" minOccurs="0" />
+              <xs:element name="COCA_2_Count" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCOCA_2_Count" msprop:Generator_ColumnPropNameInRow="COCA_2_Count" msprop:Generator_ColumnPropNameInTable="COCA_2_CountColumn" msprop:Generator_UserColumnName="COCA_2_Count" type="xs:int" minOccurs="0" />
+              <xs:element name="COCA_3_Count" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCOCA_3_Count" msprop:Generator_ColumnPropNameInRow="COCA_3_Count" msprop:Generator_ColumnPropNameInTable="COCA_3_CountColumn" msprop:Generator_UserColumnName="COCA_3_Count" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

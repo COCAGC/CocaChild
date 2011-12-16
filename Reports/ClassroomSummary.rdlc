@@ -6,7 +6,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>753a3140-ccbd-4935-b779-f5b64110d400</rd:DataSourceID>
+      <rd:DataSourceID>487f2859-ea80-4399-84fb-46b6be8bfff7</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -58,6 +58,22 @@
         </Field>
         <Field Name="TotalStudentsReportingTargets">
           <DataField>TotalStudentsReportingTargets</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="COCA_1_Count">
+          <DataField>COCA_1_Count</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="COCA_1V_Count">
+          <DataField>COCA_1V_Count</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="COCA_2_Count">
+          <DataField>COCA_2_Count</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="COCA_3_Count">
+          <DataField>COCA_3_Count</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
@@ -757,7 +773,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
+                <Value>=Sum(Fields!COCA_1_Count.Value, "rpt_ClassroomSummary")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -821,7 +837,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
+                <Value>=Sum(Fields!COCA_1V_Count.Value, "rpt_ClassroomSummary")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -885,7 +901,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
+                <Value>=Sum(Fields!COCA_2_Count.Value, "rpt_ClassroomSummary")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -949,7 +965,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
+                <Value>=Sum(Fields!COCA_3_Count.Value, "rpt_ClassroomSummary")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
