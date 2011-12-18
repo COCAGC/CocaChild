@@ -5,9 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
     <div align="center">  
-        <h1>Copy Existing Survey</h1>          
-        <br />
-        <br />
+        <h1>Copy Existing Survey</h1>
         <br />
     </div>
   <selectorCtrl:headerCtrl ID="selControls" runat="server" />
@@ -28,12 +26,10 @@
       <asp:GridView ID="StudentGrid" runat="server" AutoGenerateColumns="False"
         BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px"
         CellPadding="3" CellSpacing="2" DataKeyNames="Id" EnableModelValidation="True"
-        OnRowCancelingEdit="grdStudent_RowCancelingEdit" 
-        OnRowDataBound="grdStudent_RowDataBound" 
-        OnRowEditing="grdStudent_RowEditing" 
-        OnRowUpdating="grdStudent_RowUpdating" ShowFooter="True" 
-        OnRowCommand="grdStudent_RowCommand" 
-        OnRowDeleting="grdStudent_RowDeleting">
+        OnRowCancelingEdit="StudentGrid_RowCancelingEdit" 
+        OnRowEditing="StudentGrid_RowEditing" 
+        OnRowUpdating="StudentGrid_RowUpdating" ShowFooter="True" 
+        OnRowDeleting="StudentGrid_RowDeleting">
             <Columns>
                 <asp:TemplateField HeaderText="First Name">
                 <ItemTemplate>
@@ -62,19 +58,23 @@
                 </EditItemTemplate>
                 <ControlStyle Width="150px" />
             </asp:TemplateField>
-             <asp:TemplateField HeaderText="Edit" ShowHeader="False" HeaderStyle-HorizontalAlign="Left"> 
+            
+<%--             <asp:TemplateField HeaderText="Edit" ShowHeader="False" HeaderStyle-HorizontalAlign="Left"> 
                  <EditItemTemplate> 
                        <asp:LinkButton ID="lbkUpdate" runat="server" CausesValidation="True" CommandName="Update" Text="Update"></asp:LinkButton> 
                        <asp:LinkButton ID="lnkCancel" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton> 
                    </EditItemTemplate> 
                    <FooterTemplate> 
-                       <asp:LinkButton ID="lnkAdd" runat="server" CausesValidation="False" CommandName="Insert" Text="Insert"></asp:LinkButton> 
+                       <asp:LinkButton ID="lnkAdd" runat="server" CausesValidation="False" 
+                           CommandName="Insert" Text="Insert" onclick="lnkAdd_Click"></asp:LinkButton> 
                    </FooterTemplate> 
                    <ItemTemplate> 
                        <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton> 
                    </ItemTemplate> 
+
+<HeaderStyle HorizontalAlign="Left"></HeaderStyle>
                </asp:TemplateField> 
-               <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" /> 
+               <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" /> --%>
             </Columns>
         </asp:GridView>
   </div>

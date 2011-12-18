@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using FileHelpers;
-using System.IO;
 using DAL;
+using FileHelpers;
 
 
 public partial class CopyExistingSurvey : System.Web.UI.Page
@@ -32,7 +31,7 @@ public partial class CopyExistingSurvey : System.Web.UI.Page
 
     private void FillGrid()
     {
-         StudentGrid.Visible = true;
+        StudentGrid.Visible = true;
         StudentGrid.DataSource = retrieveStudents();
         StudentGrid.DataBind();
     }
@@ -53,7 +52,7 @@ public partial class CopyExistingSurvey : System.Web.UI.Page
         studentRows.Insert(0, new StudentCSVImportItem() { FirstName = "First Name", LastName = "Last Name", Teacher = "Teacher" });
         FileHelperEngine<StudentCSVImportItem> engine = new FileHelperEngine<StudentCSVImportItem>();
         MemoryStream stream = new MemoryStream();
-        TextWriter writer = new StreamWriter( stream);
+        TextWriter writer = new StreamWriter(stream);
         engine.WriteStream(writer, studentRows);
         writer.Close();
 
@@ -73,7 +72,7 @@ public partial class CopyExistingSurvey : System.Web.UI.Page
 
         response.Flush();
         response.Close();
-     
+
     }
 
     private IList<Student> retrieveStudents()
@@ -86,7 +85,7 @@ public partial class CopyExistingSurvey : System.Web.UI.Page
                 var school = ctx.Schools.Where(s => s.Id == _school).SingleOrDefault();
                 var year = school.SchoolYears.Where(y => y.Year.Name == _year).SingleOrDefault();
                 var group = year.StudentGroups.Where(g => g.Id == _groupId && g.StudentGroupSeasons.Any(sg => sg.Season.Name == _season || string.IsNullOrEmpty(_season))).SingleOrDefault();
-                students = group.Students.ToList();
+                students = group.Students.OrderBy(s => s.LastName).ThenBy(s => s.FirstName).ToList();
 
                 if (students.Count < 1) throw new InvalidDataException("No students found");
             }
@@ -102,33 +101,74 @@ public partial class CopyExistingSurvey : System.Web.UI.Page
     }
 
     //Grid Methods
-    protected void grdStudent_RowCancelingEdit(object sender, EventArgs e)
-    {
-    
-    }
 
-    protected void grdStudent_RowDataBound(object sender, EventArgs e)
-    {
-       
-    }
-
-    protected void grdStudent_RowEditing(object sender, GridViewEditEventArgs e)
+    protected void StudentGrid_RowEditing(object sender, GridViewEditEventArgs e)
     {
         StudentGrid.EditIndex = e.NewEditIndex;
         FillGrid();
     }
-    
-    protected void grdStudent_RowUpdating(object sender, GridViewUpdateEventArgs e)
+
+
+    protected void StudentGrid_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-    
-    }
-    
-    protected void grdStudent_RowCommand(object sender, EventArgs e)
-    {
-    
+        string firstName = ((TextBox)((GridView)sender).Rows[e.RowIndex].FindControl("fnameEdit")).Text;
+        string lastName = ((TextBox)((GridView)sender).Rows[e.RowIndex].FindControl("lnameEdit")).Text;
+        string teacher = ((TextBox)((GridView)sender).Rows[e.RowIndex].FindControl("teacherEdit")).Text;
+        long id = (long)((GridView)sender).DataKeys[e.RowIndex].Value;
+
+        using (CocaDataContext ctx = new CocaDataContext())
+        {
+            Student student = (from s in ctx.Students where s.Id == id select s).FirstOrDefault();
+            if (student != null)
+            {
+                student.FirstName = firstName;
+                student.LastName = lastName;
+                student.TeacherName = teacher;
+
+                ctx.SubmitChanges();
+            }
+        }
+        StudentGrid.EditIndex = -1;
+        FillGrid();
     }
 
-    protected void grdStudent_RowDeleting(object sender, EventArgs e)
+    protected void StudentGrid_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
-    }        
+        long id = (long)((GridView)sender).DataKeys[e.RowIndex].Value;
+        using (CocaDataContext ctx = new CocaDataContext())
+        {
+            Student student = (from s in ctx.Students where s.Id == id select s).FirstOrDefault();
+            if (student != null)
+            {
+                ctx.Students.DeleteOnSubmit(student);
+                ctx.SubmitChanges();
+            }
+        }
+        StudentGrid.EditIndex = -1;
+        FillGrid();
+    }
+
+    protected void lnkAdd_Click(object sender, EventArgs e)
+    {
+        using (CocaDataContext ctx = new CocaDataContext())
+        {
+            var school = ctx.Schools.Where(s => s.Id == _school).SingleOrDefault();
+            var year = school.SchoolYears.Where(y => y.Year.Name == _year).SingleOrDefault();
+            StudentGroup group = year.StudentGroups.Where(g => g.Id == _groupId && g.StudentGroupSeasons.Any(sg => sg.Season.Name == _season || string.IsNullOrEmpty(_season))).SingleOrDefault();
+
+            Student student = new Student() { FirstName="", LastName = "", TeacherName = "", StudentGroup = group};
+
+            ctx.Students.InsertOnSubmit(student);
+            ctx.SubmitChanges();
+        }
+        StudentGrid.EditIndex = 0;
+        FillGrid();
+    }
+
+    protected void StudentGrid_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        StudentGrid.EditIndex = -1;
+        FillGrid();
+    }
+
 }
