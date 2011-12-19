@@ -29,11 +29,15 @@ public partial class Reports : System.Web.UI.Page
                         Response.Redirect(String.Format("ReportClassRmDetail.aspx?StudentGroupSeasonId={0}", seasonGroupID));
                     break;
                 case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
                     if (!String.IsNullOrEmpty(seasonGroupID))
+                        Response.Redirect(String.Format("ReportCommentDetails.aspx?StudentGroupSeasonId={0}", seasonGroupID));
+                    break;                    
+                case 3:
+                     if (!String.IsNullOrEmpty(seasonGroupID))
+                        Response.Redirect(String.Format("ReportCompareSeasons.aspx?StudentGroupSeasonId1={0}&StudentGroupSeasonId2={1}", seasonGroupID, seasonGroupID));
+                    break;                    
+                case 4:
+                     if (!String.IsNullOrEmpty(seasonGroupID))
                         Response.Redirect(String.Format("ReportAnonUser.aspx?StudentGroupSeasonId={0}", seasonGroupID));
                     break;
                 default:

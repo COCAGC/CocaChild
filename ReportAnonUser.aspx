@@ -7,7 +7,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
     <div align="center">  
-<h1>Classroom Detail</h1>
+<h1>Anonymous Users</h1>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <rsweb:ReportViewer ID="ReportViewer1" Width="100%" runat="server" 
