@@ -12,14 +12,15 @@ public partial class ViewSurveys : System.Web.UI.Page
     {
         using (CocaDataContext ctx = new CocaDataContext())
         {
-
+            //HACK: Not sure why, but compiler is requiring that Survey be Namespace qualified
+            //      despite the using statement.
             gvSurveyList.DataSource = (
-                    from StudentGroupSeason sgs in ctx.StudentGroupSeasons
+                    from DAL.Survey su in ctx.Surveys
                     select new
                     {
-                        SurveyDate = sgs.SurveyDate,
-                        StudentGroupName = sgs.StudentGroup.Name,
-                        SchoolYear = sgs.StudentGroup.SchoolYear.Year.Name
+                        SurveyDate = su.SurveyDate,
+                        StudentGroupName = su.StudentGroup.Name,
+                        SchoolYear = su.StudentGroup.SchoolYear.Year.Name
                     }
                 ).ToList();
             gvSurveyList.DataBind();
@@ -27,9 +28,11 @@ public partial class ViewSurveys : System.Web.UI.Page
 
         using (CocaDataContext ctx = new CocaDataContext())
         {
-            var x = from StudentGroupSeason apr in ctx.StudentGroupSeasons
-                    where apr.Id == 1
-                    select new { FirstName = apr.StudentSurveyDates };
+            //HACK: Not sure why, but compiler is requiring that Survey be Namespace qualified
+            //      despite the using DAL statement.
+            var x = from DAL.Survey su in ctx.Surveys
+                    where su.Id == 1
+                    select new { FirstName = su.SurveyStudents };
         }
     }
 }

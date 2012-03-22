@@ -47,9 +47,9 @@
         </tr>
         <tr>
             <td class="style2" align="right">                
-                Teacher</td>
+                Classroom</td>
             <td align="left">                
-                <asp:TextBox ID="txtTeacher" runat="server" Width="200px"></asp:TextBox>
+                <asp:TextBox ID="txtClassroom" runat="server" Width="200px"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -61,10 +61,10 @@
         </tr>
         <tr>
             <td class="style3" align="right">
-                APR ID</td>
+                Survey ID</td>
             <td class="style1" align="left">
 &nbsp;
-                <asp:Label ID="lblAprID" runat="server"></asp:Label>
+                <asp:Label ID="lblSurveyId" runat="server"></asp:Label>
             </td>
         </tr>
         <tr>

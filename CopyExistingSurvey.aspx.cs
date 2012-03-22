@@ -44,12 +44,12 @@ public partial class CopyExistingSurvey : System.Web.UI.Page
 
         List<StudentCSVImportItem> studentRows = students.Select(s => new StudentCSVImportItem()
                 {
-                    Teacher = s.TeacherName,
+                    Classroom = s.ClassRoom,
                     FirstName = s.FirstName,
                     LastName = s.LastName
                 }).ToList();
 
-        studentRows.Insert(0, new StudentCSVImportItem() { FirstName = "First Name", LastName = "Last Name", Teacher = "Teacher" });
+        studentRows.Insert(0, new StudentCSVImportItem() { FirstName = "First Name", LastName = "Last Name", Classroom = "Classroom" });
         FileHelperEngine<StudentCSVImportItem> engine = new FileHelperEngine<StudentCSVImportItem>();
         MemoryStream stream = new MemoryStream();
         TextWriter writer = new StreamWriter(stream);
@@ -84,7 +84,7 @@ public partial class CopyExistingSurvey : System.Web.UI.Page
             {
                 var school = ctx.Schools.Where(s => s.Id == _school).SingleOrDefault();
                 var year = school.SchoolYears.Where(y => y.Year.Name == _year).SingleOrDefault();
-                var group = year.StudentGroups.Where(g => g.Id == _groupId && g.StudentGroupSeasons.Any(sg => sg.Season.Name == _season || string.IsNullOrEmpty(_season))).SingleOrDefault();
+                var group = year.StudentGroups.Where(g => g.Id == _groupId && g.Surveys.Any(sg => sg.Season.Name == _season || string.IsNullOrEmpty(_season))).SingleOrDefault();
                 students = group.Students.OrderBy(s => s.LastName).ThenBy(s => s.FirstName).ToList();
 
                 if (students.Count < 1) throw new InvalidDataException("No students found");
@@ -113,7 +113,7 @@ public partial class CopyExistingSurvey : System.Web.UI.Page
     {
         string firstName = ((TextBox)((GridView)sender).Rows[e.RowIndex].FindControl("fnameEdit")).Text;
         string lastName = ((TextBox)((GridView)sender).Rows[e.RowIndex].FindControl("lnameEdit")).Text;
-        string teacher = ((TextBox)((GridView)sender).Rows[e.RowIndex].FindControl("teacherEdit")).Text;
+        string classroom = ((TextBox)((GridView)sender).Rows[e.RowIndex].FindControl("classroomEdit")).Text;
         long id = (long)((GridView)sender).DataKeys[e.RowIndex].Value;
 
         using (CocaDataContext ctx = new CocaDataContext())
@@ -123,7 +123,7 @@ public partial class CopyExistingSurvey : System.Web.UI.Page
             {
                 student.FirstName = firstName;
                 student.LastName = lastName;
-                student.TeacherName = teacher;
+                student.ClassRoom = classroom;
 
                 ctx.SubmitChanges();
             }
@@ -154,9 +154,9 @@ public partial class CopyExistingSurvey : System.Web.UI.Page
         {
             var school = ctx.Schools.Where(s => s.Id == _school).SingleOrDefault();
             var year = school.SchoolYears.Where(y => y.Year.Name == _year).SingleOrDefault();
-            StudentGroup group = year.StudentGroups.Where(g => g.Id == _groupId && g.StudentGroupSeasons.Any(sg => sg.Season.Name == _season || string.IsNullOrEmpty(_season))).SingleOrDefault();
+            StudentGroup group = year.StudentGroups.Where(g => g.Id == _groupId && g.Surveys.Any(sg => sg.Season.Name == _season || string.IsNullOrEmpty(_season))).SingleOrDefault();
 
-            Student student = new Student() { FirstName="", LastName = "", TeacherName = "", StudentGroup = group};
+            Student student = new Student() { FirstName="", LastName = "", ClassRoom = "", StudentGroup = group};
 
             ctx.Students.InsertOnSubmit(student);
             ctx.SubmitChanges();

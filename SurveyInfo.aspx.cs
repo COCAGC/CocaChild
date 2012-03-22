@@ -11,7 +11,7 @@ public partial class SurveyInfo : System.Web.UI.Page
     private const string KEY_AnonStudent = "LoggedIn_AnonStudentId";
     private const string PAGE_StudentLogin = "~/StartSurvey.aspx";
 
-    private long aprId
+    private long surveyId
     {
         get { return 0; }
     }
@@ -49,13 +49,14 @@ public partial class SurveyInfo : System.Web.UI.Page
 
             using (CocaDataContext ctx = new CocaDataContext())
             {
-
-                StudentGroupSeason sgs = (from AnonStudent a in ctx.AnonStudents where a.Id == this.anonStudentId select a.StudentGroupSeason).FirstOrDefault();
+                // HACK: Not sure why, but compiler is requiring that "Survey" is namespace qualified even though there is a using statement
+                //       and there are no other "Survey" definitions in the page without that using.
+                DAL.Survey su = (from AnonStudent a in ctx.AnonStudents where a.Id == this.anonStudentId select a.Survey).FirstOrDefault();
                 Random randomNumber = new Random();
                 gvStudentSurveyList.DataSource = (from d in
                                                       (
-                                                         from StudentSurveyDate ssd in ctx.StudentSurveyDates
-                                                         where ssd.StudentGroupSeason.Equals(sgs)
+                                                         from SurveyStudent ssd in ctx.SurveyStudents
+                                                         where ssd.Survey.Equals(su)
                                                          select new
                                                          {
                                                              fn = ssd.Student.FirstName,
@@ -74,13 +75,13 @@ public partial class SurveyInfo : System.Web.UI.Page
         using (CocaDataContext ctx = new CocaDataContext())
         {
             AnonStudent loggedInStudent = (from AnonStudent a in ctx.AnonStudents where a.Id == this.anonStudentId select a).FirstOrDefault();
-            List<StudentSurveyDate> ssds = (from StudentSurveyDate ssd in ctx.StudentSurveyDates
-                                                  where ssd.StudentGroupSeason.Equals(loggedInStudent.StudentGroupSeason)
+            List<SurveyStudent> ssds = (from SurveyStudent ssd in ctx.SurveyStudents
+                                                  where ssd.Survey.Equals(loggedInStudent.Survey)
                                                   select ssd).ToList();
             foreach (GridViewRow row in gvStudentSurveyList.Rows)
             {
                 long ssdId = (long)gvStudentSurveyList.DataKeys[row.RowIndex].Value;
-                StudentSurveyDate ssd = (from s in ssds where s.Id == ssdId select s).FirstOrDefault();
+                SurveyStudent ssd = (from s in ssds where s.Id == ssdId select s).FirstOrDefault();
                 
                 TextBox commentText = (TextBox)row.FindControl("txtComment");
                 DropDownList bullyAmount = (DropDownList)row.FindControl("ddlBullyTimes");
@@ -89,13 +90,13 @@ public partial class SurveyInfo : System.Web.UI.Page
                 StudentSurveyRating rating = new StudentSurveyRating();
 
                 rating.AnonStudent = loggedInStudent;
-                rating.StudentSurveyDate = ssd;
+                rating.SurveyStudent = ssd;
                 int timesBully;
                 int timesTarget;
                 if(!string.IsNullOrEmpty(bullyAmount.SelectedValue) && int.TryParse(bullyAmount.SelectedValue,out timesBully  ))
                     rating.IsBullyValue = timesBully;
                 if(!string.IsNullOrEmpty(targetAmount.SelectedValue) && int.TryParse(targetAmount.SelectedValue, out timesTarget))
-                    rating.WasBulliedValue = timesTarget;
+                    rating.IsTargetValue = timesTarget;
                 rating.Comment = commentText.Text;
 
                 ctx.StudentSurveyRatings.InsertOnSubmit(rating);

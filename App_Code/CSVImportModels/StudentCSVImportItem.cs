@@ -17,7 +17,7 @@ public sealed class StudentCSVImportItem
 
     public String LastName;
 
-    public String Teacher;
+    public String Classroom;
 
 
 }

@@ -1,30 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SQL2008R2_847344_surveys" Class="CocaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=SQL2K805.DiscountAsp.net;Initial Catalog=SQL2008R2_847344_surveys;Persist Security Info=True;User ID=SQL2008R2_847344_Surveys_User" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="LocalSqlServer" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AnonStudents" Member="AnonStudents">
     <Type Name="AnonStudent">
-      <Column Name="AnonStudentId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AnonStudentId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="UserId" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Password" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="StudentGroupSeasonId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="SurveyId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="LoggedInDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="SavedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="AnonStudent_StudentSurveyRating" Member="StudentSurveyRatings" ThisKey="Id" OtherKey="AnonStudentId" Type="StudentSurveyRating" />
-      <Association Name="StudentGroupSeason_AnonStudent" Member="StudentGroupSeason" ThisKey="StudentGroupSeasonId" OtherKey="Id" Type="StudentGroupSeason" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Years" Member="Years">
-    <Type Name="Year">
-      <Column Name="YearId" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="YearName" Member="Name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="Weight" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
-      <Association Name="Year_SchoolYear" Member="SchoolYears" ThisKey="Id" OtherKey="YearId" Type="SchoolYear" />
+      <Association Name="Survey_AnonStudent" Member="Survey" ThisKey="SurveyId" OtherKey="Id" Type="Survey" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ClassLevels" Member="ClassLevels">
     <Type Name="ClassLevel">
-      <Column Name="ClassLevelId" Member="Id" AutoSync="Never" Type="System.Int32" DbType="Int NOT NULL" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ClassLevelId" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ClassLevelName" Member="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Weight" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="ClassLevel_StudentGroup" Member="StudentGroups" ThisKey="Id" OtherKey="ClassLevelId" Type="StudentGroup" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CocaScoreKey" Member="CocaScoreKeys">
+    <Type Name="CocaScoreKey">
+      <Column Name="CocaScore" Type="System.String" DbType="VarChar(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BullyPotential" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TargetPotential" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.RandomWords" Member="RandomWords">
@@ -58,10 +58,10 @@
   </Table>
   <Table Name="dbo.Seasons" Member="Seasons">
     <Type Name="Season">
-      <Column Name="SeasonId" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SeasonId" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="SeasonName" Member="Name" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
       <Column Name="Weight" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
-      <Association Name="Season_StudentGroupSeason" Member="StudentGroupSeasons" ThisKey="Id" OtherKey="SeasonId" Type="StudentGroupSeason" />
+      <Association Name="Season_Survey" Member="Surveys" ThisKey="Id" OtherKey="SeasonId" Type="Survey" />
     </Type>
   </Table>
   <Table Name="dbo.States" Member="States">
@@ -73,59 +73,87 @@
   </Table>
   <Table Name="dbo.StudentGroups" Member="StudentGroups">
     <Type Name="StudentGroup">
-      <Column Name="StudentGroupId" Member="Id" AutoSync="Never" Type="System.Int64" DbType="BigInt NOT NULL" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StudentGroupId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="StudentGroupName" Member="Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="SchoolYearId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="ClassLevelId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="StudentGroup_StudentGroupSeason" Member="StudentGroupSeasons" ThisKey="Id" OtherKey="StudentGroupId" Type="StudentGroupSeason" />
+      <Association Name="StudentGroup_Survey" Member="Surveys" ThisKey="Id" OtherKey="StudentGroupId" Type="Survey" />
       <Association Name="StudentGroup_Student" Member="Students" ThisKey="Id" OtherKey="StudentGroupId" Type="Student" />
-      <Association Name="SchoolYear_StudentGroup" Member="SchoolYear" ThisKey="SchoolYearId" OtherKey="Id" Type="SchoolYear" IsForeignKey="true" />
       <Association Name="ClassLevel_StudentGroup" Member="ClassLevel" ThisKey="ClassLevelId" OtherKey="Id" Type="ClassLevel" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.StudentGroupSeason" Member="StudentGroupSeasons">
-    <Type Name="StudentGroupSeason">
-      <Column Name="StudentGroupSeasonId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="SurveyDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="StudentGroupId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="SeasonId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="StudentGroupSeason_AnonStudent" Member="AnonStudents" ThisKey="Id" OtherKey="StudentGroupSeasonId" Type="AnonStudent" />
-      <Association Name="StudentGroupSeason_StudentSurveyDate" Member="StudentSurveyDates" ThisKey="Id" OtherKey="StudentGroupSeasonId" Type="StudentSurveyDate" />
-      <Association Name="StudentGroup_StudentGroupSeason" Member="StudentGroup" ThisKey="StudentGroupId" OtherKey="Id" Type="StudentGroup" IsForeignKey="true" />
-      <Association Name="Season_StudentGroupSeason" Member="Season" ThisKey="SeasonId" OtherKey="Id" Type="Season" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Students" Member="Students">
-    <Type Name="Student">
-      <Column Name="StudentId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="LastName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="TeacherName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="StudentGroupId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Association Name="Student_StudentSurveyDate" Member="StudentSurveyDates" ThisKey="Id" OtherKey="StudentId" Type="StudentSurveyDate" />
-      <Association Name="StudentGroup_Student" Member="StudentGroup" ThisKey="StudentGroupId" OtherKey="Id" Type="StudentGroup" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.StudentSurveyDates" Member="StudentSurveyDates">
-    <Type Name="StudentSurveyDate">
-      <Column Name="StudentSurveyDateId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="StudentId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="StudentGroupSeasonId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Association Name="StudentSurveyDate_StudentSurveyRating" Member="StudentSurveyRatings" ThisKey="Id" OtherKey="StudentSurveyDateId" Type="StudentSurveyRating" />
-      <Association Name="Student_StudentSurveyDate" Member="Student" ThisKey="StudentId" OtherKey="Id" Type="Student" IsForeignKey="true" />
-      <Association Name="StudentGroupSeason_StudentSurveyDate" Member="StudentGroupSeason" ThisKey="StudentGroupSeasonId" OtherKey="Id" Type="StudentGroupSeason" IsForeignKey="true" />
+      <Association Name="SchoolYear_StudentGroup" Member="SchoolYear" ThisKey="SchoolYearId" OtherKey="Id" Type="SchoolYear" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.StudentSurveyRatings" Member="StudentSurveyRatings">
     <Type Name="StudentSurveyRating">
-      <Column Name="StudentSurveyRatingId" Member="Id" AutoSync="Never" Type="System.Int64" DbType="BigInt NOT NULL" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="StudentSurveyDateId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="StudentSurveyRatingId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SurveyStudentId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="AnonStudentId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="WasBulliedValue" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="IsBullyValue" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsTargetValue" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsBullyValue" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Comment" Type="System.String" DbType="VarChar(350)" CanBeNull="true" />
       <Association Name="AnonStudent_StudentSurveyRating" Member="AnonStudent" ThisKey="AnonStudentId" OtherKey="Id" Type="AnonStudent" IsForeignKey="true" />
-      <Association Name="StudentSurveyDate_StudentSurveyRating" Member="StudentSurveyDate" ThisKey="StudentSurveyDateId" OtherKey="Id" Type="StudentSurveyDate" IsForeignKey="true" />
+      <Association Name="SurveyStudent_StudentSurveyRating" Member="SurveyStudent" ThisKey="SurveyStudentId" OtherKey="Id" Type="SurveyStudent" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Surveys" Member="Surveys">
+    <Type Name="Survey">
+      <Column Name="SurveyId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SurveyDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="StudentGroupId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="SeasonId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Survey_AnonStudent" Member="AnonStudents" ThisKey="Id" OtherKey="SurveyId" Type="AnonStudent" />
+      <Association Name="Survey_SurveyStudent" Member="SurveyStudents" ThisKey="Id" OtherKey="SurveyId" Type="SurveyStudent" />
+      <Association Name="StudentGroup_Survey" Member="StudentGroup" ThisKey="StudentGroupId" OtherKey="Id" Type="StudentGroup" IsForeignKey="true" />
+      <Association Name="Season_Survey" Member="Season" ThisKey="SeasonId" OtherKey="Id" Type="Season" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SurveyStudents" Member="SurveyStudents">
+    <Type Name="SurveyStudent">
+      <Column Name="SurveyStudentId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SurveyId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="StudentId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="CocaScoreOverride" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="CocaScoreOverrideReason" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CommentSummary" Type="System.String" DbType="VarChar(350)" CanBeNull="true" />
+      <Column Name="CocaAnalysis" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="SurveyStudent_StudentSurveyRating" Member="StudentSurveyRatings" ThisKey="Id" OtherKey="SurveyStudentId" Type="StudentSurveyRating" />
+      <Association Name="Survey_SurveyStudent" Member="Survey" ThisKey="SurveyId" OtherKey="Id" Type="Survey" IsForeignKey="true" />
+      <Association Name="Student_SurveyStudent" Member="Student" ThisKey="StudentId" OtherKey="Id" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Years" Member="Years">
+    <Type Name="Year">
+      <Column Name="YearId" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="YearName" Member="Name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Weight" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Year_SchoolYear" Member="SchoolYears" ThisKey="Id" OtherKey="YearId" Type="SchoolYear" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Students" Member="Students">
+    <Type Name="Student" Id="ID1">
+      <Column Name="StudentId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ClassRoom" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="StudentGroupId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="Student_SurveyStudent" Member="SurveyStudents" ThisKey="Id" OtherKey="StudentId" Type="SurveyStudent" />
+      <Association Name="Student_StudentMatch" Member="StudentMatches" ThisKey="Id" OtherKey="MatchingStudentId" Type="StudentMatch" />
+      <Association Name="Student_StudentMatch1" Member="StudentMatches1" ThisKey="Id" OtherKey="StudentId" Type="StudentMatch" />
+      <Association Name="StudentGroup_Student" Member="StudentGroup" ThisKey="StudentGroupId" OtherKey="Id" Type="StudentGroup" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StudentMatches" Member="StudentMatches">
+    <Type Name="StudentMatch">
+      <Column Name="StudentMatchId" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StudentId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="MatchingStudentId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="Student_StudentMatch" Member="MatchingStudent" ThisKey="MatchingStudentId" OtherKey="Id" Type="Student" IsForeignKey="true" />
+      <Association Name="Student_StudentMatch1" Member="Student" ThisKey="StudentId" OtherKey="Id" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.coca_GetUnmatchedStudents" Method="coca_GetUnmatchedStudents">
+    <Parameter Name="SurveyId1" Parameter="surveyId1" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="SurveyId2" Parameter="surveyId2" Type="System.Int64" DbType="BigInt" />
+    <ElementType IdRef="ID1" />
+  </Function>
 </Database>

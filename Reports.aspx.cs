@@ -12,37 +12,38 @@ public partial class Reports : System.Web.UI.Page
     {
 
     }
+
     protected void btnGenerateReport_Click(object sender, EventArgs e)
     {
-        string seasonGroupID = selControls.SeasonGroupID;
+        string surveyID = selControls.SurveyID;
 
-        if (!String.IsNullOrEmpty(seasonGroupID))
+        if (!String.IsNullOrEmpty(surveyID))
 
             switch (rblSelectReport.SelectedIndex)
             {
                 case 0:
-                    if (!String.IsNullOrEmpty(seasonGroupID))
-                        Response.Redirect(String.Format("ReportClassRmSmry.aspx?StudentGroupSeasonId={0}", seasonGroupID));
+                    if (!String.IsNullOrEmpty(surveyID))
+                        Response.Redirect(String.Format("ReportClassRmSmry.aspx?SurveyId={0}", surveyID));
                     break;
                 case 1:
-                    if (!String.IsNullOrEmpty(seasonGroupID))
-                        Response.Redirect(String.Format("ReportClassRmDetail.aspx?StudentGroupSeasonId={0}", seasonGroupID));
+                    if (!String.IsNullOrEmpty(surveyID))
+                        Response.Redirect(String.Format("ReportClassRmDetail.aspx?SurveyId={0}", surveyID));
                     break;
                 case 2:
-                    if (!String.IsNullOrEmpty(seasonGroupID))
-                        Response.Redirect(String.Format("ReportCommentDetails.aspx?StudentGroupSeasonId={0}", seasonGroupID));
+                    if (!String.IsNullOrEmpty(surveyID))
+                        Response.Redirect(String.Format("ReportCommentDetail.aspx?SurveyId={0}", surveyID));
                     break;                    
                 case 3:
-                     if (!String.IsNullOrEmpty(seasonGroupID))
-                        Response.Redirect(String.Format("ReportCompareSeasons.aspx?StudentGroupSeasonId1={0}&StudentGroupSeasonId2={1}", seasonGroupID, seasonGroupID));
+                     if (!String.IsNullOrEmpty(surveyID))
+                        Response.Redirect(String.Format("ReportsPrepSeason2.aspx?SurveyId={0}", surveyID));
                     break;                    
                 case 4:
-                     if (!String.IsNullOrEmpty(seasonGroupID))
-                        Response.Redirect(String.Format("ReportAnonUser.aspx?StudentGroupSeasonId={0}", seasonGroupID));
+                     if (!String.IsNullOrEmpty(surveyID))
+                        Response.Redirect(String.Format("ReportAnonUser.aspx?SurveyId={0}", surveyID));
                     break;
                 default:
-                    if (!String.IsNullOrEmpty(seasonGroupID))
-                        Response.Redirect(String.Format("ReportAnonUser.aspx?StudentGroupSeasonId={0}", seasonGroupID));
+                    if (!String.IsNullOrEmpty(surveyID))
+                        Response.Redirect(String.Format("ReportAnonUser.aspx?SurveyId={0}", surveyID));
                     break;
 
             }

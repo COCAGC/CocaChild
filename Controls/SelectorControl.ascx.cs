@@ -8,7 +8,11 @@ using DAL;
 
 public partial class SelectorControl : System.Web.UI.UserControl
 {
-    private const string KEY_SeasonGroupID = "SeasonGroupID";
+    private const string KEY_SurveyID = "SurveyID";
+
+    protected delegate void BindList();
+
+    public event System.EventHandler SurveyIDChanged;
 
     public string School
     {
@@ -30,17 +34,31 @@ public partial class SelectorControl : System.Web.UI.UserControl
         get { return ddlSeason.SelectedValue; }
     }
 
-    public string SeasonGroupID
+    public string SurveyID
     {
         get
         {
-            return (string)ViewState[KEY_SeasonGroupID];
+            return (string)ViewState[KEY_SurveyID];
         }
         private set
         {
-            ViewState[KEY_SeasonGroupID] = value;
+            ViewState[KEY_SurveyID] = value;
         }
     }
+
+    public bool LockSchool
+    {
+        get
+        {
+            return !ddlSchool.Enabled;
+        }
+        set
+        {
+            ddlSchool.Enabled = !value;
+        }
+    }
+
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -60,15 +78,55 @@ public partial class SelectorControl : System.Web.UI.UserControl
                 ddlSchool.DataTextField = "Name";
                 ddlSchool.DataValueField = "ID";
                 ddlSchool.DataBind();
-                ddlSchool.SelectedIndex = 0;
 
-
-                BindYears();
-                BindGroups();
-                BindSeasons();
-                BindSeasonGroupID();
+                if (Request["SurveyID"] != null)
+                    InitializeWithSurvey(ctx);
+                else
+                    InitializeWithFirstSchool();
             }
         }
+    }
+
+    private void InitializeWithFirstSchool() {
+        ddlSchool.SelectedIndex = 0;
+
+        BindYears();
+        BindGroups();
+        BindSeasons();
+        BindSurveyID();
+    }
+
+    private void InitializeWithSurvey(CocaDataContext ctx)
+    {
+        long surveyId;
+        if (long.TryParse(Request["SurveyId"], out surveyId))
+        {
+            Survey survey = (from s in ctx.Surveys where s.Id == surveyId select s).FirstOrDefault();
+            if (survey != null)
+            {
+                if (SetDropDown(ddlSchool, survey.StudentGroup.SchoolYear.SchoolId.ToString(), BindYears))
+                    if (SetDropDown(ddlYear, survey.StudentGroup.SchoolYear.Year.Name, BindGroups))
+                        if (SetDropDown(ddlGroupName, survey.StudentGroupId.ToString(), BindSeasons))
+                            SetDropDown(ddlSeason, survey.Season.Name, null);
+                BindSurveyID();
+            }
+        }
+    }
+
+    // attempts to set the specified drop down to the value specified. If a delegate is supplied
+    // and the attempt was successful, the delegate will be run and the result will be indicated
+    private bool SetDropDown(ListControl list, string value, BindList bindListDelegate) {
+        ListItem item = list.Items.FindByValue(value);
+        if (item != null)
+        {
+            item.Selected = true;
+
+            if (bindListDelegate != null)
+                bindListDelegate();
+
+            return true;
+        }
+        return false;
     }
 
     protected void ddlSchool_SelectedIndexChanged(object sender, EventArgs e)
@@ -76,25 +134,25 @@ public partial class SelectorControl : System.Web.UI.UserControl
         BindYears();
         BindGroups();
         BindSeasons();
-        BindSeasonGroupID();
+        BindSurveyID();
 
     }
     protected void ddlYear_SelectedIndexChanged(object sender, EventArgs e)
     {
         BindGroups();
         BindSeasons();
-        BindSeasonGroupID();
+        BindSurveyID();
     }
 
     protected void ddlGroupName_SelectedIndexChanged(object sender, EventArgs e)
     {
         BindSeasons();
-        BindSeasonGroupID();
+        BindSurveyID();
     }
 
     protected void ddlSeason_SelectedIndexChanged(object sender, EventArgs e)
     {
-        BindSeasonGroupID();
+        BindSurveyID();
     }
 
     private void BindYears()
@@ -129,12 +187,12 @@ public partial class SelectorControl : System.Web.UI.UserControl
                       orderby sg.Name
                       select new
                       {
-                          StudentID = sg.Id,
-                          StudentGroup = sg.Name
+                          GroupID = sg.Id,
+                          GroupName = sg.Name
                       }
                   ).ToList();
-            ddlGroupName.DataTextField = "StudentGroup";
-            ddlGroupName.DataValueField = "StudentID";
+            ddlGroupName.DataTextField = "GroupName";
+            ddlGroupName.DataValueField = "GroupID";
             ddlGroupName.DataBind();
         }
     }
@@ -148,7 +206,7 @@ public partial class SelectorControl : System.Web.UI.UserControl
 
             ddlSeason.DataSource = (
                      from Season sea in ctx.Seasons
-                     where sea.StudentGroupSeasons.Any(sg => sg.StudentGroup.Id == groupID)
+                     where sea.Surveys.Any(sg => sg.StudentGroup.Id == groupID)
                      orderby sea.Name
                      select new
                      {
@@ -161,18 +219,34 @@ public partial class SelectorControl : System.Web.UI.UserControl
         }
     }
 
-    private void BindSeasonGroupID()
+    private void BindSurveyID()
     {
+        string initId = this.SurveyID;
         using (CocaDataContext ctx = new CocaDataContext())
         {
             long groupID = 0;
             long.TryParse(ddlGroupName.SelectedValue, out groupID);
 
-            var seasonGroup = ctx.StudentGroupSeasons.Where(sgs => sgs.Season.Name == ddlSeason.SelectedValue && sgs.StudentGroup.Id == groupID).SingleOrDefault();
-            if (seasonGroup != null)
-                this.SeasonGroupID = seasonGroup.Id.ToString();
+            var survey = ctx.Surveys.Where(sgs => sgs.Season.Name == ddlSeason.SelectedValue && sgs.StudentGroup.Id == groupID).SingleOrDefault();
+            if (survey != null)
+                this.SurveyID = survey.Id.ToString();
             else
-                this.SeasonGroupID = null;
+                this.SurveyID = null;
         }
+
+        if (initId != this.SurveyID && this.SurveyIDChanged!=null)
+            this.SurveyIDChanged(this, new SurveyIDChangedEventArgs(initId, this.SurveyID));
+    }
+}
+
+public class SurveyIDChangedEventArgs : EventArgs
+{
+    public string OldId;
+    public string NewId;
+
+    public SurveyIDChangedEventArgs(string oldId, string newId)
+    {
+        this.OldId = oldId;
+        this.NewId = newId;
     }
 }

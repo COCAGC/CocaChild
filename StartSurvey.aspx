@@ -13,12 +13,12 @@
          <table>
             <tr>
                 <td align="right">
-                    <asp:Label ID="lblARPID" AssociatedControlId="txtARPID" runat="server" Text="Label">ARP ID</asp:Label>                    
+                    <asp:Label ID="lblSurveyId" AssociatedControlId="SurveyIdTextbox" runat="server" Text="Label">Survey ID</asp:Label>                    
                 </td>
                 <td>
-                    <asp:TextBox ID="txtARPID" runat="server" MaxLength="10"></asp:TextBox>
-                    <asp:RegularExpressionValidator ID="revAPR_ID" runat="server" 
-                        ErrorMessage="Enter numeric value" ControlToValidate="txtARPID" 
+                    <asp:TextBox ID="SurveyIdTextbox" runat="server" MaxLength="10"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="revSurvey_ID" runat="server" 
+                        ErrorMessage="Enter numeric value" ControlToValidate="SurveyIdTextbox" 
                         ValidationExpression="^\d+$"></asp:RegularExpressionValidator>
                 </td>
             </tr>

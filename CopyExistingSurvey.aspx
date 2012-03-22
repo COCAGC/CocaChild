@@ -49,12 +49,12 @@
                 </EditItemTemplate>
                 <ControlStyle Width="150px" />
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Teacher">
+            <asp:TemplateField HeaderText="Classroom">
                 <ItemTemplate>
-                    <asp:Label ID="teacher" runat="server" Text='<%# Bind("TeacherName") %>'></asp:Label>
+                    <asp:Label ID="classroom" runat="server" Text='<%# Bind("ClassRoom") %>'></asp:Label>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:TextBox ID="teacherEdit" runat="server" Text='<%# Bind("TeacherName") %>'></asp:TextBox>                    
+                    <asp:TextBox ID="classroomEdit" runat="server" Text='<%# Bind("ClassRoom") %>'></asp:TextBox>                    
                 </EditItemTemplate>
                 <ControlStyle Width="150px" />
             </asp:TemplateField>

@@ -67,15 +67,15 @@ public partial class NewSurvey : System.Web.UI.Page
 
             StudentGroup group = GenerateAndInsertNewStudentGroup(context);
 
-            var studentGroupSeason = GenerateStudentGroupSeason(context, seasonName, group);
-
+            DAL.Survey survey = (DAL.Survey)GenerateSurvey(context, seasonName, group);
 
             foreach (StudentCSVImportItem row in items)
             {
                 var student = new Student();
-                student.FirstName = row.FirstName;
-                student.LastName = row.LastName;
-                student.TeacherName = row.Teacher;
+                var trimChars = new char[] { ' ', '"' };
+                student.FirstName = row.FirstName.Trim(trimChars);
+                student.LastName = row.LastName.Trim(trimChars);
+                student.ClassRoom = row.Classroom.Trim(trimChars);
                 student.StudentGroup = group;
                 students.Add(student);
             }
@@ -84,8 +84,9 @@ public partial class NewSurvey : System.Web.UI.Page
 
             context.SubmitChanges();
 
-            ExecuteStoredProcedure(context, studentGroupSeason.Id);
-            ReportUrl = string.Format("ReportAnonUser.aspx?StudentGroupSeasonId={0}", studentGroupSeason.Id);
+
+            ExecuteStoredProcedure(context, survey.Id);
+            ReportUrl = string.Format("ReportAnonUser.aspx?SurveyId={0}", survey.Id);
             Page.DataBind();
             LinkToUserList.Visible = true;
         }
@@ -141,7 +142,7 @@ public partial class NewSurvey : System.Web.UI.Page
 
     private void ExecuteStoredProcedure(CocaDataContext ctx, long groupId)
     {
-        ctx.ExecuteCommand("exec coca_AddAllStudentsAndGenerateAnnonLogins @StudentGroupSeasonId = {0}", groupId);
+        ctx.ExecuteCommand("exec coca_AddAllStudentsAndGenerateAnonLogins @SurveyId = {0}", groupId);
     }
 
     private string GetSeasonName()
@@ -149,18 +150,20 @@ public partial class NewSurvey : System.Web.UI.Page
         return SeasonSelector.SelectedValue;
     }
 
-    private StudentGroupSeason GenerateStudentGroupSeason(CocaDataContext ctx, string seasonName, StudentGroup group)
+    //HACK: Not sure why, but compiler is requiring that Survey be Namespace qualified
+    //      despite the using DAL statement.
+    private DAL.Survey GenerateSurvey(CocaDataContext ctx, string seasonName, StudentGroup group)
     {
         var season = ctx.Seasons.Where(s => s.Name == seasonName).SingleOrDefault();
         DateTime date;
         if(!DateTime.TryParse(SurveyDate.Text, out date))
             throw new InvalidDataException("Not a date");
 
-        var groupSeason = new StudentGroupSeason()
+        var groupSeason = new DAL.Survey()
             {
                 Season = season,
                 SurveyDate = date,
-               // SurveyDate = SurveyDate.SelectedDate,
+                //SurveyDate = SurveyDate.SelectedDate,
                 StudentGroup = group
             };
        

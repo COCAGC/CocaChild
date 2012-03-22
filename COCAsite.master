@@ -39,7 +39,7 @@
                                         </ul>
                                     </li>
                                     <li class="smwid"><a href="Reports.aspx">Reports</a></li>
-                                    <li class="smwid"><a href="StartSurvey.aspx">Student Survey</a></li>
+                                    <li class="smwid"><a href="StartSurvey.aspx" onclick="return confirm('This action will log you off the system. Are you sure?')">Student Survey</a></li>
                                     <li class="smwid"><a href="Logout.aspx">Logout</a></li>
                                 </ul>
                     </LoggedInTemplate>

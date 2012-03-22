@@ -15,16 +15,16 @@
             WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt">
             <LocalReport ReportPath="Reports\ClassroomSummary.rdlc">
                 <DataSources>
-                    <rsweb:ReportDataSource DataSourceId="SqlDS_ClassroomSummary" Name="rpt_ClassroomSummary" />
+                    <rsweb:ReportDataSource DataSourceId="SurveySummaryDatasource" Name="SurveySummaryDataset" />
                 </DataSources>
             </LocalReport>                   
         </rsweb:ReportViewer>    
-        <asp:SqlDataSource ID="SqlDS_ClassroomSummary" runat="server" 
-            ConnectionString="<%$ ConnectionStrings:sql2008r2_847344_surveysConnectionString %>"
-            SelectCommand="coca_rpt_ClassRoomSummary" SelectCommandType="StoredProcedure">
+        <asp:SqlDataSource ID="SurveySummaryDatasource" runat="server" 
+            ConnectionString="<%$ ConnectionStrings:LocalSqlServer %>"
+            SelectCommand="coca_rpt_SurveySummaryWRollup" SelectCommandType="StoredProcedure">
             <SelectParameters>
-                <asp:QueryStringParameter Name="StudentGroupSeasonId" 
-                    QueryStringField="StudentGroupSeasonId" Type="Int64" />
+                <asp:QueryStringParameter Name="SurveyId" 
+                    QueryStringField="SurveyId" Type="Int64" />
             </SelectParameters>
         </asp:SqlDataSource>
     </div>
